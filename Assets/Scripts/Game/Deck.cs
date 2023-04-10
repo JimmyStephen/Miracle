@@ -1,3 +1,4 @@
+using Sisus.ComponentNames;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -95,5 +96,16 @@ public class Deck : MonoBehaviour
         }
         usedCards.Clear();
         ShuffleDeck();
+    }
+
+    public string GetNewDeck()
+    {
+        string ret = "";
+        foreach(var card in usedCards)
+        {
+            ret += card.name + ", ";
+        }
+        ret = ret.Remove(ret.Length - 2);
+        return ret;
     }
 }

@@ -141,16 +141,19 @@ public class Card : MonoBehaviour
     /// <summary>
     /// Called when a card is locked in, triggers events or effects that trigger at this point
     /// </summary>
-    public void PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    /// <returns>The effect of the card to display on the screen</returns>
+    public string PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
+        string S_Effect = "No On Play Effect";
         if (effectTrigger == Trigger.ON_PLAY)
         {
-            TriggerEffect(player, AI, GM, PlayedByPlayer);
+            S_Effect = TriggerEffect(player, AI, GM, PlayedByPlayer);
         }
         if (_eventTrigger == Trigger.ON_PLAY)
         {
-            TriggerEvent(player, AI, GM, PlayedByPlayer);
+            S_Effect = TriggerEvent(player, AI, GM, PlayedByPlayer);
         }
+        return S_Effect;
     }
     /// <summary>
     /// Called at the end of the round, triggers events or effects that trigger at this point
@@ -186,30 +189,32 @@ public class Card : MonoBehaviour
     /// <summary>
     /// Called if the cards effect should trigger
     /// </summary>
-    private void TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
+        string EffectDisplay;
         switch (effect)
         {
             case Effect.DAMAGE:
-                TriggerDamageEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = TriggerDamageEffect(player, AI, GM, PlayedByPlayer);
                 break;
             case Effect.SHIELD:
-                TriggerShieldEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = TriggerShieldEffect(player, AI, GM, PlayedByPlayer);
                 break;
             case Effect.HEAL:
-                TriggerHealEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = TriggerHealEffect(player, AI, GM, PlayedByPlayer);
                 break;
             case Effect.DRAW:
-                TriggerDrawEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = TriggerDrawEffect(player, AI, GM, PlayedByPlayer);
                 break;
             default:
                 throw new System.Exception("You should never reach this point");
         }
+        return EffectDisplay;
     }
     /// <summary>
     /// Called if the cards effect should trigger
     /// </summary>
-    private void TriggerEvent(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerEvent(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         //If the event is already ongoing, remove it and replace it with the newer one
         if (GM.OngoingEvents.TryGetValue(_event, out int CurrentEventDuration))
@@ -226,13 +231,14 @@ public class Card : MonoBehaviour
         {
             GM.OngoingEvents.Add(_event, eventDuration);
         }
+        return "Event Added";
     }
 
     //"Extra" Private Methods
     /// <summary>
     /// Triggers the damage effect
     /// </summary>
-    private void TriggerDamageEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerDamageEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         switch (effectTarget)
         {
@@ -263,11 +269,12 @@ public class Card : MonoBehaviour
             default:
                 throw new System.Exception("Effect Target was not Both, Self, or Opponent");
         }
+        return "Damage Effect";
     }
     /// <summary>
     /// Triggers the damage effect
     /// </summary>
-    private void TriggerShieldEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerShieldEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         switch (effectTarget)
         {
@@ -298,11 +305,12 @@ public class Card : MonoBehaviour
             default:
                 throw new System.Exception("Effect Target was not Both, Self, or Opponent");
         }
+        return "Shield Effect";
     }
     /// <summary>
     /// Triggers the damage effect
     /// </summary>
-    private void TriggerHealEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerHealEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         switch (effectTarget)
         {
@@ -333,11 +341,12 @@ public class Card : MonoBehaviour
             default:
                 throw new System.Exception("Effect Target was not Both, Self, or Opponent");
         }
+        return "Heal Effect";
     }
     /// <summary>
     /// Triggers the damage effect
     /// </summary>
-    private void TriggerDrawEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerDrawEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         switch (effectTarget)
         {
@@ -353,5 +362,6 @@ public class Card : MonoBehaviour
             default:
                 throw new System.Exception("Effect Target was not Both, Self, or Opponent");
         }
+        return "Draw Effect";
     }
 }

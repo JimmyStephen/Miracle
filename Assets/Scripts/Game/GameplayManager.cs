@@ -156,25 +156,17 @@ public class GameplayManager : MonoBehaviour
     //private
     private void PlayCards()
     {
-        string TopTextReturn = "";
-        string BotTextReturn = "";
-
         //display and get cards
         playerTwoDisplay = Instantiate(AllCardsList[opponent.Play().index], playerTwoChosenDisplay.transform);
 
         Card playerCard = playerOneDisplay.GetComponent<Card>();
         Card opponentCard = playerTwoDisplay.GetComponent<Card>();
 
-        playerCard.PlayCard(player, opponent, this, true);
-        opponentCard.PlayCard(player, opponent, this, false);
+        string TopTextReturn = playerCard.PlayCard(player, opponent, this, true);
+        string BotTextReturn = opponentCard.PlayCard(player, opponent, this, false);
 
         //set the selected to null
         currentPlayerOneSelected = null;
-
-
-        //add the cards to the used cards
-        //playerOneDeck.AddToNewDeck(playerCard);
-        //playerTwoDeck.AddToNewDeck(opponentCard);
 
         //remove card from players hand
         player.RemoveCard(playerCard);
@@ -184,7 +176,6 @@ public class GameplayManager : MonoBehaviour
 
         //draw a new card for the player
         player.Draw();
-
 
         //Trigger all stored variables
         player.TriggerStored();

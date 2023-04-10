@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player
@@ -135,6 +136,7 @@ public class Player
                 {
                     Hand.Remove(card);
                     Deck.AddToNewDeck(card);
+                    Debug.Log($"Player New Deck: {Deck.GetNewDeck()}");
                     return true;
                 }
             }

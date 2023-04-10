@@ -52,9 +52,10 @@ public class EnemyAI
         Card retCard = Hand[selection];
 
         //remove card from hand
-        Hand.RemoveAt(selection);
+        RemoveCard(retCard);
+
         //draw new card
-        Hand.Add(Deck.DrawCard(null));
+        Hand.Add(Deck.DrawCard(GM));
 
         //return the selection
         return retCard;
@@ -210,5 +211,34 @@ public class EnemyAI
 
         //return retVal;
         return 0;
+    }
+
+
+    /// <summary>
+    /// Removes a card from your hand
+    /// </summary>
+    /// <param name="toRemove">The card to remove from your hand</param>
+    /// <returns>If the removal was successful</returns>
+    public bool RemoveCard(Card toRemove)
+    {
+        try
+        {
+            foreach (Card card in Hand)
+            {
+                if (card.index == toRemove.index)
+                {
+                    Hand.Remove(card);
+                    Deck.AddToNewDeck(card);
+                    Debug.Log($"AI New Deck: {Deck.GetNewDeck()}");
+                    return true;
+                }
+            }
+        }
+        catch
+        {
+            Debug.Log("Unable to remove card");
+            return false;
+        }
+        return true;
     }
 }
