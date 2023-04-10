@@ -93,12 +93,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  DescTextbox: {fileID: 6884701269987563887}
+  ImageBox: {fileID: 1014160268381931446}
   CardName: Random damagE
-  CardDescription: Deal a random amount of damage (1-10)
-  cardType: 0
-  minNumber: 1
-  maxNumber: 11
+  Image: {fileID: 0}
+  baseCardEffectTarget: 1
+  baseEffectTrigger: 2
+  baseCardEffectType: 0
+  effectMinValue: 1
+  eventMaxValue: 7
+  baseCardEventTarget: 4
+  baseEventTrigger: 3
+  baseCardEvent: 4
+  eventDuration: 0
   index: 3
 --- !u!1 &3022637810084833981
 GameObject:

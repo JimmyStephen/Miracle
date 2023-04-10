@@ -2238,6 +2238,62 @@ PrefabInstance:
       propertyPath: playerTwoHealthDisplay
       value: 
       objectReference: {fileID: 825390588}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: b3ff6684e80e191459f64d636fe81f76, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: 5acc76b8269b54648ad3dedae7dd024f, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[2]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: ef9a4f64cbf504c4396f0e87eafb6b3c, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[3]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: c966b7a744fb0294da844544afce7479, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[4]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: dfba02151d92b394996a9f9b852524ac, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[5]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: d44bdfd9aaceb0b44b73b693f199c73c, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[6]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[7]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: cab1bb4e709379544b05bfd25e9b7b61, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[8]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: c4583540b4a8689478f7a04c7ffc5d53, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[9]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: 5ef9677baaaee4444800d5c4a3378a82, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[10]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[11]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: 5cf4e8d0888b72544b19fa23e0bb2987, type: 3}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AllCardsList.Array.data[12]
+      value: 
+      objectReference: {fileID: 718722802651567798, guid: c50e0ee7bd209d8439bc07e2fdd6b40e, type: 3}
     - target: {fileID: 8520297304228490898, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: m_Name
       value: GameplayManager

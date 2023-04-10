@@ -93,12 +93,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  DescTextbox: {fileID: 6884701269987563887}
+  ImageBox: {fileID: 0}
   CardName: Random shielD
-  CardDescription: Shield a random amount of damage (1-7)
-  cardType: 1
-  minNumber: 1
-  maxNumber: 8
+  Image: {fileID: 0}
+  baseCardEffectTarget: 0
+  baseEffectTrigger: 2
+  baseCardEffectType: 1
+  effectMinValue: 1
+  eventMaxValue: 5
+  baseCardEventTarget: 4
+  baseEventTrigger: 3
+  baseCardEvent: 4
+  eventDuration: 0
   index: 7
 --- !u!1 &1034452494025597161
 GameObject:

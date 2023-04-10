@@ -17,6 +17,7 @@ public class Deck : MonoBehaviour
         foreach (var card in startingDeck)
         {
             card.index = index++;
+            card._Init();
             currentDeck.Add(card);
         }
         ShuffleDeck();
@@ -26,12 +27,13 @@ public class Deck : MonoBehaviour
     /// Draw a card from the deck, removing it from the deck
     /// </summary>
     /// <returns>The card that you got</returns>
-    public Card DrawCard()
+    public Card DrawCard(GameplayManager GM)
     {
         if(currentDeck.Count == 0)
         {
-            //Debug.Log("Deck Empty, Resuffle new Deck");
-            NewDeck();
+            if(GM.EnabledDraw())
+                NewDeck();
+            else return null;
         }
         Card retCard = currentDeck[0];
         currentDeck.RemoveAt(0);
@@ -43,7 +45,7 @@ public class Deck : MonoBehaviour
         List<Card> retCards = new();
         for(int i = 0; i < 5; i++)
         {
-            retCards.Add(DrawCard());
+            retCards.Add(DrawCard(null));
         }
         return retCards;
     }
@@ -53,7 +55,7 @@ public class Deck : MonoBehaviour
         usedCards.Add(toAdd);
     }
 
-    public string GetCurrentDeck()
+/*    public string GetCurrentDeck()
     {
         string result = "";
         foreach (var v in currentDeck)
@@ -61,8 +63,8 @@ public class Deck : MonoBehaviour
             result += v.GetName() + " ";
         }
         return result;
-    }
-    public string GetStartingDeck()
+    }*/
+/*    public string GetStartingDeck()
     {
         string result = "";
         foreach(var v in startingDeck)
@@ -70,7 +72,7 @@ public class Deck : MonoBehaviour
             result += v.GetName() + " ";
         }
         return result;
-    }
+    }*/
 
     /// <summary>
     /// Shuffle the deck of cards
@@ -82,9 +84,7 @@ public class Deck : MonoBehaviour
         {
             n--;
             int k = Random.Range(0, n + 1);
-            Card value = currentDeck[k];
-            currentDeck[k] = currentDeck[n];
-            currentDeck[n] = value;
+            (currentDeck[n], currentDeck[k]) = (currentDeck[k], currentDeck[n]);
         }
     }
     void NewDeck()

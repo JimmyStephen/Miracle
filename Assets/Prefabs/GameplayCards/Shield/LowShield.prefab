@@ -93,12 +93,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  DescTextbox: {fileID: 6884701269987563887}
+  ImageBox: {fileID: 0}
   CardName: Low shielD
-  CardDescription: Shield 1 point of damage
-  cardType: 1
-  minNumber: 1
-  maxNumber: -1
+  Image: {fileID: 0}
+  baseCardEffectTarget: 0
+  baseEffectTrigger: 2
+  baseCardEffectType: 1
+  effectMinValue: 2
+  eventMaxValue: -1
+  baseCardEventTarget: 4
+  baseEventTrigger: 3
+  baseCardEvent: 4
+  eventDuration: 0
   index: 6
 --- !u!1 &1604169704962114309
 GameObject:

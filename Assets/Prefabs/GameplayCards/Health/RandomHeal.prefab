@@ -94,12 +94,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  DescTextbox: {fileID: 6884701269987563887}
+  ImageBox: {fileID: 0}
   CardName: Random heaL
-  CardDescription: Heal a random amount of damage (1-7)
-  cardType: 2
-  minNumber: 1
-  maxNumber: 8
+  Image: {fileID: 0}
+  baseCardEffectTarget: 0
+  baseEffectTrigger: 2
+  baseCardEffectType: 2
+  effectMinValue: 1
+  eventMaxValue: 5
+  baseCardEventTarget: 4
+  baseEventTrigger: 3
+  baseCardEvent: 4
+  eventDuration: 0
   index: 11
 --- !u!1 &3022637810084833981
 GameObject:

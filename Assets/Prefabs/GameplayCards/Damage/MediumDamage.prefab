@@ -226,12 +226,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  DescTextbox: {fileID: 6884701269987563887}
+  ImageBox: {fileID: 1014160268381931446}
   CardName: Medium damagE
-  CardDescription: Deal 5 points of damage
-  cardType: 0
-  minNumber: 5
-  maxNumber: -1
+  Image: {fileID: 0}
+  baseCardEffectTarget: 1
+  baseEffectTrigger: 2
+  baseCardEffectType: 0
+  effectMinValue: 5
+  eventMaxValue: -1
+  baseCardEventTarget: 4
+  baseEventTrigger: 3
+  baseCardEvent: 4
+  eventDuration: 0
   index: 1
 --- !u!1 &3022637810084833981
 GameObject:

@@ -94,12 +94,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  DescTextbox: {fileID: 6884701269987563887}
+  ImageBox: {fileID: 0}
   CardName: Low heaL
-  CardDescription: Heal 1 point of damage
-  cardType: 2
-  minNumber: 1
-  maxNumber: -1
+  Image: {fileID: 0}
+  baseCardEffectTarget: 0
+  baseEffectTrigger: 2
+  baseCardEffectType: 2
+  effectMinValue: 1
+  eventMaxValue: -1
+  baseCardEventTarget: 4
+  baseEventTrigger: 3
+  baseCardEvent: 4
+  eventDuration: 0
   index: 10
 --- !u!1 &3022637810084833981
 GameObject:

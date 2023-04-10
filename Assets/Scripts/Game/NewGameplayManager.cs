@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-//make singleton
-public class GameplayManager : MonoBehaviour
+public class NewGameplayManager : MonoBehaviour
 {
     //Waiting: Inital state
     //Selecting: Player is selecting the card
@@ -33,13 +31,13 @@ public class GameplayManager : MonoBehaviour
     //Display
     [SerializeField] TMPro.TMP_Text playerOneHealthDisplay;
     [SerializeField] TMPro.TMP_Text playerTwoHealthDisplay;
-
+    
     [SerializeField] GameObject playerOneChosenDisplay;
     [SerializeField] GameObject playerTwoChosenDisplay;
-
+    
     [SerializeField] GameObject playerOneHandDisplay;
     List<GameObject> currentHandGameObjects;
-
+    
     [SerializeField] TMPro.TMP_Text TopText;
     [SerializeField] TMPro.TMP_Text BotText;
 
@@ -64,20 +62,20 @@ public class GameplayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Initalize Lists
-        currentHandGameObjects = new List<GameObject>();
-
+        //Debug.Log("Gameplay Started");
         //initalize decks
         playerOneDeck.Init();
         playerTwoDeck.Init();
 
+        //Check for start of game effects before triggering anything
+        StartOfGameEffects();
 
-        player = new Player(playerOneDeck, PlayerOneStartingHealth, this);
-        opponent = new EnemyAI(playerTwoDeck, PlayerTwoStartingHealth, this);
+        player = new Player(playerOneDeck, PlayerOneStartingHealth, null);
+        opponent = new EnemyAI(playerTwoDeck, PlayerTwoStartingHealth, null);
 
         //set inital state
         currentGameState = CurrentMode.WAITING;
-        StartOfGameEffects();
+
         playerOneHealthDisplay.text = "";
         playerTwoHealthDisplay.text = "";
         TopText.text = "";
@@ -100,9 +98,14 @@ public class GameplayManager : MonoBehaviour
             case CurrentMode.WAITING:
                 //set starting display
                 //int count = 1;
-                UpdatePlayerHandDisplay();
-                playerOneHealthDisplay.text = player.GetHealthDisplay();
-                playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
+                foreach (Card card in player.GetHand())
+                {
+                    //add to the display
+                    currentHandGameObjects.Add(Instantiate(AllCardsList[card.index], playerOneHandDisplay.transform));
+                }
+
+                playerOneHealthDisplay.text = player.GetHealth().ToString();
+                playerTwoHealthDisplay.text = opponent.GetHealth().ToString();
 
                 currentGameState = CurrentMode.SELECTING;
                 setButtonText = "Lock In";
@@ -165,78 +168,56 @@ public class GameplayManager : MonoBehaviour
         Card playerCard = playerOneDisplay.GetComponent<Card>();
         Card opponentCard = playerTwoDisplay.GetComponent<Card>();
 
-        playerCard.PlayCard(player, opponent, this, true);
-        opponentCard.PlayCard(player, opponent, this, false);
+        //playerCard._Init();
+        //opponentCard._Init();
+
+        Debug.Log("Change to be \"this\" instead of \"null\"");
+        playerCard.PlayCard(player, opponent, null, true);
+        opponentCard.PlayCard(player, opponent, null, false);
 
         //set the selected to null
         currentPlayerOneSelected = null;
-
-
-        //add the cards to the used cards
-        //playerOneDeck.AddToNewDeck(playerCard);
-        //playerTwoDeck.AddToNewDeck(opponentCard);
-
-        //remove card from players hand
-        player.RemoveCard(playerCard);
+        //add the opponents card to the used cards
+        playerOneDeck.AddToNewDeck(playerCard);
+        playerTwoDeck.AddToNewDeck(opponentCard);
 
         //Trigger end of turn effects
         EndOfTurnEffects();
 
-        //draw a new card for the player
-        player.Draw();
-
-
-        //Trigger all stored variables
-        player.TriggerStored();
-        opponent.TriggerStored();
-
         //Set the displays
         TopText.text = TopTextReturn;
         BotText.text = BotTextReturn;
-        playerOneHealthDisplay.text = player.GetHealthDisplay();
-        playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
-        UpdatePlayerHandDisplay();
+        playerOneHealthDisplay.text = player.GetHealth().ToString();
+        playerTwoHealthDisplay.text = opponent.GetHealth().ToString();
     }
 
-    private void UpdatePlayerHandDisplay()
-    {
-        //Delete the entire hand
-        foreach(var v in currentHandGameObjects)
-        {
-            Destroy(v);
-        }
-        currentHandGameObjects.Clear();
 
-        //Redraw Hand
-        foreach (Card card in player.GetHand())
-        {
-           currentHandGameObjects.Add(Instantiate(AllCardsList[card.index], playerOneHandDisplay.transform));
-        }
-    }
 
     //Triggers
     public void StartOfGameEffects()
     {
         //Check if there are any cards in either deck that have start of game effects
-        foreach (var card in player.GetHand())
+        Debug.Log("Change null to this");
+        foreach(var card in player.GetHand())
         {
-            card.StartOfGame(player, opponent, this, true);
+            card.StartOfGame(player, opponent, null, true);
         }
         foreach (var card in opponent.GetHand())
         {
-            card.StartOfGame(player, opponent, this, false);
+            card.StartOfGame(player, opponent, null, false);
         }
     }
     public void EndOfTurnEffects()
     {
         //Check each hand and trigger any end of turn effects
+        Debug.Log("Change null to this");
         foreach (var card in player.GetHand())
         {
-            card.CardInHand(player, opponent, this, true);
+            card.CardInHand(player, opponent, null, true);
         }
         foreach (var card in opponent.GetHand())
         {
-            card.CardInHand(player, opponent, this, false);
+            card.CardInHand(player, opponent, null, false);
         }
     }
 
