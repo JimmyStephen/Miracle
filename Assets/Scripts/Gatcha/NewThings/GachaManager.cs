@@ -1,16 +1,32 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GachaManager : MonoBehaviour {
-  void Start() {
 
+  [SerializeField] GameObject results;
+  void Start() {
+    results.SetActive(false);
   }
 
   void Update() {
 
   }
 
-  public void Gacha() {
+  public void PullSingle() {
+    //check if player has enough money
+      //if enough money remove money
+        //Gacha and show whats given
+    //else
+      //show that player needs money
+
+  }
+
+  public void PullTen() {
+    //SinglePull x10
+  }
+
+  private void Gacha() {
 
     //redo for 4 rates
     int[] rates = {
@@ -26,7 +42,7 @@ public class GachaManager : MonoBehaviour {
       total += item;
     }
 
-    int ranNum = Random.Range(0, total);
+    int ranNum = UnityEngine.Random.Range(0, total);
     int award = 0;
 
     foreach (var weight in rates) {
@@ -40,21 +56,31 @@ public class GachaManager : MonoBehaviour {
 
     switch (award) {
       case 5:
-        //get legendary character
+        //GetCharacter(legendary);
+        Debug.Log("Legendary");
         break;
       case 20:
-        //get rare character
+        //GetCharacter(rare);
+        Debug.Log("Rare");
         break;
       case 25:
-        //get common character
+        //GetCharacter(common);
+        Debug.Log("Common");
         break;
       case 40:
-        //get uncommon character
+        //GetCharacter(Uncommon);
+        Debug.Log("Uncommon");
         break;
     }
   }
 
-  public void GetCharacter() {
+  //Get a list of cards of the rarity
+  private void GetCharacter(List<string> list) {
+    //get a random number between 0 and the list.Count
+    //get character associated within the count of that list
 
+    int count = 0;
+
+    //add character to inventory
   }
 }
