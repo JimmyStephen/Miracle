@@ -145,7 +145,6 @@ public class Player
                 {
                     Hand.Remove(card);
                     Deck.AddToNewDeck(card);
-                    Debug.Log($"Player New Deck: {Deck.GetNewDeck()}");
                     return true;
                 }
             }

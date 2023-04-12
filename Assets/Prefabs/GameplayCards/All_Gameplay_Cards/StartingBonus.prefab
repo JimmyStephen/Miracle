@@ -94,18 +94,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 4903427665035651868}
   ImageBox: {fileID: 0}
-  CardName: NamE
+  CardName: Starting Bonus
   Image: {fileID: 0}
-  baseCardEffectTarget: 1
-  baseEffectTrigger: 1
-  baseCardEffectType: 2
-  effectMinValue: 2
-  eventMaxValue: 0
-  baseCardEventTarget: 1
-  baseEventTrigger: 0
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 12
+  Effects:
+  - baseCardEffectTarget: 1
+    baseEffectTrigger: 0
+    baseCardEffectType: 0
+    EffectValue:
+      DamageValue: 3
+      HealValue: 0
+      ShieldValue: 0
+      DrawNumber: 0
+  - baseCardEffectTarget: 1
+    baseEffectTrigger: 1
+    baseCardEffectType: 2
+    EffectValue:
+      DamageValue: 0
+      HealValue: 2
+      ShieldValue: 0
+      DrawNumber: 0
+  Events: []
+  index: 16
 --- !u!1 &2403897326726978557
 GameObject:
   m_ObjectHideFlags: 0
@@ -519,7 +528,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: Starting Bonus
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: Starting Nerf
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
@@ -576,15 +576,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 2802602955048879855}
   ImageBox: {fileID: 0}
-  CardName: NamE
+  CardName: Starting Nerf
   Image: {fileID: 0}
-  baseCardEffectTarget: 2
-  baseEffectTrigger: 2
-  baseCardEffectType: 3
-  effectMinValue: 1
-  eventMaxValue: 10
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 12
+  Effects:
+  - baseCardEffectTarget: 0
+    baseEffectTrigger: 0
+    baseCardEffectType: 0
+    EffectValue:
+      DamageValue: 4
+      HealValue: 0
+      ShieldValue: 0
+      DrawNumber: 0
+  - baseCardEffectTarget: 0
+    baseEffectTrigger: 1
+    baseCardEffectType: 2
+    EffectValue:
+      DamageValue: 1
+      HealValue: 0
+      ShieldValue: 0
+      DrawNumber: 0
+  Events: []
+  index: 17

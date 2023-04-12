@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Enums;
 
-public class Card_Event : MonoBehaviour
+[Serializable]
+public class Card_Event
 {
     [Header("Event Effects"), Tooltip("Events are duration based and will continue to effect the game until the duration runs out")]
     [SerializeField] Target baseCardEventTarget = Target.NONE;

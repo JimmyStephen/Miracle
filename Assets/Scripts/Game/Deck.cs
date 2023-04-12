@@ -14,10 +14,10 @@ public class Deck : MonoBehaviour
     {
         currentDeck = new List<Card>();
         usedCards = new List<Card>();
-        int index = 0;
+//        int index = 0;
         foreach (var card in startingDeck)
         {
-            card.index = index++;
+            //card.index = index++;
             card._Init();
             currentDeck.Add(card);
         }

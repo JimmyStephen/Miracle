@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 310434080461329344}
   - component: {fileID: 4683709596532801494}
   - component: {fileID: 2710750311708037016}
-  - component: {fileID: 5694219903973334559}
   m_Layer: 5
   m_Name: LowDamage
   m_TagString: Untagged
@@ -98,32 +97,16 @@ MonoBehaviour:
   CardName: Low damagE
   Image: {fileID: 0}
   Effects:
-  - {fileID: 5694219903973334559}
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 2
---- !u!114 &5694219903973334559
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 718722802651567798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81f99dcdb95aa034f991e153d93133c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseCardEffectTarget: 1
-  baseEffectTrigger: 2
-  baseCardEffectType: 0
-  EffectValue:
-    DamageValue: 2
-    HealValue: 0
-    ShieldValue: 0
-    DrawNumber: 0
+  - baseCardEffectTarget: 1
+    baseEffectTrigger: 2
+    baseCardEffectType: 0
+    EffectValue:
+      DamageValue: 2
+      HealValue: 0
+      ShieldValue: 0
+      DrawNumber: 0
+  Events: []
+  index: 7
 --- !u!1 &1322194778904230300
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card Name
+  m_text: Low damagE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

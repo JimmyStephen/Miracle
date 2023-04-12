@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using static Enums;
 
-public class Card_Effect : MonoBehaviour
+[Serializable]
+public class Card_Effect
 {
     [Header("Card Effects"), Tooltip("Effects are (normally) single use and trigger when activated")]
     [SerializeField] Target baseCardEffectTarget = Target.NONE;

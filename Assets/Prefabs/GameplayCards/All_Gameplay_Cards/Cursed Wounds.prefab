@@ -96,16 +96,9 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: NamE
   Image: {fileID: 0}
-  baseCardEffectTarget: 4
-  baseEffectTrigger: 3
-  baseCardEffectType: 5
-  effectMinValue: 1
-  eventMaxValue: 10
-  baseCardEventTarget: 3
-  baseEventTrigger: 2
-  baseCardEvent: 0
-  eventDuration: 1
-  index: 12
+  Effects: []
+  Events: []
+  index: 3
 --- !u!1 &2571109584996202976
 GameObject:
   m_ObjectHideFlags: 0

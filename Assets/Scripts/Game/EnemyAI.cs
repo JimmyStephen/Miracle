@@ -235,7 +235,6 @@ public class EnemyAI
                 {
                     Hand.Remove(card);
                     Deck.AddToNewDeck(card);
-                    Debug.Log($"AI New Deck: {Deck.GetNewDeck()}");
                     return true;
                 }
             }

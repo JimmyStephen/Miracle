@@ -78,6 +78,8 @@ public class GameplayManager : MonoBehaviour
         //set inital state
         currentGameState = CurrentMode.WAITING;
         StartOfGameEffects();
+        player.TriggerStored();
+        opponent.TriggerStored();
         playerOneHealthDisplay.text = "";
         playerTwoHealthDisplay.text = "";
         TopText.text = "";

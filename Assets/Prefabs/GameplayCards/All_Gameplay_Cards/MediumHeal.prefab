@@ -97,16 +97,17 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Medium heaL
   Image: {fileID: 0}
-  baseCardEffectTarget: 0
-  baseEffectTrigger: 2
-  baseCardEffectType: 2
-  effectMinValue: 3
-  eventMaxValue: -1
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 9
+  Effects:
+  - baseCardEffectTarget: 0
+    baseEffectTrigger: 2
+    baseCardEffectType: 2
+    EffectValue:
+      DamageValue: 0
+      HealValue: 3
+      ShieldValue: 0
+      DrawNumber: 0
+  Events: []
+  index: 11
 --- !u!1 &862929867776495112
 GameObject:
   m_ObjectHideFlags: 1
@@ -567,7 +568,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card Name
+  m_text: Medium heaL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

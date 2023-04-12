@@ -97,16 +97,9 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Random heaL
   Image: {fileID: 0}
-  baseCardEffectTarget: 0
-  baseEffectTrigger: 2
-  baseCardEffectType: 2
-  effectMinValue: 1
-  eventMaxValue: 5
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 11
+  Effects: []
+  Events: []
+  index: 14
 --- !u!1 &3022637810084833981
 GameObject:
   m_ObjectHideFlags: 0
@@ -567,7 +560,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card Name
+  m_text: Random heaL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

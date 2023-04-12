@@ -36,4 +36,12 @@ public static class Enums
         ON_PLAY,
         NONE
     }
+    public enum CurrentMode
+    {
+        WAITING,
+        SELECTING,
+        ACTIVATING,
+        ENDING,
+        GAMEOVER
+    }
 }

@@ -364,16 +364,9 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Draw
   Image: {fileID: 0}
-  baseCardEffectTarget: 1
-  baseEffectTrigger: 2
-  baseCardEffectType: 4
-  effectMinValue: 2
-  eventMaxValue: 0
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 12
+  Effects: []
+  Events: []
+  index: 2
 --- !u!1 &7092888187312801652
 GameObject:
   m_ObjectHideFlags: 0
