@@ -12,7 +12,6 @@ public static class Enums
         BOTH,
         NONE
     }
-
     public enum _Event
     {
         NO_HEALS,
@@ -21,7 +20,6 @@ public static class Enums
         UN_OH,
         NONE
     }
-
     public enum Effect
     {
         DAMAGE,
@@ -31,7 +29,6 @@ public static class Enums
         DRAW,
         NONE
     }
-
     public enum Trigger
     {
         START_OF_GAME,

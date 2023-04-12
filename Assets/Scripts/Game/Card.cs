@@ -14,12 +14,14 @@ public class Card : MonoBehaviour
     [SerializeField, Tooltip("Image should have the description")] Sprite Image;
 
 
-    [Header("Card Effects"), Tooltip("Effects are (normally) single use and trigger when activated")]
+/*    [Header("Card Effects"), Tooltip("Effects are (normally) single use and trigger when activated")]
     [SerializeField] Target baseCardEffectTarget = Target.NONE;
     [SerializeField] Trigger baseEffectTrigger = Trigger.NONE;
     [SerializeField] Effect baseCardEffectType = Effect.NONE;
     [SerializeField] int effectMinValue = 0;
-    [SerializeField, Tooltip("If lower than effectMinValue, always takes min")] int eventMaxValue = -1;
+    [SerializeField, Tooltip("If lower than effectMinValue, always takes min")] int eventMaxValue = -1;*/
+
+    [SerializeField] Card_Effect[] Effects;
 
     [Header("Event Effects"), Tooltip("Events are duration based and will continue to effect the game until the duration runs out")]
     [SerializeField] Target baseCardEventTarget = Target.NONE;
@@ -28,22 +30,13 @@ public class Card : MonoBehaviour
     [SerializeField] int eventDuration = 0;
     public int index;
 
-    //the actual effect values in case they got changed from the base in some way
-    private Effect effect;
-    private Target effectTarget;
-    private Trigger effectTrigger;
-
     //the actual event values, in case they got changed from the base in some way
     private _Event _event;
     private Trigger _eventTrigger;
     private Target _eventTarget;
 
-    //value to be passed into the effect method
-    private int effectValue;
-
     private void Start()
     {
-        //Debug.Log("Calling Init From Start");
         _Init();
     }
     /// <summary>
@@ -51,85 +44,16 @@ public class Card : MonoBehaviour
     /// </summary>
     public void _Init()
     {
-        //Debug.Log("Init Called");
-        //Init all the values as needed
-        //set the effect target
-        if (baseCardEffectTarget == Target.RANDOM)
+        foreach(var effect in Effects)
         {
-            //choose a random target
-            int temp = Random.Range(1, 4);
-            effectTarget = temp switch
-            {
-                1 => Target.SELF,
-                2 => Target.OPPONENT,
-                _ => Target.BOTH
-            };
+            effect._Init();
         }
-        else
-        {
-            effectTarget = baseCardEffectTarget;
-        }
-
-        //Set the effect type
-        if (baseCardEffectType == Effect.RANDOM)
-        {
-            //choose a random effect
-            int temp = Random.Range(1, 4);
-            effect = temp switch
-            {
-                1 => Effect.SHIELD,
-                2 => Effect.HEAL,
-                _ => Effect.DAMAGE
-            };
-        }
-        else
-        {
-            effect = baseCardEffectType;
-        }
-
-        //set the effect value
-        if (effectMinValue > eventMaxValue)
-        {
-            effectValue = effectMinValue;
-        }
-        else
-        {
-            effectValue = Random.Range(effectMinValue, eventMaxValue);
-        }
-
-        //Set up the event values / With the current events they cannot be changed from the base
-        _event = baseCardEvent; _eventTrigger = baseEventTrigger; _eventTarget = baseCardEventTarget;
-        //set the effect trigger since it cannot change
-        effectTrigger = baseEffectTrigger;
-
-        //Debug.Log("Effect:");
-        //Debug.Log($"Effect Current: {effect} | Effect Base: {baseCardEffectType}");
-        //Debug.Log($"Effect Trigger Current: {effectTrigger} | Effect Trigger Base: {baseEffectTrigger}");
-        //Debug.Log($"Effect Target Current: {effectTarget} | Effect Target Base: {baseCardEffectTarget}");
-        //Debug.Log("Event");
-        //Debug.Log($"Event Current: {effect} | Event Base: {baseCardEffectType}");
-        //Debug.Log($"Event Trigger Current: {_eventTrigger} | Event Trigger Base: {baseEventTrigger}");
-        //Debug.Log($"Event Target Current: {effectTarget} | Event Target Base: {baseCardEffectTarget}");
 
         if(NameTextbox != null)
-        {
             NameTextbox.text = CardName;
-        }
-        else
-        {
-            //Debug.Log("No Name Display");
-        }
         if(ImageBox != null)
-        {
             ImageBox.sprite = Image;
-        }
-        else
-        {
-            //Debug.Log("No Image Display");
-        }
-        //Debug.Log("Init Finished");
     }
-
 
     //Public and also used Methods
     public void Select()
@@ -145,9 +69,12 @@ public class Card : MonoBehaviour
     public string PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         string S_Effect = "No On Play Effect";
-        if (effectTrigger == Trigger.ON_PLAY)
+        foreach (var effect in Effects)
         {
-            S_Effect = TriggerEffect(player, AI, GM, PlayedByPlayer);
+            if (effect.effectTrigger == Trigger.ON_PLAY)
+            {
+                S_Effect = TriggerEffect(effect, player, AI, GM, PlayedByPlayer);
+            }
         }
         if (_eventTrigger == Trigger.ON_PLAY)
         {
@@ -160,9 +87,12 @@ public class Card : MonoBehaviour
     /// </summary>
     public void CardInHand(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
-        if (effectTrigger == Trigger.IN_HAND)
+        foreach (var effect in Effects)
         {
-            TriggerEffect(player, AI, GM, PlayedByPlayer);
+            if (effect.effectTrigger == Trigger.IN_HAND)
+            {
+                TriggerEffect(effect, player, AI, GM, PlayedByPlayer);
+            }
         }
         if (_eventTrigger == Trigger.IN_HAND)
         {
@@ -174,9 +104,12 @@ public class Card : MonoBehaviour
     /// </summary>
     public void StartOfGame(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
-        if (effectTrigger == Trigger.START_OF_GAME)
+        foreach (var effect in Effects)
         {
-            TriggerEffect(player, AI, GM, PlayedByPlayer);
+            if (effect.effectTrigger == Trigger.START_OF_GAME)
+            {
+                TriggerEffect(effect, player, AI, GM, PlayedByPlayer);
+            }
         }
         if (_eventTrigger == Trigger.START_OF_GAME)
         {
@@ -189,22 +122,22 @@ public class Card : MonoBehaviour
     /// <summary>
     /// Called if the cards effect should trigger
     /// </summary>
-    private string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    private string TriggerEffect(Card_Effect effect, Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         string EffectDisplay;
-        switch (effect)
+        switch (effect.effect)
         {
             case Effect.DAMAGE:
-                EffectDisplay = TriggerDamageEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
                 break;
             case Effect.SHIELD:
-                EffectDisplay = TriggerShieldEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
                 break;
             case Effect.HEAL:
-                EffectDisplay = TriggerHealEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
                 break;
             case Effect.DRAW:
-                EffectDisplay = TriggerDrawEffect(player, AI, GM, PlayedByPlayer);
+                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
                 break;
             default:
                 throw new System.Exception("You should never reach this point");
@@ -223,8 +156,6 @@ public class Card : MonoBehaviour
             {
                 GM.OngoingEvents.Remove(_event);
                 GM.OngoingEvents.Add(_event, eventDuration);
-                //This might also work, I'll test it later
-                //GM.OngoingEvents[_event] = eventDuration;
             }
         }
         else
@@ -234,134 +165,4 @@ public class Card : MonoBehaviour
         return "Event Added";
     }
 
-    //"Extra" Private Methods
-    /// <summary>
-    /// Triggers the damage effect
-    /// </summary>
-    private string TriggerDamageEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        switch (effectTarget)
-        {
-            case Target.SELF:
-                if(PlayedByPlayer)
-                {
-                    player.UpdateStored(damageValue: effectValue);
-                }
-                else
-                {
-                    AI.UpdateStored(damageValue: effectValue);
-                }
-                break;
-            case Target.OPPONENT:
-                if (PlayedByPlayer)
-                {
-                    AI.UpdateStored(damageValue: effectValue);
-                }
-                else
-                {
-                    player.UpdateStored(damageValue: effectValue);
-                }
-                break;
-            case Target.BOTH:
-                AI.UpdateStored(damageValue: effectValue);
-                player.UpdateStored(damageValue: effectValue);
-                break;
-            default:
-                throw new System.Exception("Effect Target was not Both, Self, or Opponent");
-        }
-        return "Damage Effect";
-    }
-    /// <summary>
-    /// Triggers the damage effect
-    /// </summary>
-    private string TriggerShieldEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        switch (effectTarget)
-        {
-            case Target.SELF:
-                if (PlayedByPlayer)
-                {
-                    player.UpdateStored(shieldValue: effectValue);
-                }
-                else
-                {
-                    AI.UpdateStored(shieldValue: effectValue);
-                }
-                break;
-            case Target.OPPONENT:
-                if (PlayedByPlayer)
-                {
-                    AI.UpdateStored(shieldValue: effectValue);
-                }
-                else
-                {
-                    player.UpdateStored(shieldValue: effectValue);
-                }
-                break;
-            case Target.BOTH:
-                AI.UpdateStored(shieldValue: effectValue);
-                player.UpdateStored(shieldValue: effectValue);
-                break;
-            default:
-                throw new System.Exception("Effect Target was not Both, Self, or Opponent");
-        }
-        return "Shield Effect";
-    }
-    /// <summary>
-    /// Triggers the damage effect
-    /// </summary>
-    private string TriggerHealEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        switch (effectTarget)
-        {
-            case Target.SELF:
-                if (PlayedByPlayer)
-                {
-                    player.UpdateStored(healValue: effectValue);
-                }
-                else
-                {
-                    AI.UpdateStored(healValue: effectValue);
-                }
-                break;
-            case Target.OPPONENT:
-                if (PlayedByPlayer)
-                {
-                    AI.UpdateStored(healValue: effectValue);
-                }
-                else
-                {
-                    player.UpdateStored(healValue: effectValue);
-                }
-                break;
-            case Target.BOTH:
-                AI.UpdateStored(healValue: effectValue);
-                player.UpdateStored(healValue: effectValue);
-                break;
-            default:
-                throw new System.Exception("Effect Target was not Both, Self, or Opponent");
-        }
-        return "Heal Effect";
-    }
-    /// <summary>
-    /// Triggers the damage effect
-    /// </summary>
-    private string TriggerDrawEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        switch (effectTarget)
-        {
-            case Target.SELF:
-                Debug.Log("Draw Effect on Self");
-                break;
-            case Target.OPPONENT:
-                Debug.Log("Draw Effect on Opponent");
-                break;
-            case Target.BOTH:
-                Debug.Log("Draw Effect on Both");
-                break;
-            default:
-                throw new System.Exception("Effect Target was not Both, Self, or Opponent");
-        }
-        return "Draw Effect";
-    }
 }

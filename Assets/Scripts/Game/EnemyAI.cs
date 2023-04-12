@@ -76,7 +76,13 @@ public class EnemyAI
         return Hand;
     }
 
-
+    public void UpdateStored(Data values)
+    {
+        StoredDamage += values.DamageValue;
+        StoredHealing += values.HealValue;
+        if (GM.EnabledShield() && values.ShieldValue != 0)
+            CurrentShield = values.ShieldValue;
+    }
     /// <summary>
     /// Updates the stored values that will be triggered at the end of the turn
     /// </summary>
