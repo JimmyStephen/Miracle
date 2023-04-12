@@ -124,25 +124,7 @@ public class Card : MonoBehaviour
     /// </summary>
     private string TriggerEffect(Card_Effect effect, Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
-        string EffectDisplay;
-        switch (effect.effect)
-        {
-            case Effect.DAMAGE:
-                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-                break;
-            case Effect.SHIELD:
-                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-                break;
-            case Effect.HEAL:
-                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-                break;
-            case Effect.DRAW:
-                EffectDisplay = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-                break;
-            default:
-                throw new System.Exception("You should never reach this point");
-        }
-        return EffectDisplay;
+                return effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
     }
     /// <summary>
     /// Called if the cards effect should trigger
