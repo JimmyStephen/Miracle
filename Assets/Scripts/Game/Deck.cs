@@ -52,7 +52,6 @@ public class Deck : MonoBehaviour
     }
     public void AddToNewDeck(Card toAdd)
     {
-//        Debug.Log("Added card to used cards: " + toAdd.GetName());
         usedCards.Add(toAdd);
     }
 
@@ -96,16 +95,5 @@ public class Deck : MonoBehaviour
         }
         usedCards.Clear();
         ShuffleDeck();
-    }
-
-    public string GetNewDeck()
-    {
-        string ret = "";
-        foreach(var card in usedCards)
-        {
-            ret += card.name + ", ";
-        }
-        ret = ret.Remove(ret.Length - 2);
-        return ret;
     }
 }

@@ -13,27 +13,10 @@ public class Card : MonoBehaviour
     [SerializeField] string CardName;
     [SerializeField, Tooltip("Image should have the description")] Sprite Image;
 
+    [SerializeField, Tooltip("List of all the effects the card can trigger")] Card_Effect[] Effects;
+    [SerializeField, Tooltip("List of all the events the card can trigger")] Card_Event[] Events;
 
-/*    [Header("Card Effects"), Tooltip("Effects are (normally) single use and trigger when activated")]
-    [SerializeField] Target baseCardEffectTarget = Target.NONE;
-    [SerializeField] Trigger baseEffectTrigger = Trigger.NONE;
-    [SerializeField] Effect baseCardEffectType = Effect.NONE;
-    [SerializeField] int effectMinValue = 0;
-    [SerializeField, Tooltip("If lower than effectMinValue, always takes min")] int eventMaxValue = -1;*/
-
-    [SerializeField] Card_Effect[] Effects;
-
-    [Header("Event Effects"), Tooltip("Events are duration based and will continue to effect the game until the duration runs out")]
-    [SerializeField] Target baseCardEventTarget = Target.NONE;
-    [SerializeField] Trigger baseEventTrigger = Trigger.NONE;
-    [SerializeField] _Event baseCardEvent = _Event.NONE;
-    [SerializeField] int eventDuration = 0;
     public int index;
-
-    //the actual event values, in case they got changed from the base in some way
-    private _Event _event;
-    private Trigger _eventTrigger;
-    private Target _eventTarget;
 
     private void Start()
     {
@@ -44,21 +27,15 @@ public class Card : MonoBehaviour
     /// </summary>
     public void _Init()
     {
-        foreach(var effect in Effects)
-        {
-            effect._Init();
-        }
-
         if(NameTextbox != null)
             NameTextbox.text = CardName;
         if(ImageBox != null)
             ImageBox.sprite = Image;
-    }
 
-    //Public and also used Methods
-    public void Select()
-    {
-        FindObjectOfType<GameplayManager>().SetSelectedCard(index);
+        foreach(var effect in Effects)
+            effect._Init();
+        foreach (var _event in Events)
+            _event._Init();
     }
 
     //Methods to call when a card is used
@@ -73,13 +50,18 @@ public class Card : MonoBehaviour
         {
             if (effect.effectTrigger == Trigger.ON_PLAY)
             {
-                S_Effect = TriggerEffect(effect, player, AI, GM, PlayedByPlayer);
+                S_Effect = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
             }
         }
-        if (_eventTrigger == Trigger.ON_PLAY)
+
+        foreach (var _event in Events)
         {
-            S_Effect = TriggerEvent(player, AI, GM, PlayedByPlayer);
+            if (_event._eventTrigger == Trigger.ON_PLAY)
+            {
+                S_Effect = _event.TriggerEvent(player, AI, GM, PlayedByPlayer);
+            }
         }
+
         return S_Effect;
     }
     /// <summary>
@@ -91,12 +73,15 @@ public class Card : MonoBehaviour
         {
             if (effect.effectTrigger == Trigger.IN_HAND)
             {
-                TriggerEffect(effect, player, AI, GM, PlayedByPlayer);
+                effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
             }
         }
-        if (_eventTrigger == Trigger.IN_HAND)
+        foreach (var _event in Events)
         {
-            TriggerEvent(player, AI, GM, PlayedByPlayer);
+            if (_event._eventTrigger == Trigger.IN_HAND)
+            {
+                _event.TriggerEvent(player, AI, GM, PlayedByPlayer);
+            }
         }
     }
     /// <summary>
@@ -108,43 +93,23 @@ public class Card : MonoBehaviour
         {
             if (effect.effectTrigger == Trigger.START_OF_GAME)
             {
-                TriggerEffect(effect, player, AI, GM, PlayedByPlayer);
+                effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
             }
         }
-        if (_eventTrigger == Trigger.START_OF_GAME)
+        foreach (var _event in Events)
         {
-            TriggerEvent(player, AI, GM, PlayedByPlayer);
-        }
-    }
-
-
-    //Private Methods
-    /// <summary>
-    /// Called if the cards effect should trigger
-    /// </summary>
-    private string TriggerEffect(Card_Effect effect, Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-                return effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-    }
-    /// <summary>
-    /// Called if the cards effect should trigger
-    /// </summary>
-    private string TriggerEvent(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        //If the event is already ongoing, remove it and replace it with the newer one
-        if (GM.OngoingEvents.TryGetValue(_event, out int CurrentEventDuration))
-        {
-            if (eventDuration > CurrentEventDuration)
+            if (_event._eventTrigger == Trigger.START_OF_GAME)
             {
-                GM.OngoingEvents.Remove(_event);
-                GM.OngoingEvents.Add(_event, eventDuration);
+                _event.TriggerEvent(player, AI, GM, PlayedByPlayer);
             }
         }
-        else
-        {
-            GM.OngoingEvents.Add(_event, eventDuration);
-        }
-        return "Event Added";
     }
 
+    /// <summary>
+    /// Lets the gameplay manager know when the card is selected
+    /// </summary>
+    public void Select()
+    {
+        FindObjectOfType<GameplayManager>().SetSelectedCard(index);
+    }
 }
