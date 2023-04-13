@@ -591,8 +591,8 @@ MonoBehaviour:
     baseEffectTrigger: 1
     baseCardEffectType: 2
     EffectValue:
-      DamageValue: 1
-      HealValue: 0
+      DamageValue: 0
+      HealValue: 1
       ShieldValue: 0
       DrawNumber: 0
   Events: []

@@ -52,6 +52,14 @@ public class GameplayManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Give cards ID's
+        //int id = 0;
+        //foreach(var v in AllCardsList)
+        //{
+        //    v.GetComponent<Card>().CardID = id;
+        //    id++;
+        //}
+
         //Initalize Lists
         currentHandGameObjects = new List<GameObject>();
         //initalize decks
@@ -77,7 +85,7 @@ public class GameplayManager : MonoBehaviour
         if (currentGameState != CurrentMode.SELECTING) return;
         currentPlayerOneSelected = AllCardsList[CardNumber].GetComponent<Card>();
         if (playerOneDisplay != null) Destroy(playerOneDisplay);
-        playerOneDisplay = Instantiate(AllCardsList[currentPlayerOneSelected.index], playerOneChosenDisplay.transform);
+        playerOneDisplay = Instantiate(AllCardsList[currentPlayerOneSelected.CardID], playerOneChosenDisplay.transform);
     }
     public void Continue()
     {
@@ -148,7 +156,7 @@ public class GameplayManager : MonoBehaviour
     private void PlayCards()
     {
         //display and get cards
-        playerTwoDisplay = Instantiate(AllCardsList[opponent.Play().index], playerTwoChosenDisplay.transform);
+        playerTwoDisplay = Instantiate(AllCardsList[opponent.Play().CardID], playerTwoChosenDisplay.transform);
 
         Card playerCard = playerOneDisplay.GetComponent<Card>();
         Card opponentCard = playerTwoDisplay.GetComponent<Card>();
@@ -187,20 +195,20 @@ public class GameplayManager : MonoBehaviour
     private void CheckInHandEffects()
     {
         //Check each hand and trigger any end of turn effects
-        player.GetHand().ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.IN_HAND); });
-        opponent.GetHand().ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.IN_HAND); });
+        player.Hand.ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.IN_HAND); });
+        opponent.Hand.ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.IN_HAND); });
     }
 
     //Check if the game should be over
     private bool CheckWinner()
     {
-        return (player.GetHealth() <= 0 || opponent.GetHealth() <= 0);
+        return (player.CurrentHealth <= 0 || opponent.CurrentHealth <= 0);
     }
     private string GetWinner()
     {
-        if (player.GetHealth() <= 0 && opponent.GetHealth() <= 0)
+        if (player.CurrentHealth <= 0 && opponent.CurrentHealth <= 0)
             return "Draw";
-        else if (player.GetHealth() <= 0)
+        else if (player.CurrentHealth <= 0)
             return "AI Wins";
         else
             return "You Win!";
@@ -239,6 +247,6 @@ public class GameplayManager : MonoBehaviour
         //Delete the entire hand
         ClearHand();
         //Redraw the hand
-        player.GetHand().ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.index], playerOneHandDisplay.transform)); });
+        player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.CardID], playerOneHandDisplay.transform)); });
     }
 }

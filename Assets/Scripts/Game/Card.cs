@@ -12,11 +12,11 @@ public class Card : MonoBehaviour
     [Header("What to Display")]
     [SerializeField] string CardName;
     [SerializeField, Tooltip("Image should have the description")] Sprite Image;
+    [SerializeField, Tooltip("Output discription when the card is played")] string CardOutputDescription = "Default Card Effect";
     [Header("What the card does")]
     [SerializeField, Tooltip("List of all the effects the card can trigger")] Card_Effect[] Effects;
     [SerializeField, Tooltip("List of all the events the card can trigger")] Card_Event[] Events;
-
-    public int index;
+    public int CardID;
 
     private void Start()
     {
@@ -33,12 +33,11 @@ public class Card : MonoBehaviour
             ImageBox.sprite = Image;
 
         foreach(var effect in Effects)
-            effect._Init();
+            effect._Init(CardOutputDescription);
         foreach (var _event in Events)
-            _event._Init();
+            _event._Init(CardOutputDescription);
     }
 
-    //Methods to call when a card is used
     /// <summary>
     /// Called when a card is locked in, triggers events or effects that trigger at this point
     /// </summary>
@@ -70,6 +69,6 @@ public class Card : MonoBehaviour
     /// </summary>
     public void Select()
     {
-        FindObjectOfType<GameplayManager>().SetSelectedCard(index);
+        FindObjectOfType<GameplayManager>().SetSelectedCard(CardID);
     }
 }

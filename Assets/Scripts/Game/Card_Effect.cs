@@ -17,11 +17,12 @@ public class Card_Effect
     //the actual effect values in case they got changed from the base in some way
     public Target effectTarget { get; private set; }
     public Trigger effectTrigger { get; private set; }
+    private string OnPlayText;
 
     /// <summary>
     /// Initalizes the Effect so that it can be called later without issue
     /// </summary>
-    public void _Init()
+    public void _Init(string Text)
     {
         //Set the base variables for the effect
         //set the effect target
@@ -40,6 +41,8 @@ public class Card_Effect
             effectTarget = baseCardEffectTarget;
 
         effectTrigger = baseEffectTrigger;
+        OnPlayText = Text;
+
     }
     public string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
@@ -64,7 +67,7 @@ public class Card_Effect
             default:
                 throw new System.Exception("Effect Target was not Both, Self, or Opponent");
         }
-        return "Effect Triggered";
+        return OnPlayText;
     }
 }
 

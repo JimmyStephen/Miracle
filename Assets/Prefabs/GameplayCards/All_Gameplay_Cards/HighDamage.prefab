@@ -96,6 +96,7 @@ MonoBehaviour:
   ImageBox: {fileID: 1014160268381931446}
   CardName: High damagE
   Image: {fileID: 0}
+  CardOutputDescription: Default Card Effect
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 2
@@ -106,7 +107,7 @@ MonoBehaviour:
       ShieldValue: 0
       DrawNumber: 0
   Events: []
-  index: 4
+  CardID: 4
 --- !u!1 &3022637810084833981
 GameObject:
   m_ObjectHideFlags: 0

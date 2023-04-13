@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : Player
+public class AI_Player : Player
 {
-    public EnemyAI(Deck deck, int maxHealth, GameplayManager gM) : base(deck, maxHealth, gM) { }
+    public AI_Player(Deck deck, int maxHealth, GameplayManager gM) : base(deck, maxHealth, gM) { }
 
     public Card Play()
     {

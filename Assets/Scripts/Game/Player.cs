@@ -6,16 +6,16 @@ using UnityEngine;
 
 public class Player
 {
-    private int CurrentHealth;
-    private readonly int MaxHealth;
-    private readonly Deck Deck;
-    private List<Card> Hand;
+    public int MaxHealth {get; private set;}
+    public Deck Deck { get; private set; }
+    public List<Card> Hand { get; private set; }
+    public int CurrentHealth { get; private set; }
+    public GameplayManager GM { get; private set; }
 
     private int CurrentShield = 0;
     private int StoredDamage = 0;
     private int StoredHealing = 0;
 
-    private GameplayManager GM;
 
     public Player(Deck deck, int maxHealth, GameplayManager gM)
     {
@@ -26,29 +26,17 @@ public class Player
         GM = gM;
     }
 
+    //Move to Abstract_Player
+    /// <summary>
+    /// Updates the stored values that will be triggered at the end of the turn
+    /// </summary>
+    /// <param name="values">A struct that holds the values that will be changed</param>
     public void UpdateStored(Data values)
     {
         StoredDamage += values.DamageValue;
         StoredHealing += values.HealValue;
         if (GM.CheckForEvent(Enums._Event.NO_SHIELDS) && values.ShieldValue != 0)
             CurrentShield = values.ShieldValue;
-    }
-
-    /// <summary>
-    /// Updates the stored values that will be triggered at the end of the turn
-    /// </summary>
-    /// <param name="healValue">How much this character will heal</param>
-    /// <param name="damageValue">How much damage this character will take</param>
-    /// <param name="shieldValue">Set this characters shield value</param>
-    public void UpdateStored(int healValue = 0, int damageValue = 0, int shieldValue = 0)
-    {
-        //add to heal
-        StoredHealing += healValue;
-        //add to damage
-        StoredDamage += damageValue;
-        //set the shield // If you already have a shield override it
-        if (GM.CheckForEvent(Enums._Event.NO_SHIELDS))
-            CurrentShield = shieldValue;
     }
     /// <summary>
     /// Called at the end of the turn to trigger any damage or healing that have been stored
@@ -86,23 +74,6 @@ public class Player
 
         return CurrentHealth;
     }
-    
-    /// <summary>
-    /// Return the hand
-    /// </summary>
-    /// <returns></returns>
-    public List<Card> GetHand()
-    {
-        return Hand;
-    }
-    /// <summary>
-    /// Returns the current health of the player
-    /// </summary>
-    /// <returns></returns>
-    public int GetHealth()
-    {
-        return CurrentHealth;
-    }
     /// <summary>
     /// Get a string value to display your health, and shield if you have one
     /// </summary>
@@ -110,7 +81,7 @@ public class Player
     public string GetHealthDisplay()
     {
         string ret = CurrentHealth.ToString();
-        if(CurrentShield > 0)
+        if (CurrentShield > 0)
             ret += " (" + CurrentShield + ")";
         return ret;
     }
@@ -129,7 +100,7 @@ public class Player
         {
             Hand.Add(card);
         }
-    }   
+    }
     /// <summary>
     /// Removes a card from your hand
     /// </summary>
@@ -141,7 +112,7 @@ public class Player
         {
             foreach (Card card in Hand)
             {
-                if(card.index == toRemove.index)
+                if (card.CardID == toRemove.CardID)
                 {
                     Hand.Remove(card);
                     Deck.AddToNewDeck(card);

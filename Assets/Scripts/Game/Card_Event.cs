@@ -17,15 +17,17 @@ public class Card_Event
     public _Event _event { get; private set; }
     public Trigger _eventTrigger {get; private set;}
     public Target _eventTarget {get; private set;}
+    private string OnPlayText;
 
     /// <summary>
     /// Initalizes the Effect so that it can be called later without issue
     /// </summary>
-    public void _Init()
+    public void _Init(string Text)
     {
         _event = baseCardEvent;
         _eventTrigger = baseEventTrigger;
         _eventTarget = baseCardEventTarget;
+        OnPlayText = Text;
     }
 
     /// <summary>
@@ -46,6 +48,6 @@ public class Card_Event
         {
             GM.OngoingEvents.Add(_event, eventDuration);
         }
-        return "Event Added";
+        return OnPlayText;
     }
 }
