@@ -30,7 +30,7 @@ public class Player
     {
         StoredDamage += values.DamageValue;
         StoredHealing += values.HealValue;
-        if (GM.EnabledShield() && values.ShieldValue != 0)
+        if (GM.CheckForEvent(Enums._Event.NO_SHIELDS) && values.ShieldValue != 0)
             CurrentShield = values.ShieldValue;
     }
 
@@ -47,7 +47,7 @@ public class Player
         //add to damage
         StoredDamage += damageValue;
         //set the shield // If you already have a shield override it
-        if (GM.EnabledShield())
+        if (GM.CheckForEvent(Enums._Event.NO_SHIELDS))
             CurrentShield = shieldValue;
     }
     /// <summary>
@@ -58,7 +58,7 @@ public class Player
     {
         //Debug.Log($"Trigger Stored Variabes (Player) [Health: {StoredHealing}, Damage: {StoredDamage}, Shield: {CurrentShield}]");
         //Trigger Healing
-        if (GM.EnabledHeal())
+        if (GM.CheckForEvent(Enums._Event.NO_HEALS))
         {
             CurrentHealth += StoredHealing;
             if (CurrentHealth > MaxHealth)

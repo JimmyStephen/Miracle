@@ -12,7 +12,7 @@ public class Card : MonoBehaviour
     [Header("What to Display")]
     [SerializeField] string CardName;
     [SerializeField, Tooltip("Image should have the description")] Sprite Image;
-
+    [Header("What the card does")]
     [SerializeField, Tooltip("List of all the effects the card can trigger")] Card_Effect[] Effects;
     [SerializeField, Tooltip("List of all the events the card can trigger")] Card_Event[] Events;
 
@@ -43,12 +43,12 @@ public class Card : MonoBehaviour
     /// Called when a card is locked in, triggers events or effects that trigger at this point
     /// </summary>
     /// <returns>The effect of the card to display on the screen</returns>
-    public string PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
+    public string PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer, Trigger onTrigger)
     {
-        string S_Effect = "No On Play Effect";
+        string S_Effect = "No Valid Effect";
         foreach (var effect in Effects)
         {
-            if (effect.effectTrigger == Trigger.ON_PLAY)
+            if (effect.effectTrigger == onTrigger)
             {
                 S_Effect = effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
             }
@@ -56,53 +56,13 @@ public class Card : MonoBehaviour
 
         foreach (var _event in Events)
         {
-            if (_event._eventTrigger == Trigger.ON_PLAY)
+            if (_event._eventTrigger == onTrigger)
             {
                 S_Effect = _event.TriggerEvent(player, AI, GM, PlayedByPlayer);
             }
         }
 
         return S_Effect;
-    }
-    /// <summary>
-    /// Called at the end of the round, triggers events or effects that trigger at this point
-    /// </summary>
-    public void CardInHand(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        foreach (var effect in Effects)
-        {
-            if (effect.effectTrigger == Trigger.IN_HAND)
-            {
-                effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-            }
-        }
-        foreach (var _event in Events)
-        {
-            if (_event._eventTrigger == Trigger.IN_HAND)
-            {
-                _event.TriggerEvent(player, AI, GM, PlayedByPlayer);
-            }
-        }
-    }
-    /// <summary>
-    /// If the card has a start of game effect or event, trigger it
-    /// </summary>
-    public void StartOfGame(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
-    {
-        foreach (var effect in Effects)
-        {
-            if (effect.effectTrigger == Trigger.START_OF_GAME)
-            {
-                effect.TriggerEffect(player, AI, GM, PlayedByPlayer);
-            }
-        }
-        foreach (var _event in Events)
-        {
-            if (_event._eventTrigger == Trigger.START_OF_GAME)
-            {
-                _event.TriggerEvent(player, AI, GM, PlayedByPlayer);
-            }
-        }
     }
 
     /// <summary>

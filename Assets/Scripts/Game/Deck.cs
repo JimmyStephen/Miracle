@@ -1,6 +1,7 @@
 using Sisus.ComponentNames;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Deck : MonoBehaviour
@@ -32,7 +33,7 @@ public class Deck : MonoBehaviour
     {
         if(currentDeck.Count == 0)
         {
-            if(GM.EnabledDraw())
+            if(GM.CheckForEvent(Enums._Event.LIMITED_DECK))
                 NewDeck();
             else return null;
         }
@@ -55,24 +56,10 @@ public class Deck : MonoBehaviour
         usedCards.Add(toAdd);
     }
 
-/*    public string GetCurrentDeck()
+    public List<Card> GetStartingDeck()
     {
-        string result = "";
-        foreach (var v in currentDeck)
-        {
-            result += v.GetName() + " ";
-        }
-        return result;
-    }*/
-/*    public string GetStartingDeck()
-    {
-        string result = "";
-        foreach(var v in startingDeck)
-        {
-            result += v.GetName() + " ";
-        }
-        return result;
-    }*/
+        return startingDeck.ToList<Card>();
+    }
 
     /// <summary>
     /// Shuffle the deck of cards

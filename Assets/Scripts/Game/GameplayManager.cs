@@ -1,24 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using static Enums;
 
 //make singleton
 public class GameplayManager : MonoBehaviour
 {
-    //Waiting: Inital state
-    //Selecting: Player is selecting the card
-    //Activating: The cards are activating
-    //Ending: Check if winner and pause before going to the next state
-    //Game Over: When the game ends
-    enum CurrentMode
-    {
-        WAITING,
-        SELECTING,
-        ACTIVATING,
-        ENDING,
-        GAMEOVER
-    }
     //current state
     CurrentMode currentGameState;
     [SerializeField] int victoryRewardMin = 100;
@@ -54,7 +43,6 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] Deck playerOneDeck;
     [SerializeField] Deck playerTwoDeck;
 
-
     private Player player;
     private EnemyAI opponent;
 
@@ -66,20 +54,17 @@ public class GameplayManager : MonoBehaviour
     {
         //Initalize Lists
         currentHandGameObjects = new List<GameObject>();
-
         //initalize decks
         playerOneDeck.Init();
         playerTwoDeck.Init();
-
-
         player = new Player(playerOneDeck, PlayerOneStartingHealth, this);
         opponent = new EnemyAI(playerTwoDeck, PlayerTwoStartingHealth, this);
-
         //set inital state
         currentGameState = CurrentMode.WAITING;
-        StartOfGameEffects();
+        CheckStartOfGameEffects();
         player.TriggerStored();
         opponent.TriggerStored();
+        //Set inital display
         playerOneHealthDisplay.text = "";
         playerTwoHealthDisplay.text = "";
         TopText.text = "";
@@ -101,11 +86,7 @@ public class GameplayManager : MonoBehaviour
         {
             case CurrentMode.WAITING:
                 //set starting display
-                //int count = 1;
-                UpdatePlayerHandDisplay();
-                playerOneHealthDisplay.text = player.GetHealthDisplay();
-                playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
-
+                UpdateDisplay();
                 currentGameState = CurrentMode.SELECTING;
                 setButtonText = "Lock In";
                 break;
@@ -132,9 +113,7 @@ public class GameplayManager : MonoBehaviour
                 if (CheckWinner())
                 {
                     currentGameState = CurrentMode.GAMEOVER;
-                    string winner = GetWinner();
                     GameOver();
-                    //Debug.Log(winner);
                     setButtonText = "Play Again";
                 }
                 else
@@ -153,7 +132,17 @@ public class GameplayManager : MonoBehaviour
         }
         buttonText.text = setButtonText;
     }
-
+    
+    //Helper Methods
+    public bool CheckForEvent(Enums._Event search)
+    {
+        foreach (var _event in OngoingEvents)
+        {
+            if (_event.Key == search)
+                return false;
+        }
+        return true;
+    }
 
     //private
     private void PlayCards()
@@ -164,8 +153,8 @@ public class GameplayManager : MonoBehaviour
         Card playerCard = playerOneDisplay.GetComponent<Card>();
         Card opponentCard = playerTwoDisplay.GetComponent<Card>();
 
-        string TopTextReturn = playerCard.PlayCard(player, opponent, this, true);
-        string BotTextReturn = opponentCard.PlayCard(player, opponent, this, false);
+        string TopTextReturn = playerCard.PlayCard(player, opponent, this, true, Trigger.ON_PLAY);
+        string BotTextReturn = opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY);
 
         //set the selected to null
         currentPlayerOneSelected = null;
@@ -174,7 +163,7 @@ public class GameplayManager : MonoBehaviour
         player.RemoveCard(playerCard);
 
         //Trigger end of turn effects
-        EndOfTurnEffects();
+        CheckInHandEffects();
 
         //draw a new card for the player
         player.Draw();
@@ -184,82 +173,22 @@ public class GameplayManager : MonoBehaviour
         opponent.TriggerStored();
 
         //Set the displays
-        TopText.text = TopTextReturn;
-        BotText.text = BotTextReturn;
-        playerOneHealthDisplay.text = player.GetHealthDisplay();
-        playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
-        UpdatePlayerHandDisplay();
+        UpdateDisplay(TopTextReturn, BotTextReturn);
     }
 
-    private void UpdatePlayerHandDisplay()
-    {
-        //Delete the entire hand
-        foreach(var v in currentHandGameObjects)
-        {
-            Destroy(v);
-        }
-        currentHandGameObjects.Clear();
-
-        //Redraw Hand
-        foreach (Card card in player.GetHand())
-        {
-           currentHandGameObjects.Add(Instantiate(AllCardsList[card.index], playerOneHandDisplay.transform));
-        }
-    }
 
     //Triggers
-    public void StartOfGameEffects()
-    {
-        //Check if there are any cards in either deck that have start of game effects
-        foreach (var card in player.GetHand())
-        {
-            card.StartOfGame(player, opponent, this, true);
-        }
-        foreach (var card in opponent.GetHand())
-        {
-            card.StartOfGame(player, opponent, this, false);
-        }
-    }
-    public void EndOfTurnEffects()
+    private void CheckStartOfGameEffects()
     {
         //Check each hand and trigger any end of turn effects
-        foreach (var card in player.GetHand())
-        {
-            card.CardInHand(player, opponent, this, true);
-        }
-        foreach (var card in opponent.GetHand())
-        {
-            card.CardInHand(player, opponent, this, false);
-        }
+        playerOneDeck.GetStartingDeck().ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.START_OF_GAME); });
+        playerTwoDeck.GetStartingDeck().ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.START_OF_GAME); });
     }
-
-    //Check the current effects
-    public bool EnabledDraw()
+    private void CheckInHandEffects()
     {
-        foreach (var _event in OngoingEvents)
-        {
-            if (_event.Key == Enums._Event.LIMITED_DECK)
-                return false;
-        }
-        return true;
-    }
-    public bool EnabledHeal()
-    {
-        foreach (var _event in OngoingEvents)
-        {
-            if (_event.Key == Enums._Event.NO_HEALS)
-                return false;
-        }
-        return true;
-    }
-    public bool EnabledShield()
-    {
-        foreach (var _event in OngoingEvents)
-        {
-            if (_event.Key == Enums._Event.NO_SHIELDS)
-                return false;
-        }
-        return true;
+        //Check each hand and trigger any end of turn effects
+        player.GetHand().ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.IN_HAND); });
+        opponent.GetHand().ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.IN_HAND); });
     }
 
     //Check if the game should be over
@@ -270,37 +199,46 @@ public class GameplayManager : MonoBehaviour
     private string GetWinner()
     {
         if (player.GetHealth() <= 0 && opponent.GetHealth() <= 0)
-        {
             return "Draw";
-        }
         else if (player.GetHealth() <= 0)
-        {
             return "AI Wins";
-        }
         else
-        {
             return "You Win!";
-        }
     }
     private void GameOver()
     {
         //Delete all the cards in hand
-        foreach (var v in currentHandGameObjects)
-        {
-            Destroy(v);
-        }
+        ClearHand();
 
-        string winner = GetWinner();
-        if (winner == "You Win!")
+        if (GetWinner() == "You Win!")
         {
             int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
-            BotText.text = "Gain " + reward + " Money";
+            UpdateDisplay("You Win!", "Gain " + reward + " Money");
             Inventory.Instance.UpdateFunds(reward);
         }
         else
-        {
-            BotText.text = "";
-        }
-        TopText.text = winner;
+            UpdateDisplay("AI Wins");
+    }
+
+    //Helper Methods
+    private void UpdateDisplay(string TopText = "", string BotText = "")
+    {
+        playerOneHealthDisplay.text = player.GetHealthDisplay();
+        playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
+        this.TopText.text = TopText;
+        this.BotText.text = BotText;
+        UpdatePlayerHandDisplay();
+    }
+    private void ClearHand()
+    {
+        currentHandGameObjects.ForEach(go => { Destroy(go); });
+        currentHandGameObjects.Clear();
+    }
+    private void UpdatePlayerHandDisplay()
+    {
+        //Delete the entire hand
+        ClearHand();
+        //Redraw the hand
+        player.GetHand().ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.index], playerOneHandDisplay.transform)); });
     }
 }
