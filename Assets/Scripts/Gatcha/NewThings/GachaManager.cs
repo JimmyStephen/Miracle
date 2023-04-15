@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GachaManager : MonoBehaviour {
-
-  [SerializeField] GameObject results;
   void Start() {
-    results.SetActive(false);
+
   }
 
   void Update() {
@@ -15,10 +12,10 @@ public class GachaManager : MonoBehaviour {
 
   public void PullSingle() {
     //check if player has enough money
-      //if enough money remove money
-        //Gacha and show whats given
+    //if enough money remove money
+    //Gacha and show whats given
     //else
-      //show that player needs money
+    //show that player needs money
 
   }
 
