@@ -367,7 +367,13 @@ MonoBehaviour:
   CardOutputDescription: Default Card Effect
   Effects: []
   Events: []
-  CardEffects: []
+  CardEffects:
+  - baseCardTarget: 0
+    baseEventTrigger: 2
+    Value:
+      ToDraw: 4
+      ToDiscard: 25
+  SwapEffects: []
   CardID: 0
 --- !u!1 &7699021992320370698
 GameObject:

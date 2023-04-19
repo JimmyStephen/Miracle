@@ -142,14 +142,19 @@ public class GameplayManager : MonoBehaviour
     }
     
     //Helper Methods
+    /// <summary>
+    /// Checks if the event exists in the current game
+    /// </summary>
+    /// <param name="search">What event to search for</param>
+    /// <returns>If the event exists</returns>
     public bool CheckForEvent(Enums._Event search)
     {
         foreach (var _event in OngoingEvents)
         {
             if (_event.Key == search)
-                return false;
+                return true;
         }
-        return true;
+        return false;
     }
 
     //private

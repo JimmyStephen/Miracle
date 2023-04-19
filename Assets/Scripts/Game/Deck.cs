@@ -33,7 +33,7 @@ public class Deck : MonoBehaviour
     {
         if(currentDeck.Count == 0)
         {
-            if(GM.CheckForEvent(Enums._Event.LIMITED_DECK))
+            if(!GM.CheckForEvent(Enums._Event.LIMITED_DECK) && usedCards.Count != 0)
                 NewDeck();
             else return null;
         }

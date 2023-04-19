@@ -362,12 +362,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 396953730792369112}
   ImageBox: {fileID: 0}
-  CardName: CurseD CarD
+  CardName: Cracked Shield
   Image: {fileID: 0}
   CardOutputDescription: Default Card Effect
   Effects: []
   Events: []
   CardEffects: []
+  SwapEffects: []
   CardID: 0
 --- !u!1 &6976746293573081913
 GameObject:

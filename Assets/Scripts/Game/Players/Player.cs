@@ -16,7 +16,6 @@ public class Player
     private int StoredDamage = 0;
     private int StoredHealing = 0;
 
-
     public Player(Deck deck, int maxHealth, GameplayManager gM)
     {
         CurrentHealth = maxHealth;
@@ -34,7 +33,7 @@ public class Player
     {
         StoredDamage += values.DamageValue.GetValue();
         StoredHealing += values.HealValue.GetValue();
-        if (GM.CheckForEvent(Enums._Event.NO_SHIELDS) && values.ShieldValue.GetValue() != 0)
+        if (!GM.CheckForEvent(Enums._Event.NO_SHIELDS) && values.ShieldValue.GetValue() != 0)
             CurrentShield = values.ShieldValue.GetValue();
     }
     /// <summary>
@@ -44,7 +43,7 @@ public class Player
     public int TriggerStored()
     {
         //Trigger Healing
-        if (GM.CheckForEvent(Enums._Event.NO_HEALS))
+        if (!GM.CheckForEvent(Enums._Event.NO_HEALS))
         {
             CurrentHealth += StoredHealing;
             if (CurrentHealth > MaxHealth)
@@ -73,7 +72,6 @@ public class Player
         return CurrentHealth;
     }
     
-    
     /// <summary>
     /// Get a string value to display your health, and shield if you have one
     /// </summary>
@@ -86,7 +84,6 @@ public class Player
         return ret;
     }
   
-
     /// <summary>
     /// Draw a card to the hand
     /// </summary>
@@ -96,7 +93,7 @@ public class Player
         if (card == null)
         {
             CurrentHealth -= 1;
-            Debug.Log("Deck Empty! You start to feel tipsy");
+            Debug.Log("Deck Empty! You start to feel tipsy (Fatigue damage ignores shields)");
         }
         else
         {
