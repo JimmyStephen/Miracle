@@ -16,6 +16,7 @@ public static class Enums
     {
         NO_HEALS,
         NO_SHIELDS,
+        NO_DRAW,
         LIMITED_DECK,
         UN_OH,
         NONE

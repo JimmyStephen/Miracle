@@ -366,7 +366,11 @@ MonoBehaviour:
   Image: {fileID: 0}
   CardOutputDescription: Default Card Effect
   Effects: []
-  Events: []
+  Events:
+  - baseCardEventTarget: 1
+    baseEventTrigger: 0
+    baseCardEvent: 2
+    eventDuration: 1
   CardEffects: []
   SwapEffects: []
   CardID: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5507328036203708436}
   - component: {fileID: 2957899243248365658}
   m_Layer: 5
-  m_Name: Sliced
+  m_Name: Burning Up
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,13 @@ MonoBehaviour:
   CardOutputDescription: Default Card Effect
   Effects: []
   Events: []
-  CardEffects: []
+  CardEffects:
+  - baseCardTarget: 1
+    baseEventTrigger: 2
+    Value:
+      ToDraw: 0
+      ToDiscard: 3
+  SwapEffects: []
   CardID: 0
 --- !u!1 &2693299540979701119
 GameObject:

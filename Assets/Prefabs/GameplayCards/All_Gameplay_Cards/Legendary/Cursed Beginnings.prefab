@@ -578,22 +578,35 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Starting Nerf
   Image: {fileID: 0}
+  CardOutputDescription: Default Card Effect
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 0
     baseCardEffectType: 0
     EffectValue:
-      DamageValue: 4
-      HealValue: 0
-      ShieldValue: 0
-      DrawNumber: 0
+      DamageValue:
+        min: 3
+        max: 0
+      HealValue:
+        min: 0
+        max: 0
+      ShieldValue:
+        min: 0
+        max: 0
   - baseCardEffectTarget: 0
     baseEffectTrigger: 1
     baseCardEffectType: 2
     EffectValue:
-      DamageValue: 0
-      HealValue: 1
-      ShieldValue: 0
-      DrawNumber: 0
+      DamageValue:
+        min: 0
+        max: 0
+      HealValue:
+        min: 1
+        max: 0
+      ShieldValue:
+        min: 0
+        max: 0
   Events: []
-  index: 17
+  CardEffects: []
+  SwapEffects: []
+  CardID: 0

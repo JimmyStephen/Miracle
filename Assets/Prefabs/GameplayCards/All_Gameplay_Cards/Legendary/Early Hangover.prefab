@@ -311,7 +311,33 @@ MonoBehaviour:
   CardName: CurseD CarD
   Image: {fileID: 0}
   CardOutputDescription: Default Card Effect
-  Effects: []
+  Effects:
+  - baseCardEffectTarget: 3
+    baseEffectTrigger: 1
+    baseCardEffectType: 0
+    EffectValue:
+      DamageValue:
+        min: 1
+        max: 0
+      HealValue:
+        min: 0
+        max: 0
+      ShieldValue:
+        min: 0
+        max: 0
+  - baseCardEffectTarget: 3
+    baseEffectTrigger: 2
+    baseCardEffectType: 0
+    EffectValue:
+      DamageValue:
+        min: 3
+        max: 0
+      HealValue:
+        min: 0
+        max: 0
+      ShieldValue:
+        min: 0
+        max: 0
   Events: []
   CardEffects: []
   SwapEffects: []
