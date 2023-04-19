@@ -41,6 +41,19 @@ public class Deck : MonoBehaviour
         currentDeck.RemoveAt(0);
         return retCard;
     }
+    
+    /// <summary>
+    /// Discard a number of cards from the top of the deck based on the int input
+    /// </summary>
+    /// <param name="ToDiscard">How many cards to discard</param>
+    /// <param name="GM">The gameplay manager</param>
+    public void DiscardCards(int ToDiscard, GameplayManager GM)
+    {
+        for (int i = 0; i < ToDiscard; i++)
+        {
+            AddToNewDeck(DrawCard(GM));
+        }
+    }
 
     public List<Card> DrawStartingHand()
     {

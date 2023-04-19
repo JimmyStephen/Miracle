@@ -26,7 +26,6 @@ public static class Enums
         SHIELD,
         HEAL,
         RANDOM,
-        DRAW,
         NONE
     }
     public enum Trigger
@@ -34,6 +33,16 @@ public static class Enums
         START_OF_GAME,
         IN_HAND,
         ON_PLAY,
+        NONE
+    }  
+    public enum CardEffectTarget
+    {
+        SELF_HAND,
+        SELF_DECK,
+        OPPONENT_HAND,
+        OPPONENT_DECK,
+        BOTH_HAND,
+        BOTH_DECK,
         NONE
     }
     public enum CurrentMode
@@ -43,5 +52,13 @@ public static class Enums
         ACTIVATING,
         ENDING,
         GAMEOVER
+    }
+
+    public enum SwapTarget
+    {
+        DECK,
+        HAND,
+        HEALTH,
+        NONE
     }
 }
