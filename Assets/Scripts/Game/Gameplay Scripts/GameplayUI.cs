@@ -20,13 +20,13 @@ public class GameplayUI : MonoBehaviour
     /// <summary>
     /// Update the display for the UI, health, and text
     /// </summary>
-    private void UpdateDisplay(Player player, EnemyAI opponent, string TopText = "", string BotText = "")
+    private void UpdateDisplay(Player player, EnemyAI opponent, GameObject[] CardsList, string TopText = "", string BotText = "")
     {
         playerOneHealthDisplay.text = player.GetHealthDisplay();
         playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
         this.TopText.text = TopText;
         this.BotText.text = BotText;
-        UpdatePlayerHandDisplay(player);
+        UpdatePlayerHandDisplay(player, CardsList);
     }
     /// <summary>
     /// Remove the current hand from the display
@@ -39,11 +39,11 @@ public class GameplayUI : MonoBehaviour
     /// <summary>
     /// Draw the players hand on the screen
     /// </summary>
-    private void UpdatePlayerHandDisplay(Player player)
+    private void UpdatePlayerHandDisplay(Player player, GameObject[] CardsList)
     {
         //Delete the entire hand
         ClearHand();
         //Redraw the hand
-        player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(GameplayManager.Instance.AllCardsList[card.CardID], playerOneHandDisplay.transform)); });
+        player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(CardsList[card.CardID], playerOneHandDisplay.transform)); });
     }
 }

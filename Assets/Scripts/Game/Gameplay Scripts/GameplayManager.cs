@@ -6,7 +6,7 @@ using UnityEngine;
 using static Enums;
 
 //make singleton
-public class GameplayManager : Singleton<GameplayManager>
+public class GameplayManager : MonoBehaviour
 {
     //current state
     CurrentMode currentGameState;
