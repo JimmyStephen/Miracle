@@ -18,6 +18,7 @@ public class Card_Effect
     //the actual effect values in case they got changed from the base in some way
     public Target effectTarget { get; private set; }
     public Trigger EffectTrigger { get; private set; }
+    //public Effect CurrentEffect { get; private set; }
     private string OnPlayText;
 
     /// <summary>
@@ -70,5 +71,13 @@ public class Card_Effect
         }
         return OnPlayText;
     }
+
+    //private string SetOnPlayText(string text)
+    //{
+    //    text = text.Replace("[target]", GetEnumAsString(effectTarget.ToString()));
+    //    text = text.Replace("[value]", GetEnumAsString(effectTarget.ToString()));
+    //    text = text.Replace("[trigger]", GetEnumAsString(EffectTrigger.ToString()));
+    //    return text;
+    //}
 }
 

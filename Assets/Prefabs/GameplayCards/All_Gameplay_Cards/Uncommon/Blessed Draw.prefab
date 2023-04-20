@@ -96,7 +96,7 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Blessed Draw
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Draw 1 Card
   Effects: []
   Events: []
   CardEffects:
@@ -105,7 +105,8 @@ MonoBehaviour:
     Value:
       ToDraw: 1
       ToDiscard: 0
-  CardID: 0
+  SwapEffects: []
+  CardID: 12
 --- !u!1 &2689826127972559541
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: Blessed Draw
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

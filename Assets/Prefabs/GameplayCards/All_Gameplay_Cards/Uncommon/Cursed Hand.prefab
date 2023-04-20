@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 9145609762709509248}
   - component: {fileID: 1984644345867461838}
   m_Layer: 5
-  m_Name: CursedHand
+  m_Name: Cursed Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -310,17 +310,17 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Hand
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Opponent discards hand and draws 5 cards
   Effects: []
   Events: []
   CardEffects:
   - baseCardTarget: 2
     baseEventTrigger: 2
     Value:
-      ToDraw: 5
+      ToDraw: 4
       ToDiscard: 25
   SwapEffects: []
-  CardID: 0
+  CardID: 17
 --- !u!1 &5067406410638040056
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +520,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: Cursed Hand
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

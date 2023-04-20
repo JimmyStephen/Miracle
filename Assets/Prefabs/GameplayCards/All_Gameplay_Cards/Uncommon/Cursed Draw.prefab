@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: Cursed Draw
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
@@ -364,7 +364,7 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Draw
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Opponent Draws 2 Cards
   Effects: []
   Events: []
   CardEffects:
@@ -373,7 +373,8 @@ MonoBehaviour:
     Value:
       ToDraw: 2
       ToDiscard: 0
-  CardID: 0
+  SwapEffects: []
+  CardID: 15
 --- !u!1 &7092888187312801652
 GameObject:
   m_ObjectHideFlags: 0
