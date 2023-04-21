@@ -43,7 +43,7 @@ public class Card_Effect
             effectTarget = baseCardEffectTarget;
 
         EffectTrigger = baseEffectTrigger;
-        OnPlayText = Text;
+        OnPlayText = SetOnPlayText(Text);
 
     }
     public string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
@@ -72,12 +72,26 @@ public class Card_Effect
         return OnPlayText;
     }
 
-    //private string SetOnPlayText(string text)
-    //{
-    //    text = text.Replace("[target]", GetEnumAsString(effectTarget.ToString()));
-    //    text = text.Replace("[value]", GetEnumAsString(effectTarget.ToString()));
-    //    text = text.Replace("[trigger]", GetEnumAsString(EffectTrigger.ToString()));
-    //    return text;
-    //}
+    private string SetOnPlayText(string text)
+    {
+        text = text.Replace("[target]", GetEnumAsString(effectTarget.ToString()));
+        text = text.Replace("[trigger]",GetEnumAsString(EffectTrigger.ToString()));
+        text = text.Replace("[type]",   GetEnumAsString(baseCardEffectType.ToString()));
+        text = text.Replace("[damage]", (EffectValue.DamageValue.GetValue() != 0) ? EffectValue.DamageValue.GetValue().ToString() : "");
+        text = text.Replace("[shield]", (EffectValue.ShieldValue.GetValue() != 0) ? EffectValue.ShieldValue.GetValue().ToString() : "");
+        text = text.Replace("[heal]",   (EffectValue.HealValue  .GetValue() != 0) ? EffectValue.HealValue  .GetValue().ToString() : "");
+        text = text.Replace("[unknown]", ReplaceUnknown());
+        text = text.Replace("\\n", "\n");
+        return text;
+    }
+
+    private string ReplaceUnknown()
+    {
+        string ret = "";
+        if (EffectValue.DamageValue.GetValue() != 0) { ret += "\nDamage: " + EffectValue.DamageValue.GetValue().ToString(); }
+        if (EffectValue.ShieldValue.GetValue() != 0) { ret += "\nShield: " + EffectValue.ShieldValue.GetValue().ToString(); }
+        if (EffectValue.HealValue.GetValue() != 0)   { ret += "\nHeal: "   + EffectValue.HealValue.GetValue().ToString(); }
+        return ret;
+    }
 }
 

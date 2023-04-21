@@ -96,7 +96,7 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Random shielD
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Block [shield] damage
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 2
@@ -113,6 +113,7 @@ MonoBehaviour:
         max: 7
   Events: []
   CardEffects: []
+  SwapEffects: []
   CardID: 0
 --- !u!1 &1034452494025597161
 GameObject:

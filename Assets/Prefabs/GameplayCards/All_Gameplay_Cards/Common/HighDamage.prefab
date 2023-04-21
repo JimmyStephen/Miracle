@@ -96,7 +96,7 @@ MonoBehaviour:
   ImageBox: {fileID: 1014160268381931446}
   CardName: High damagE
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Do [damage] damage
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 2

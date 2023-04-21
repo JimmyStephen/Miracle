@@ -94,13 +94,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6615610810452738161}
   ImageBox: {fileID: 0}
-  CardName: CurseD CarD
+  CardName: True Random
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
-  Effects: []
+  CardOutputDescription: 'Target: [target][unknown]'
+  Effects:
+  - baseCardEffectTarget: 2
+    baseEffectTrigger: 2
+    baseCardEffectType: 3
+    EffectValue:
+      DamageValue:
+        min: 0
+        max: 10
+      HealValue:
+        min: 0
+        max: 10
+      ShieldValue:
+        min: 0
+        max: 10
   Events: []
   CardEffects: []
-  CardID: 0
+  SwapEffects: []
+  CardID: 12
 --- !u!1 &2748718878113362842
 GameObject:
   m_ObjectHideFlags: 0
@@ -381,7 +395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: True Random
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}

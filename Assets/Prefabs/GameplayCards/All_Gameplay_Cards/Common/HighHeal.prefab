@@ -97,7 +97,7 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: High heaL
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Heal [heal] health
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 2
@@ -114,6 +114,7 @@ MonoBehaviour:
         max: 0
   Events: []
   CardEffects: []
+  SwapEffects: []
   CardID: 0
 --- !u!1 &3022637810084833981
 GameObject:

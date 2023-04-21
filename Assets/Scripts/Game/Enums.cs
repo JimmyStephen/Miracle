@@ -54,12 +54,16 @@ public static class Enums
         ENDING,
         GAMEOVER
     }
-
     public enum SwapTarget
     {
         DECK,
         HAND,
         HEALTH,
         NONE
+    }
+
+    public static string GetEnumAsString(string val)
+    {
+        return val[..1] + val[1..].ToLower();
     }
 }

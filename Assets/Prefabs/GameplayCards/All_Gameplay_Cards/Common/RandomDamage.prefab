@@ -96,7 +96,7 @@ MonoBehaviour:
   ImageBox: {fileID: 1014160268381931446}
   CardName: Random damagE
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Do [damage] damage
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 2
@@ -113,6 +113,7 @@ MonoBehaviour:
         max: 0
   Events: []
   CardEffects: []
+  SwapEffects: []
   CardID: 0
 --- !u!1 &3022637810084833981
 GameObject:
