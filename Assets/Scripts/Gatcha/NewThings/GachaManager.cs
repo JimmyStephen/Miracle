@@ -1,12 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GachaManager : MonoBehaviour {
 
+  public static GachaManager instance;
+
+  int money = 5000;
+
   string active = "Diablo";
+  bool onePull = false;
+  public string rarity;
 
   void Start() {
-
+    instance = this;
   }
 
   void Update() {
@@ -14,10 +21,13 @@ public class GachaManager : MonoBehaviour {
   }
 
   public void PullSingle() {
-    if(Inventory.Instance.GetFunds() >= 300) {
-      Inventory.Instance.UpdateFunds(-300);
+    if(money >= 300) {
+      money -= 300;
 
       Gacha();
+      onePull = true;
+      //go to pull screen
+      SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
     }
     else {
       Debug.Log("You too Poor ):");
@@ -25,8 +35,8 @@ public class GachaManager : MonoBehaviour {
   }
 
   public void PullTen() {
-    if (Inventory.Instance.GetFunds() >= 3000) {
-      Inventory.Instance.UpdateFunds(-3000);
+    if (money >= 3000) {
+      money -= 3000;
 
       int gachas = 10;
 
@@ -70,19 +80,23 @@ public class GachaManager : MonoBehaviour {
     switch (award) {
       case 5:
         //GetCharacter(legendary);
-        Debug.Log("Legendary");
+        //Debug.Log("Legendary");
+        rarity = "Legendary";
         break;
       case 20:
         //GetCharacter(rare);
-        Debug.Log("Rare");
+        //Debug.Log("Rare");
+        rarity = "Rare";
         break;
       case 25:
         //GetCharacter(common);
-        Debug.Log("Common");
+        //Debug.Log("Common");
+        rarity = "Common";
         break;
       case 40:
         //GetCharacter(Uncommon);
-        Debug.Log("Uncommon");
+        //Debug.Log("Uncommon");
+        rarity = "Uncommon";
         break;
     }
   }

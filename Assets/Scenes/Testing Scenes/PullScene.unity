@@ -202,7 +202,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.025838852, g: 0, b: 1, a: 1}
-  m_Intensity: 15
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -463,7 +463,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 770062058}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &246776477
 Light:
@@ -476,7 +476,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.5555555, b: 0, a: 1}
+  m_Color: {r: 0.9882353, g: 1, b: 0, a: 1}
   m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
@@ -743,7 +743,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc5655b27406b8c4193127a59e3d0d2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  light: {fileID: 246776478}
+  objs:
+  - {fileID: 1807339274}
+  - {fileID: 246776475}
+  - {fileID: 1885577183}
+  - {fileID: 107279137}
 --- !u!54 &530424663
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -851,8 +855,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 246776476}
   - {fileID: 1807339275}
+  - {fileID: 246776476}
   - {fileID: 1885577184}
   - {fileID: 107279138}
   m_Father: {fileID: 178845371}
@@ -1571,7 +1575,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 770062058}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &1807339276
 Light:
@@ -1584,8 +1588,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.98653173, g: 1, b: 0, a: 1}
-  m_Intensity: 15
+  m_Color: {r: 1, g: 0.5568628, b: 0, a: 1}
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1763,7 +1767,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.2255776, g: 1, b: 0, a: 1}
-  m_Intensity: 15
+  m_Intensity: 0
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
