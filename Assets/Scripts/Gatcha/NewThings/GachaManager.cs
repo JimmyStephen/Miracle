@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GachaManager : MonoBehaviour {
+
+  string active = "Diablo";
+
   void Start() {
 
   }
@@ -11,16 +14,29 @@ public class GachaManager : MonoBehaviour {
   }
 
   public void PullSingle() {
-    //check if player has enough money
-    //if enough money remove money
-    //Gacha and show whats given
-    //else
-    //show that player needs money
+    if(Inventory.Instance.GetFunds() >= 300) {
+      Inventory.Instance.UpdateFunds(-300);
 
+      Gacha();
+    }
+    else {
+      Debug.Log("You too Poor ):");
+    }
   }
 
   public void PullTen() {
-    //SinglePull x10
+    if (Inventory.Instance.GetFunds() >= 3000) {
+      Inventory.Instance.UpdateFunds(-3000);
+
+      int gachas = 10;
+
+      while(gachas > 0) {
+        Gacha();
+        gachas--;
+      }
+    } else {
+      Debug.Log("You too Poor ):");
+    }
   }
 
   private void Gacha() {
@@ -39,7 +55,7 @@ public class GachaManager : MonoBehaviour {
       total += item;
     }
 
-    int ranNum = UnityEngine.Random.Range(0, total);
+    int ranNum = Random.Range(0, total);
     int award = 0;
 
     foreach (var weight in rates) {
@@ -69,15 +85,5 @@ public class GachaManager : MonoBehaviour {
         Debug.Log("Uncommon");
         break;
     }
-  }
-
-  //Get a list of cards of the rarity
-  private void GetCharacter(List<string> list) {
-    //get a random number between 0 and the list.Count
-    //get character associated within the count of that list
-
-    int count = 0;
-
-    //add character to inventory
   }
 }
