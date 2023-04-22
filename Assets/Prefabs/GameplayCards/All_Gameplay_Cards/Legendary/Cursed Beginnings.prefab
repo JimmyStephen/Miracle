@@ -576,9 +576,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 2802602955048879855}
   ImageBox: {fileID: 0}
-  CardName: Starting Nerf
+  CardName: Cursed Beginnings
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Restore 1 health to yourself
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 0
@@ -609,4 +609,4 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 0
+  CardID: 28

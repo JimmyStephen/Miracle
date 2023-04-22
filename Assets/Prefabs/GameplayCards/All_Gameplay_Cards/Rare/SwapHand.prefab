@@ -578,11 +578,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Swap Hand
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Swap hands with your opponent
   Effects: []
   Events: []
   CardEffects: []
   SwapEffects:
   - SwapTarget: 1
     SwapTrigger: 2
-  CardID: 0
+  CardID: 26

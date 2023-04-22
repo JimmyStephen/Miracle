@@ -308,9 +308,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 9188898031704153936}
   ImageBox: {fileID: 0}
-  CardName: CurseD CarD
+  CardName: Early Hangover
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Deal 3 Damage to both
   Effects:
   - baseCardEffectTarget: 3
     baseEffectTrigger: 1
@@ -341,7 +341,7 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 0
+  CardID: 29
 --- !u!1 &4835316668987551077
 GameObject:
   m_ObjectHideFlags: 0

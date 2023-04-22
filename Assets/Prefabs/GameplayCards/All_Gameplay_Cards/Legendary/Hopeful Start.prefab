@@ -94,9 +94,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 4903427665035651868}
   ImageBox: {fileID: 0}
-  CardName: Starting Bonus
+  CardName: Hopeful Start
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Restore 2 health to opponent
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 0
@@ -127,7 +127,7 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 0
+  CardID: 30
 --- !u!1 &2403897326726978557
 GameObject:
   m_ObjectHideFlags: 0

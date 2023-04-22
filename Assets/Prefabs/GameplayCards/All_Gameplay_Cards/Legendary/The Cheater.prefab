@@ -362,9 +362,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 2159668098743662338}
   ImageBox: {fileID: 0}
-  CardName: CurseD CarD
+  CardName: Diablo the Cheater
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Deal [damage] to yourself, then swap health
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 2
@@ -384,7 +384,7 @@ MonoBehaviour:
   SwapEffects:
   - SwapTarget: 2
     SwapTrigger: 2
-  CardID: 0
+  CardID: 32
 --- !u!1 &6922763850656089321
 GameObject:
   m_ObjectHideFlags: 0

@@ -362,9 +362,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 1345992729168951154}
   ImageBox: {fileID: 0}
-  CardName: CurseD CarD
+  CardName: On the Rocks
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Nothing Happened
   Effects: []
   Events:
   - baseCardEventTarget: 3
@@ -373,7 +373,7 @@ MonoBehaviour:
     eventDuration: 100
   CardEffects: []
   SwapEffects: []
-  CardID: 0
+  CardID: 31
 --- !u!1 &8018618436487857305
 GameObject:
   m_ObjectHideFlags: 0

@@ -578,11 +578,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Swap Deck
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Swap decks with your opponent
   Effects: []
   Events: []
   CardEffects: []
   SwapEffects:
   - SwapTarget: 0
     SwapTrigger: 2
-  CardID: 0
+  CardID: 25

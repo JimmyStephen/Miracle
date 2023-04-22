@@ -308,9 +308,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 8179585325298165589}
   ImageBox: {fileID: 0}
-  CardName: CurseD CarD
+  CardName: Uh-No
   Image: {fileID: 0}
-  CardOutputDescription: Default Card Effect
+  CardOutputDescription: Nothing Happened
   Effects: []
   Events:
   - baseCardEventTarget: 3
@@ -319,7 +319,7 @@ MonoBehaviour:
     eventDuration: 100
   CardEffects: []
   SwapEffects: []
-  CardID: 0
+  CardID: 33
 --- !u!1 &5556388004104312160
 GameObject:
   m_ObjectHideFlags: 0
