@@ -10,6 +10,7 @@ public class GameplayManager : MonoBehaviour
 {
     //current state
     CurrentMode currentGameState;
+
     [SerializeField] int victoryRewardMin = 100;
     [SerializeField] int victoryRewardMax = 1000;
     [SerializeField] TMPro.TMP_Text buttonText;
@@ -22,16 +23,12 @@ public class GameplayManager : MonoBehaviour
     //Display
     [SerializeField] TMPro.TMP_Text playerOneHealthDisplay;
     [SerializeField] TMPro.TMP_Text playerTwoHealthDisplay;
-
     [SerializeField] GameObject playerOneChosenDisplay;
     [SerializeField] GameObject playerTwoChosenDisplay;
-
     [SerializeField] GameObject playerOneHandDisplay;
-    List<GameObject> currentHandGameObjects;
-
     [SerializeField] TMPro.TMP_Text TopText;
     [SerializeField] TMPro.TMP_Text BotText;
-
+    List<GameObject> currentHandGameObjects;
     private GameObject playerOneDisplay;
     private GameObject playerTwoDisplay;
     //End Display
@@ -42,17 +39,15 @@ public class GameplayManager : MonoBehaviour
     //starting decks
     [SerializeField] Deck playerOneDeck;
     [SerializeField] Deck playerTwoDeck;
-
     private Player player;
     private EnemyAI opponent;
 
     //Event, Duration
-    [HideInInspector] public Dictionary<Enums._Event, int> OngoingEvents = new Dictionary<Enums._Event, int>();
+    [HideInInspector] public List<EventDictionary> OngoingEvents;
 
     // Start is called before the first frame update
     void Start()
     {
-
         //Give cards ID's
         int id = 0;
         foreach(var v in AllCardsList)
@@ -61,7 +56,9 @@ public class GameplayManager : MonoBehaviour
         }
 
         //Initalize Lists
-        currentHandGameObjects = new List<GameObject>();
+        currentHandGameObjects = new();
+        OngoingEvents = new();
+
         //initalize decks
         playerOneDeck.Init();
         playerTwoDeck.Init();
@@ -70,8 +67,8 @@ public class GameplayManager : MonoBehaviour
         //set inital state
         currentGameState = CurrentMode.WAITING;
         CheckStartOfGameEffects();
-        player.TriggerStored();
-        opponent.TriggerStored();
+        player.TriggerStored(PlayerOption.PLAYER_ONE);
+        opponent.TriggerStored(PlayerOption.PLAYER_TWO);
         //Set inital display
         playerOneHealthDisplay.text = "";
         playerTwoHealthDisplay.text = "";
@@ -142,29 +139,12 @@ public class GameplayManager : MonoBehaviour
     }
     
     //Helper Methods
-    /// <summary>
-    /// Checks if the event exists in the current game
-    /// </summary>
-    /// <param name="search">What event to search for</param>
-    /// <returns>If the event exists</returns>
-    public bool CheckForEvent(Enums._Event search)
-    {
-        foreach (var _event in OngoingEvents)
-        {
-            if (_event.Key == search)
-                return true;
-        }
-        return false;
-    }
 
     //private
     private void PlayCards()
     {
         string TopTextReturn;
         string BotTextReturn;
-        //Debug Hand
-        Debug.Log("Pre Play");
-        GameplayDebug.OutputHands(player, opponent);
 
         //display and get cards
         playerTwoDisplay = Instantiate(AllCardsList[opponent.Play().CardID], playerTwoChosenDisplay.transform);
@@ -186,9 +166,6 @@ public class GameplayManager : MonoBehaviour
             BotTextReturn = opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY);
             TopTextReturn = playerCard.PlayCard(player, opponent, this, true, Trigger.ON_PLAY);
         }
-        //Debug Hand
-        Debug.Log("Post Play");
-        GameplayDebug.OutputHands(player, opponent);
 
         //Trigger end of turn effects
         CheckInHandEffects();
@@ -197,14 +174,13 @@ public class GameplayManager : MonoBehaviour
         player.Draw();
         opponent.Draw();
 
-        //Debug Hand
-        Debug.Log("Pre Draw");
-        GameplayDebug.OutputHands(player, opponent);
+        //Debug
+        //GameplayDebug.OutputEvents(_OngoingEvents);
 
         //Trigger all stored variables
-        player.TriggerStored();
-        opponent.TriggerStored();
-
+        player.TriggerStored(PlayerOption.PLAYER_ONE);
+        opponent.TriggerStored(PlayerOption.PLAYER_TWO);
+        UpdateEvents();
         //Set the displays
         UpdateDisplay(TopTextReturn, BotTextReturn);
     }
@@ -226,30 +202,35 @@ public class GameplayManager : MonoBehaviour
     //Check if the game should be over
     private bool CheckWinner()
     {
-        return (player.CurrentHealth <= 0 || opponent.CurrentHealth <= 0);
+        return (player.CurrentHealth <= 0 || opponent.CurrentHealth <= 0 || CheckUNO());
+    }
+    private bool CheckUNO()
+    {
+        if (CheckForEvent(_Event.UN_OH, PlayerOption.BOTH))
+            return (player.Hand.Count == 0 || opponent.Hand.Count == 0);
+        return false;
     }
     private string GetWinner()
     {
-        if (player.CurrentHealth <= 0 && opponent.CurrentHealth <= 0)
+        if ((player.CurrentHealth <= 0 && opponent.CurrentHealth <= 0) || (CheckUNO() && player.Hand.Count == 0 && opponent.Hand.Count == 0))
             return "Draw";
-        else if (player.CurrentHealth <= 0)
+        else if (player.CurrentHealth <= 0 || (CheckUNO() && opponent.Hand.Count == 0))
             return "AI Wins";
         else
             return "You Win!";
     }
     private void GameOver()
     {
-        //Delete all the cards in hand
         ClearHand();
-
-        if (GetWinner() == "You Win!")
+        string WinnerDisplay = GetWinner();
+        if (WinnerDisplay == "You Win!")
         {
             int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
-            UpdateDisplay("You Win!", "Gain " + reward + " Money");
+            UpdateDisplay(WinnerDisplay, "Gain " + reward + " Money");
             Inventory.Instance.UpdateFunds(reward);
         }
         else
-            UpdateDisplay("AI Wins");
+            UpdateDisplay(WinnerDisplay);
     }
 
     //Helper Methods
@@ -272,5 +253,35 @@ public class GameplayManager : MonoBehaviour
         ClearHand();
         //Redraw the hand
         player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.CardID], playerOneHandDisplay.transform)); });
+    }
+
+    /// <summary>
+    /// Checks if the event exists in the current game
+    /// </summary>
+    /// <param name="SearchEvent">What event to search for</param>
+    /// <param name="EffectedPlayer">Who is effected by the event</param>
+    /// <returns></returns>
+    public bool CheckForEvent(Enums._Event SearchEvent, Enums.PlayerOption EffectedPlayer)
+    {
+        foreach (var _event in OngoingEvents)
+        {
+            if (_event.EventType == SearchEvent && _event.EventTarget == EffectedPlayer)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void UpdateEvents()
+    {
+        List<EventDictionary> temp = new();
+        OngoingEvents.ForEach(evnt => {
+            if (evnt.EventDuration - 1 >= 0)
+                temp.Add(new(evnt.EventType, evnt.EventTarget, evnt.EventDuration-1));
+            else
+                Debug.Log($"{evnt.EventType} Removed");
+        });
+        OngoingEvents = temp;
     }
 }

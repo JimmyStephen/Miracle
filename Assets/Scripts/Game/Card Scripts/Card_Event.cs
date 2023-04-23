@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using static Enums;
 
@@ -31,23 +32,56 @@ public class Card_Event
     }
 
     /// <summary>
-    /// Called if the cards effect should trigger
+    /// If the event is already ongoing, remove it and replace it with the newer one otherwise add the event to the list of ongoing events
     /// </summary>
     public string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
-        //If the event is already ongoing, remove it and replace it with the newer one
-        if (GM.OngoingEvents.TryGetValue(_event, out int CurrentEventDuration))
+        EventDictionary EvntDict = new(_event, GetEventTarget(PlayedByPlayer), eventDuration);
+        //Debug.Log(Enums.GetEnumAsString(EvntDict.EventType.ToString()) + " Adding");
+        int contains = CheckContains(GM.OngoingEvents, EvntDict);
+        if (contains != -100)
         {
-            if (eventDuration > CurrentEventDuration)
+            //Debug.Log(Enums.GetEnumAsString(EvntDict.EventType.ToString()) + " is already in the list");
+            if(contains < eventDuration)
             {
-                GM.OngoingEvents.Remove(_event);
-                GM.OngoingEvents.Add(_event, eventDuration);
+                GM.OngoingEvents.Remove(GetEvent(GM.OngoingEvents, EvntDict));
+                GM.OngoingEvents.Add(EvntDict);
             }
         }
         else
-        {
-            GM.OngoingEvents.Add(_event, eventDuration);
-        }
+            GM.OngoingEvents.Add(EvntDict);
+        //Debug.Log(Enums.GetEnumAsString(EvntDict.EventType.ToString()) + " Added");
         return OnPlayText;
+    }
+
+    private int CheckContains(List<EventDictionary> events, EventDictionary toFind)
+    {
+        foreach (var evnt in events)
+            if (evnt.EventType == toFind.EventType && evnt.EventTarget == toFind.EventTarget) { return evnt.EventDuration; }
+        return -100;
+    }
+
+    private EventDictionary GetEvent(List<EventDictionary> events, EventDictionary toFind)
+    {
+        foreach (var evnt in events)
+            if (evnt.EventType == toFind.EventType && evnt.EventTarget == toFind.EventTarget) { return evnt; }
+        return events[events.Count+1];
+    }
+
+    private PlayerOption GetEventTarget(bool playedByPlayer)
+    {
+        if (playedByPlayer)
+        {
+            if (_eventTarget == Target.SELF)
+                return PlayerOption.PLAYER_ONE;
+            if (_eventTarget == Target.OPPONENT)
+                return PlayerOption.PLAYER_TWO;
+            return PlayerOption.BOTH;
+        }
+        if (_eventTarget == Target.SELF)
+            return PlayerOption.PLAYER_TWO;
+        if (_eventTarget == Target.OPPONENT)
+            return PlayerOption.PLAYER_ONE;
+        return PlayerOption.BOTH;
     }
 }

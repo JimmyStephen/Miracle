@@ -8,19 +8,19 @@ public class Deck : MonoBehaviour
 {
     [SerializeField] Card[] startingDeck;
 
-    private List<Card> currentDeck;
-    private List<Card> usedCards;
+    public List<Card> CurrentDeck { get; private set; }
+    public List<Card> UsedCards { get; private set; }
 
     public void Init()
     {
-        currentDeck = new List<Card>();
-        usedCards = new List<Card>();
+        CurrentDeck = new List<Card>();
+        UsedCards = new List<Card>();
 //        int index = 0;
         foreach (var card in startingDeck)
         {
             //card.index = index++;
             card._Init();
-            currentDeck.Add(card);
+            CurrentDeck.Add(card);
         }
         ShuffleDeck();
     }
@@ -31,14 +31,14 @@ public class Deck : MonoBehaviour
     /// <returns>The card that you got</returns>
     public Card DrawCard(GameplayManager GM)
     {
-        if(currentDeck.Count == 0)
+        if(CurrentDeck.Count == 0)
         {
-            if(!GM.CheckForEvent(Enums._Event.LIMITED_DECK) && usedCards.Count != 0)
+            if(!GM.CheckForEvent(Enums._Event.LIMITED_DECK, Enums.PlayerOption.BOTH) && UsedCards.Count != 0)
                 NewDeck();
             else return null;
         }
-        Card retCard = currentDeck[0];
-        currentDeck.RemoveAt(0);
+        Card retCard = CurrentDeck[0];
+        CurrentDeck.RemoveAt(0);
         return retCard;
     }
     
@@ -66,7 +66,7 @@ public class Deck : MonoBehaviour
     }
     public void AddToNewDeck(Card toAdd)
     {
-        usedCards.Add(toAdd);
+        UsedCards.Add(toAdd);
     }
 
     public List<Card> GetStartingDeck()
@@ -79,21 +79,21 @@ public class Deck : MonoBehaviour
     /// </summary>
     void ShuffleDeck()
     {
-        int n = currentDeck.Count;
+        int n = CurrentDeck.Count;
         while (n > 1)
         {
             n--;
             int k = Random.Range(0, n + 1);
-            (currentDeck[n], currentDeck[k]) = (currentDeck[k], currentDeck[n]);
+            (CurrentDeck[n], CurrentDeck[k]) = (CurrentDeck[k], CurrentDeck[n]);
         }
     }
     void NewDeck()
     {
-        foreach(var card in usedCards)
+        foreach(var card in UsedCards)
         {
-            currentDeck.Add(card);
+            CurrentDeck.Add(card);
         }
-        usedCards.Clear();
+        UsedCards.Clear();
         ShuffleDeck();
     }
 }

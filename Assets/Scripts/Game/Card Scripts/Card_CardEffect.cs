@@ -16,7 +16,6 @@ public class Card_CardEffect
     public Trigger EffectTrigger { get; private set; }
     private string OnPlayText;
 
-
     /// <summary>
     /// Initalizes the Effect so that it can be called later without issue
     /// </summary>
@@ -63,7 +62,7 @@ public class Card_CardEffect
                 AI.DeckEffect(Value.ToDiscard);
                 break;
             default:
-                throw new System.Exception("Effect Target was not Both, Self, or Opponent");
+                throw new Exception("Effect Target was not Both, Self, or Opponent");
         }
         return OnPlayText;
     }

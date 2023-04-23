@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using static Enums;
 
 [Serializable]
@@ -18,7 +14,6 @@ public class Card_Effect
     //the actual effect values in case they got changed from the base in some way
     public Target effectTarget { get; private set; }
     public Trigger EffectTrigger { get; private set; }
-    //public Effect CurrentEffect { get; private set; }
     private string OnPlayText;
 
     /// <summary>
@@ -52,19 +47,19 @@ public class Card_Effect
         {
             case Target.SELF:
                 if (PlayedByPlayer)
-                    player.UpdateStored(EffectValue);
+                    player.UpdateStored(EffectValue, PlayerOption.PLAYER_ONE);
                 else
-                    AI.UpdateStored(EffectValue);
+                    AI.UpdateStored(EffectValue, PlayerOption.PLAYER_TWO);
                 break;
             case Target.OPPONENT:
                 if (PlayedByPlayer)
-                    AI.UpdateStored(EffectValue);
+                    AI.UpdateStored(EffectValue, PlayerOption.PLAYER_TWO);
                 else
-                    player.UpdateStored(EffectValue);
+                    player.UpdateStored(EffectValue, PlayerOption.PLAYER_ONE);
                 break;
             case Target.BOTH:
-                AI.UpdateStored(EffectValue);
-                player.UpdateStored(EffectValue);
+                AI.UpdateStored(EffectValue, PlayerOption.PLAYER_TWO);
+                player.UpdateStored(EffectValue, PlayerOption.PLAYER_ONE);
                 break;
             default:
                 throw new System.Exception("Effect Target was not Both, Self, or Opponent");
@@ -84,7 +79,6 @@ public class Card_Effect
         text = text.Replace("\\n", "\n");
         return text;
     }
-
     private string ReplaceUnknown()
     {
         string ret = "";

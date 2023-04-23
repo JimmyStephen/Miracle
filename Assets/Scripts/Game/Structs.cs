@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using static Enums;
 
 [Serializable]
 public struct Data
@@ -32,5 +31,24 @@ public struct TwoValue
                 value = UnityEngine.Random.Range(min, max+1);
         }
         return (int)value;
+    }
+}
+
+public struct EventDictionary
+{
+    public _Event EventType;
+    public PlayerOption EventTarget;
+    public int EventDuration;
+
+    public EventDictionary(_Event Type, PlayerOption _target, int Duration)
+    {
+        EventType = Type; EventTarget = _target; EventDuration = Duration;
+    }
+
+    public void UpdateDuration()
+    {
+        Debug.Log($"Event: {EventType} Duration: {EventDuration}");
+        EventDuration--;
+        Debug.Log($"Event: {EventType} (Updated) Duration: {EventDuration}");
     }
 }

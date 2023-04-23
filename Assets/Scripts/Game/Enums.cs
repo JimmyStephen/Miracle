@@ -61,6 +61,14 @@ public static class Enums
         HEALTH,
         NONE
     }
+    public enum PlayerOption
+    {
+        PLAYER_ONE,
+        PLAYER_TWO,
+        BOTH,
+        NONE           
+    }
+
 
     public static string GetEnumAsString(string val)
     {

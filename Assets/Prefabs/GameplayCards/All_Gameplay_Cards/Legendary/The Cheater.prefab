@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: Diablo the Cheater
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
@@ -364,9 +364,9 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Diablo the Cheater
   Image: {fileID: 0}
-  CardOutputDescription: Deal [damage] to yourself, then swap health
+  CardOutputDescription: Deal 3 to yourself, then swap health
   Effects:
-  - baseCardEffectTarget: 0
+  - baseCardEffectTarget: 1
     baseEffectTrigger: 2
     baseCardEffectType: 0
     EffectValue:

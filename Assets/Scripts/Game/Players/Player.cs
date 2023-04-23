@@ -29,21 +29,21 @@ public class Player
     /// Updates the stored values that will be triggered at the end of the turn
     /// </summary>
     /// <param name="values">A struct that holds the values that will be changed</param>
-    public void UpdateStored(Data values)
+    public void UpdateStored(Data values, Enums.PlayerOption PlayerSelection)
     {
         StoredDamage += values.DamageValue.GetValue();
         StoredHealing += values.HealValue.GetValue();
-        if (!GM.CheckForEvent(Enums._Event.NO_SHIELDS) && values.ShieldValue.GetValue() != 0)
+        if (!GM.CheckForEvent(Enums._Event.NO_SHIELDS, PlayerSelection) && values.ShieldValue.GetValue() != 0)
             CurrentShield = values.ShieldValue.GetValue();
     }
     /// <summary>
     /// Called at the end of the turn to trigger any damage or healing that have been stored
     /// </summary>
     /// <returns>The current health value after the effects trigger</returns>
-    public int TriggerStored()
+    public int TriggerStored(Enums.PlayerOption PlayerSelection)
     {
         //Trigger Healing
-        if (!GM.CheckForEvent(Enums._Event.NO_HEALS))
+        if (!GM.CheckForEvent(Enums._Event.NO_HEALS, PlayerSelection))
         {
             CurrentHealth += StoredHealing;
             if (CurrentHealth > MaxHealth)

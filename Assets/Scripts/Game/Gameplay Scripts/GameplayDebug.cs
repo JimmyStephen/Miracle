@@ -16,4 +16,34 @@ public static class GameplayDebug
         opponent.Hand.ForEach(card => { oStr += card.name + ", "; });
         Debug.Log($"{pStr}\n{oStr}");
     }
+
+    /// <summary>
+    /// Output the remaining decks of the player, and opponent to the console
+    /// </summary>    
+    public static void OutputRemainingDecks(Player player, EnemyAI opponent)
+    {
+        string pStr = $"Player Remaining Deck:";
+        player.Deck.CurrentDeck.ForEach(card => { pStr += card.name + ", "; });
+        string oStr = $"Opponent Remaining Deck:";
+        opponent.Deck.CurrentDeck.ForEach(card => { oStr += card.name + ", "; });
+        Debug.Log($"{pStr}\n{oStr}");
+    }
+
+    /// <summary>
+    /// Output the dead decks of the player, and opponent to the console
+    /// </summary>    
+    public static void OutputUsedDecks(Player player, EnemyAI opponent)
+    {
+        string pStr = $"Player Dead Deck:";
+        player.Deck.UsedCards.ForEach(card => { pStr += card.name + ", "; });
+        string oStr = $"Opponent Dead Deck:";
+        opponent.Deck.UsedCards.ForEach(card => { oStr += card.name + ", "; });
+        Debug.Log($"{pStr}\n{oStr}");
+    }
+
+    public static void OutputEvents(List<EventDictionary> events)
+    {
+        Debug.Log("Events: ");
+        events.ForEach(e => { Debug.Log($"Event: {Enums.GetEnumAsString(e.EventType.ToString())}, Target: {Enums.GetEnumAsString(e.EventTarget.ToString())}, Duration: {e.EventDuration}"); });
+    }
 }
