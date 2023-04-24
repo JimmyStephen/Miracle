@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4683709596532801494}
   - component: {fileID: 2710750311708037016}
   m_Layer: 5
-  m_Name: RandomWheel
+  m_Name: HighHeal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,12 +33,13 @@ RectTransform:
   m_Children:
   - {fileID: 4057904795760799493}
   - {fileID: 6682945317418910540}
-  - {fileID: 7471325801634210704}
+  - {fileID: 4098825270502808041}
+  - {fileID: 5176573247588964309}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -94,18 +95,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
   ImageBox: {fileID: 0}
-  CardName: RandoM
+  CardName: High heaL
   Image: {fileID: 0}
-  baseCardEffectTarget: 2
-  baseEffectTrigger: 2
-  baseCardEffectType: 3
-  effectMinValue: 1
-  eventMaxValue: 10
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 12
+  CardOutputDescription: Heal [heal] health
+  Effects:
+  - baseCardEffectTarget: 0
+    baseEffectTrigger: 2
+    baseCardEffectType: 2
+    EffectValue:
+      DamageValue:
+        min: 0
+        max: 0
+      HealValue:
+        min: 5
+        max: 0
+      ShieldValue:
+        min: 0
+        max: 0
+  Events: []
+  CardEffects: []
+  SwapEffects: []
+  CardID: 0
 --- !u!1 &3022637810084833981
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,6 +330,53 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &5831210477447678059
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5176573247588964309}
+  - component: {fileID: 2086390419661756333}
+  m_Layer: 0
+  m_Name: NameContainer(EditorOnly)
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5176573247588964309
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831210477447678059}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8056832929640657588}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2086390419661756333
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5831210477447678059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameOverride: Background
+  tooltipOverride: 
+  target: {fileID: 4683709596532801494}
 --- !u!1 &7532092664190020451
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +443,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: High heaL
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
@@ -455,7 +512,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!1 &8666985925627605166
+--- !u!1 &8653067290897304400
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -463,10 +520,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7471325801634210704}
-  - component: {fileID: 1555300762846939473}
-  - component: {fileID: 3172797778878021239}
-  - component: {fileID: 3732926770047904375}
+  - component: {fileID: 4098825270502808041}
+  - component: {fileID: 2486878333899162464}
+  - component: {fileID: 2045939161585637671}
+  - component: {fileID: 7328172661816200736}
   m_Layer: 5
   m_Name: Select
   m_TagString: Untagged
@@ -474,14 +531,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &7471325801634210704
+--- !u!224 &4098825270502808041
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666985925627605166}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 8653067290897304400}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -494,21 +551,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1555300762846939473
+--- !u!222 &2486878333899162464
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666985925627605166}
+  m_GameObject: {fileID: 8653067290897304400}
   m_CullTransparentMesh: 1
---- !u!114 &3172797778878021239
+--- !u!114 &2045939161585637671
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666985925627605166}
+  m_GameObject: {fileID: 8653067290897304400}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -532,13 +589,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3732926770047904375
+--- !u!114 &7328172661816200736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8666985925627605166}
+  m_GameObject: {fileID: 8653067290897304400}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -572,7 +629,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3172797778878021239}
+  m_TargetGraphic: {fileID: 2045939161585637671}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:

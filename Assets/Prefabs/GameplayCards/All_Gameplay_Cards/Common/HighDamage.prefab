@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4683709596532801494}
   - component: {fileID: 2710750311708037016}
   m_Layer: 5
-  m_Name: RandomWheel
+  m_Name: HighDamage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93,19 +93,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
-  ImageBox: {fileID: 0}
-  CardName: RandoM
+  ImageBox: {fileID: 1014160268381931446}
+  CardName: High damagE
   Image: {fileID: 0}
-  baseCardEffectTarget: 2
-  baseEffectTrigger: 2
-  baseCardEffectType: 3
-  effectMinValue: 1
-  eventMaxValue: 10
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 12
+  CardOutputDescription: Do [damage] damage
+  Effects:
+  - baseCardEffectTarget: 1
+    baseEffectTrigger: 2
+    baseCardEffectType: 0
+    EffectValue:
+      DamageValue:
+        min: 7
+        max: 0
+      HealValue:
+        min: 0
+        max: 0
+      ShieldValue:
+        min: 0
+        max: 0
+  Events: []
+  CardEffects: []
+  SwapEffects: []
+  CardID: 4
 --- !u!1 &3022637810084833981
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +395,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Card namE
+  m_text: High damagE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
   m_sharedMaterial: {fileID: 3843736298667782550, guid: 9328bc3477b3c7f4fb6d8b8d60e6b062, type: 2}
