@@ -79,23 +79,15 @@ public class GachaManager : MonoBehaviour {
 
     switch (award) {
       case 5:
-        //GetCharacter(legendary);
-        //Debug.Log("Legendary");
         rarity = "Legendary";
         break;
       case 20:
-        //GetCharacter(rare);
-        //Debug.Log("Rare");
         rarity = "Rare";
         break;
       case 25:
-        //GetCharacter(common);
-        //Debug.Log("Common");
         rarity = "Common";
         break;
       case 40:
-        //GetCharacter(Uncommon);
-        //Debug.Log("Uncommon");
         rarity = "Uncommon";
         break;
     }

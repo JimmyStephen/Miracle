@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class PullManager : MonoBehaviour
 {
   [SerializeField] List<GameObject> objs = new List<GameObject>();
+  [SerializeField] ParticleSystem particles1;
+  [SerializeField] ParticleSystem particles2;
 
   Animator light;
 
@@ -35,6 +37,8 @@ public class PullManager : MonoBehaviour
   private void OnTriggerEnter(Collider other) {
     if(other.tag == "AnimStart") {
       light.SetTrigger("StartAnim");
+      particles1.Play();
+      particles2.Play();
     }
     else if(other.tag == "ExitScene") {
       //load PullShow
