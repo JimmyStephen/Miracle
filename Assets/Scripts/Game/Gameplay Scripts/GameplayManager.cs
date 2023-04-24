@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using static Enums;
 
@@ -37,10 +34,10 @@ public class GameplayManager : MonoBehaviour
     Card currentPlayerOneSelected = null;
 
     //starting decks
-    [SerializeField] Deck playerOneDeck;
-    [SerializeField] Deck playerTwoDeck;
-    private Player player;
-    private EnemyAI opponent;
+    public Deck playerOneDeck;
+    public Deck playerTwoDeck;
+    public Player player { get; private set;}
+    public EnemyAI opponent { get; private set; }
 
     //Event, Duration
     [HideInInspector] public List<EventDictionary> OngoingEvents;
@@ -137,10 +134,6 @@ public class GameplayManager : MonoBehaviour
         }
         buttonText.text = setButtonText;
     }
-    
-    //Helper Methods
-
-    //private
     private void PlayCards()
     {
         string TopTextReturn;
@@ -185,21 +178,22 @@ public class GameplayManager : MonoBehaviour
         UpdateDisplay(TopTextReturn, BotTextReturn);
     }
 
-    //Triggers
-    private void CheckStartOfGameEffects()
+    //Called if the game is over
+    private void GameOver()
     {
-        //Check each hand and trigger any end of turn effects
-        playerOneDeck.GetStartingDeck().ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.START_OF_GAME); });
-        playerTwoDeck.GetStartingDeck().ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.START_OF_GAME); });
-    }
-    private void CheckInHandEffects()
-    {
-        //Check each hand and trigger any end of turn effects
-        player.Hand.ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.IN_HAND); });
-        opponent.Hand.ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.IN_HAND); });
+        ClearHand();
+        string WinnerDisplay = GetWinner();
+        if (WinnerDisplay == "You Win!")
+        {
+            int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
+            UpdateDisplay(WinnerDisplay, "Gain " + reward + " Money");
+            Inventory.Instance.UpdateFunds(reward);
+        }
+        else
+            UpdateDisplay(WinnerDisplay);
     }
 
-    //Check if the game should be over
+    //Check if the game should be over (Move to GameplayValidator)
     private bool CheckWinner()
     {
         return (player.CurrentHealth <= 0 || opponent.CurrentHealth <= 0 || CheckUNO());
@@ -219,21 +213,8 @@ public class GameplayManager : MonoBehaviour
         else
             return "You Win!";
     }
-    private void GameOver()
-    {
-        ClearHand();
-        string WinnerDisplay = GetWinner();
-        if (WinnerDisplay == "You Win!")
-        {
-            int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
-            UpdateDisplay(WinnerDisplay, "Gain " + reward + " Money");
-            Inventory.Instance.UpdateFunds(reward);
-        }
-        else
-            UpdateDisplay(WinnerDisplay);
-    }
 
-    //Helper Methods
+    //Display Helper Methods (Mode to GameplayUI)
     private void UpdateDisplay(string TopText = "", string BotText = "")
     {
         playerOneHealthDisplay.text = player.GetHealthDisplay();
@@ -255,6 +236,7 @@ public class GameplayManager : MonoBehaviour
         player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.CardID], playerOneHandDisplay.transform)); });
     }
 
+    //Event Helper Methods (Move to GameplayEventManager)
     /// <summary>
     /// Checks if the event exists in the current game
     /// </summary>
@@ -272,7 +254,6 @@ public class GameplayManager : MonoBehaviour
         }
         return false;
     }
-
     private void UpdateEvents()
     {
         List<EventDictionary> temp = new();
@@ -283,5 +264,17 @@ public class GameplayManager : MonoBehaviour
                 Debug.Log($"{evnt.EventType} Removed");
         });
         OngoingEvents = temp;
+    }
+    private void CheckStartOfGameEffects()
+    {
+        //Check each hand and trigger any end of turn effects
+        playerOneDeck.GetStartingDeck().ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.START_OF_GAME); });
+        playerTwoDeck.GetStartingDeck().ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.START_OF_GAME); });
+    }
+    private void CheckInHandEffects()
+    {
+        //Check each hand and trigger any end of turn effects
+        player.Hand.ForEach(card => { card.PlayCard(player, opponent, this, true, Trigger.IN_HAND); });
+        opponent.Hand.ForEach(card => { card.PlayCard(player, opponent, this, false, Trigger.IN_HAND); });
     }
 }

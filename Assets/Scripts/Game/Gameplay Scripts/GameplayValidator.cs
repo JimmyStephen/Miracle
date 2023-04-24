@@ -6,51 +6,45 @@ using static Enums;
 
 public static class GameplayValidator
 {
-    public static bool CheckWinner(Player player, EnemyAI opponent)
+    //Winner Validation
+    /// <summary>
+    /// Check to see if someone won the game
+    /// </summary>
+    /// <param name="OngoingEvents">The current effects effecting the game</param>
+    /// <param name="player">Player One</param>
+    /// <param name="opponent">Player Two</param>
+    /// <returns></returns>
+    public static bool CheckWinner(List<EventDictionary> OngoingEvents, Player player, EnemyAI opponent)
     {
-        return (player.CurrentHealth <= 0 || opponent.CurrentHealth <= 0 || CheckUNO(player, opponent));
+        return (player.CurrentHealth <= 0 || opponent.CurrentHealth <= 0 || CheckUNO(OngoingEvents, player, opponent));
     }
-
-    public static bool CheckUNO(Player player, EnemyAI opponent)
+    /// <summary>
+    /// Check to see if there is a winner by Un-Oh
+    /// </summary>
+    /// <param name="OngoingEvents">The current effects effecting the game</param>
+    /// <param name="player">Player One</param>
+    /// <param name="opponent">Player Two</param>
+    /// <returns></returns>
+    public static bool CheckUNO(List<EventDictionary> OngoingEvents, Player player, EnemyAI opponent)
     {
+        if (GameplayEventManager.CheckForEvent(OngoingEvents, _Event.UN_OH, PlayerOption.BOTH))
+            return (player.Hand.Count == 0 || opponent.Hand.Count == 0);
         return false;
     }
-    
-    public static string GetWinner(Player player, EnemyAI opponent)
+    /// <summary>
+    /// Get the winner of the game, if there is a winner
+    /// </summary>
+    /// <param name="OngoingEvents">The current effects effecting the game</param>
+    /// <param name="player">Player One</param>
+    /// <param name="opponent">Player Two</param>
+    /// <returns></returns>
+    public static string GetWinner(List<EventDictionary> OngoingEvents, Player player, EnemyAI opponent)
     {
-        if (player.CurrentHealth <= 0 && opponent.CurrentHealth <= 0)
+        if ((player.CurrentHealth <= 0 && opponent.CurrentHealth <= 0) || (CheckUNO(OngoingEvents, player, opponent) && player.Hand.Count == 0 && opponent.Hand.Count == 0))
             return "Draw";
-        else if (player.CurrentHealth <= 0)
+        else if (player.CurrentHealth <= 0 || (CheckUNO(OngoingEvents, player, opponent) && opponent.Hand.Count == 0))
             return "AI Wins";
         else
             return "You Win!";
-    }
-
-    //public static void GameOver(Player player, EnemyAI opponent)
-    //{
-    //    //Delete all the cards in hand
-    //    ClearHand();
-    //
-    //    if (GetWinner() == "You Win!")
-    //    {
-    //        int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
-    //        UpdateDisplay("You Win!", "Gain " + reward + " Money");
-    //        Inventory.Instance.UpdateFunds(reward);
-    //    }
-    //    else
-    //        UpdateDisplay("AI Wins");
-    //}
-
-
-    public static bool FindEvent(List<EventDictionary> OngoingEvents, Enums._Event SearchEvent, Enums.PlayerOption EffectedPlayer)
-    {
-        foreach (var _event in OngoingEvents)
-        {
-            if (_event.EventType == SearchEvent && _event.EventTarget == EffectedPlayer)
-            {
-                return true;
-            }
-        }
-        return false;
     }
 }

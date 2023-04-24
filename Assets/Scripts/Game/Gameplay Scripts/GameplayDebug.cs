@@ -41,6 +41,10 @@ public static class GameplayDebug
         Debug.Log($"{pStr}\n{oStr}");
     }
 
+    /// <summary>
+    /// Output a list of all the events currently effecting the game
+    /// </summary>
+    /// <param name="events"></param>
     public static void OutputEvents(List<EventDictionary> events)
     {
         Debug.Log("Events: ");
