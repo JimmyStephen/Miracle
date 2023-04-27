@@ -51,6 +51,8 @@ public static class GameplayEventManager
         //Check each hand and trigger any end of turn effects
         GM.playerOneDeck.GetStartingDeck().ForEach(card => { card.PlayCard(GM.player, GM.opponent, GM, true, Trigger.START_OF_GAME); });
         GM.playerTwoDeck.GetStartingDeck().ForEach(card => { card.PlayCard(GM.player, GM.opponent, GM, false, Trigger.START_OF_GAME); });
+        GM.player.TriggerStored(PlayerOption.PLAYER_ONE);
+        GM.opponent.TriggerStored(PlayerOption.PLAYER_TWO);
     }
     /// <summary>
     /// Checks to see if there are any cards in either players hand that trigger at the end of turn, and triggers them

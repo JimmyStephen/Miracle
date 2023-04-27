@@ -50,4 +50,14 @@ public static class GameplayDebug
         Debug.Log("Events: ");
         events.ForEach(e => { Debug.Log($"Event: {Enums.GetEnumAsString(e.EventType.ToString())}, Target: {Enums.GetEnumAsString(e.EventTarget.ToString())}, Duration: {e.EventDuration}"); });
     }
+
+    public static void GiveCardsID(GameObject[] AllCards)
+    {
+        //Give cards ID's
+        int id = 0;
+        foreach (var v in AllCards)
+        {
+            v.GetComponent<Card>().CardID = id++;
+        }
+    }
 }

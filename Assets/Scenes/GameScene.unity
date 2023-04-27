@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
   m_PrefabInstance: {fileID: 8520297303155310387}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 8520297303155310388}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 597abcd959f98004a813cba334976a20, type: 3}
@@ -1951,6 +1951,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6084112054303198173, guid: 43ae17ea77d03054f9c2a2cda8660b26, type: 3}
     - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: UI
+      value: 
+      objectReference: {fileID: 8520297303155310389}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: BotText
       value: 
       objectReference: {fileID: 785024537}
@@ -2220,3 +2224,27 @@ PrefabInstance:
       objectReference: {fileID: 3047104442416305855, guid: 9c49cd12f53b3304a90ef66c5359a76c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+--- !u!1 &8520297303155310388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8520297304228490898, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+  m_PrefabInstance: {fileID: 8520297303155310387}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8520297303155310389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520297303155310388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3224c25643da0314ca26202b917064d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOneHealthDisplay: {fileID: 1562500834}
+  playerTwoHealthDisplay: {fileID: 825390588}
+  playerOneChosenDisplay: {fileID: 770192126}
+  playerTwoChosenDisplay: {fileID: 1154460303}
+  playerOneHandDisplay: {fileID: 1241512103}
+  TopText: {fileID: 281917499}
+  BotText: {fileID: 785024537}

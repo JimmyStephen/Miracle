@@ -7,20 +7,28 @@ public class GameplayUI : MonoBehaviour
 {
     [SerializeField] TMPro.TMP_Text playerOneHealthDisplay;
     [SerializeField] TMPro.TMP_Text playerTwoHealthDisplay;
-
     [SerializeField] GameObject playerOneChosenDisplay;
     [SerializeField] GameObject playerTwoChosenDisplay;
-
     [SerializeField] GameObject playerOneHandDisplay;
-    List<GameObject> currentHandGameObjects;
-
     [SerializeField] TMPro.TMP_Text TopText;
     [SerializeField] TMPro.TMP_Text BotText;
+
+    private GameObject[] AllCardsList;
+    private GameObject playerOneDisplay;
+    private GameObject playerTwoDisplay;
+    private List<GameObject> currentHandGameObjects;
+
+    public void Init(GameObject[] CardList)
+    {
+        AllCardsList = CardList;
+        currentHandGameObjects = new();
+        ClearDisplay();
+    }
 
     /// <summary>
     /// Update the display for the UI, health, and text
     /// </summary>
-    private void UpdateDisplay(Player player, EnemyAI opponent, GameObject[] CardsList, string TopText = "", string BotText = "")
+    public void UpdateDisplay(Player player, EnemyAI opponent, GameObject[] CardsList, string TopText = "", string BotText = "")
     {
         playerOneHealthDisplay.text = player.GetHealthDisplay();
         playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
@@ -28,22 +36,79 @@ public class GameplayUI : MonoBehaviour
         this.BotText.text = BotText;
         UpdatePlayerHandDisplay(player, CardsList);
     }
-    /// <summary>
-    /// Remove the current hand from the display
-    /// </summary>
-    private void ClearHand()
-    {
-        currentHandGameObjects.ForEach(go => { Destroy(go); });
-        currentHandGameObjects.Clear();
-    }
+    
+    //Draw
     /// <summary>
     /// Draw the players hand on the screen
     /// </summary>
-    private void UpdatePlayerHandDisplay(Player player, GameObject[] CardsList)
+    public void UpdatePlayerHandDisplay(Player player, GameObject[] CardsList)
     {
         //Delete the entire hand
         ClearHand();
         //Redraw the hand
         player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(CardsList[card.CardID], playerOneHandDisplay.transform)); });
+    }
+    /// <summary>
+    /// Draws a card on the screen based on the selected ID
+    /// </summary>
+    /// <param name="cardID">ID of the card to draw</param>
+    /// <param name="player">What player is having a card drawn</param>
+    public Card DrawSelectedCard(int CardID, Enums.PlayerOption player)
+    {
+        EraseCard(player);
+        if (player == Enums.PlayerOption.PLAYER_ONE)
+        {
+            playerOneDisplay = Instantiate(AllCardsList[CardID], playerOneChosenDisplay.transform);
+            return playerOneDisplay.GetComponent<Card>();
+        }
+        else
+        {
+            playerTwoDisplay = Instantiate(AllCardsList[CardID], playerTwoChosenDisplay.transform);
+            return playerTwoDisplay.GetComponent<Card>();
+        }
+    }
+
+    //Clear
+    /// <summary>
+    /// Clears the entire display setting everything to be blank
+    /// </summary>
+    public void ClearDisplay()
+    {
+        ClearHand();
+        EraseCard(Enums.PlayerOption.BOTH);
+        playerOneHealthDisplay.text = "";
+        playerTwoHealthDisplay.text = "";
+        TopText.text = "";
+        BotText.text = "";
+    }
+    /// <summary>
+    /// Remove the current hand from the display
+    /// </summary>
+    public void ClearHand()
+    {
+        currentHandGameObjects.ForEach(go => { Destroy(go); });
+        currentHandGameObjects.Clear();
+    }
+    /// <summary>
+    /// Erases the card display
+    /// </summary>
+    /// <param name="target">What player has the display erased</param>
+    public void EraseCard(Enums.PlayerOption target)
+    {
+        switch (target)
+        {
+            case Enums.PlayerOption.PLAYER_ONE:
+                if (playerOneDisplay != null) Destroy(playerOneDisplay);
+                break;
+            case Enums.PlayerOption.PLAYER_TWO:
+                if (playerTwoDisplay != null) Destroy(playerTwoDisplay);
+                break;
+            case Enums.PlayerOption.BOTH:
+                if (playerOneDisplay != null) Destroy(playerOneDisplay);
+                if (playerTwoDisplay != null) Destroy(playerTwoDisplay);
+                break;
+            default:
+                throw new System.Exception("This point should not be reached");
+        }
     }
 }

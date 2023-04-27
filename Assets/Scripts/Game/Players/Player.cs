@@ -33,7 +33,7 @@ public class Player
     {
         StoredDamage += values.DamageValue.GetValue();
         StoredHealing += values.HealValue.GetValue();
-        if (!GM.CheckForEvent(Enums._Event.NO_SHIELDS, PlayerSelection) && values.ShieldValue.GetValue() != 0)
+        if (!GameplayEventManager.CheckForEvent(GM.OngoingEvents, Enums._Event.NO_SHIELDS, PlayerSelection) && values.ShieldValue.GetValue() != 0)
             CurrentShield = values.ShieldValue.GetValue();
     }
     /// <summary>
@@ -43,7 +43,7 @@ public class Player
     public int TriggerStored(Enums.PlayerOption PlayerSelection)
     {
         //Trigger Healing
-        if (!GM.CheckForEvent(Enums._Event.NO_HEALS, PlayerSelection))
+        if (!GameplayEventManager.CheckForEvent(GM.OngoingEvents, Enums._Event.NO_HEALS, PlayerSelection))
         {
             CurrentHealth += StoredHealing;
             if (CurrentHealth > MaxHealth)
