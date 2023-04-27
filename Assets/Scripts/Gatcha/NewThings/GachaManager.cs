@@ -6,11 +6,11 @@ public class GachaManager : MonoBehaviour {
 
   public static GachaManager instance;
 
-  int money = 5000;
+  public string active = "Diablo";
+  public bool onePull = false;
+  public List<string> rarity;
 
-  string active = "Diablo";
-  bool onePull = false;
-  public string rarity;
+  int money = 5000;
 
   void Start() {
     instance = this;
@@ -44,6 +44,8 @@ public class GachaManager : MonoBehaviour {
         Gacha();
         gachas--;
       }
+
+      SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
     } else {
       Debug.Log("You too Poor ):");
     }
@@ -79,16 +81,20 @@ public class GachaManager : MonoBehaviour {
 
     switch (award) {
       case 5:
-        rarity = "Legendary";
+        //rarity = "Legendary";
+        rarity.Add("Legendary");
         break;
       case 20:
-        rarity = "Rare";
+        //rarity = "Rare";
+        rarity.Add("Rare");
         break;
       case 25:
-        rarity = "Common";
+        //rarity = "Common";
+        rarity.Add("Common");
         break;
       case 40:
-        rarity = "Uncommon";
+        //rarity = "Uncommon";
+        rarity.Add("Uncommon");
         break;
     }
   }
