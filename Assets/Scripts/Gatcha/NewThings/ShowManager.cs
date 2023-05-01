@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//HTODO: Make cards "float"
+
 public class ShowManager : MonoBehaviour {
   [SerializeField] List<GameObject> posters;
   [SerializeField] List<GameObject> cards;

@@ -2,41 +2,57 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PullManager : MonoBehaviour {
   [SerializeField] List<GameObject> objs = new List<GameObject>();
   [SerializeField] List<ParticleSystem> particles;
+  [SerializeField] GameObject skip;
 
   Animator light;
+  List<ParticleSystem> list = new List<ParticleSystem>();
 
   void Start() {
+    skip.SetActive(false);
+
     foreach (var obj in objs) {
       obj.SetActive(false);
     }
 
     string rarity = Rarity();
 
-    //do different animation for legendary
     if (rarity == "Uncommon") {
       objs[0].SetActive(true);
       light = objs[0].GetComponent<Animator>();
+      list.Add(particles[0]);
+      list.Add(particles[3]);
     } else if (rarity == "Common") {
       objs[1].SetActive(true);
       light = objs[1].GetComponent<Animator>();
+      list.Add(particles[1]);
+      list.Add(particles[4]);
     } else if (rarity == "Rare") {
       objs[2].SetActive(true);
       light = objs[2].GetComponent<Animator>();
+      list.Add(particles[0]);
+      list.Add(particles[2]);
+      list.Add(particles[5]);
     } else if (rarity == "Legendary") {
       objs[3].SetActive(true);
       light = objs[3].GetComponent<Animator>();
+      list.Add(particles[0]);
+      list.Add(particles[1]);
+      list.Add(particles[2]);
+      list.Add(particles[6]);
     }
   }
 
   private void OnTriggerEnter(Collider other) {
     if (other.tag == "AnimStart") {
       light.SetTrigger("StartAnim");
-      particles[0].Play();
-      particles[1].Play();
+      foreach(var item in list) {
+        item.Play();
+      }
     } else if (other.tag == "ExitScene") {
       SceneManager.LoadScene("PullShow", LoadSceneMode.Single);
     }
@@ -81,5 +97,9 @@ public class PullManager : MonoBehaviour {
     }
 
     return rarity;
+  }
+
+  public void Skip() {
+    SceneManager.LoadScene("PullShow", LoadSceneMode.Single);
   }
 }

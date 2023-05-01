@@ -26,7 +26,7 @@ public class GachaManager : MonoBehaviour {
 
       Gacha();
       onePull = true;
-      //go to pull screen
+
       SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
     }
     else {
@@ -81,19 +81,15 @@ public class GachaManager : MonoBehaviour {
 
     switch (award) {
       case 5:
-        //rarity = "Legendary";
         rarity.Add("Legendary");
         break;
       case 20:
-        //rarity = "Rare";
         rarity.Add("Rare");
         break;
       case 25:
-        //rarity = "Common";
         rarity.Add("Common");
         break;
       case 40:
-        //rarity = "Uncommon";
         rarity.Add("Uncommon");
         break;
     }
