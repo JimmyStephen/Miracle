@@ -19,31 +19,37 @@ public class PullManager : MonoBehaviour {
       obj.SetActive(false);
     }
 
-    string rarity = Rarity();
+    //string rarity = Rarity();
+    string rarity = "Legendary";
 
-    if (rarity == "Uncommon") {
-      objs[0].SetActive(true);
-      light = objs[0].GetComponent<Animator>();
-      list.Add(particles[0]);
-      list.Add(particles[3]);
-    } else if (rarity == "Common") {
-      objs[1].SetActive(true);
-      light = objs[1].GetComponent<Animator>();
-      list.Add(particles[1]);
-      list.Add(particles[4]);
-    } else if (rarity == "Rare") {
-      objs[2].SetActive(true);
-      light = objs[2].GetComponent<Animator>();
-      list.Add(particles[0]);
-      list.Add(particles[2]);
-      list.Add(particles[5]);
-    } else if (rarity == "Legendary") {
-      objs[3].SetActive(true);
-      light = objs[3].GetComponent<Animator>();
-      list.Add(particles[0]);
-      list.Add(particles[1]);
-      list.Add(particles[2]);
-      list.Add(particles[6]);
+    switch (rarity) {
+      case "Uncommon":
+        objs[0].SetActive(true);
+        light = objs[0].GetComponent<Animator>();
+        list.Add(particles[0]);
+        list.Add(particles[3]);
+        break;
+      case "Common":
+        objs[1].SetActive(true);
+        light = objs[1].GetComponent<Animator>();
+        list.Add(particles[1]);
+        list.Add(particles[4]);
+        break;
+      case "Rare":
+        objs[2].SetActive(true);
+        light = objs[2].GetComponent<Animator>();
+        list.Add(particles[0]);
+        list.Add(particles[2]);
+        list.Add(particles[5]);
+        break;
+      case "Legendary":
+        objs[3].SetActive(true);
+        light = objs[3].GetComponent<Animator>();
+        list.Add(particles[0]);
+        list.Add(particles[1]);
+        list.Add(particles[2]);
+        list.Add(particles[6]);
+        break;
     }
   }
 
@@ -53,6 +59,7 @@ public class PullManager : MonoBehaviour {
       foreach(var item in list) {
         item.Play();
       }
+      skip.SetActive(true);
     } else if (other.tag == "ExitScene") {
       SceneManager.LoadScene("PullShow", LoadSceneMode.Single);
     }
