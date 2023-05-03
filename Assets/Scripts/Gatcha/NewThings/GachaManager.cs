@@ -1,8 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GachaManager : MonoBehaviour {
+  [SerializeField] GameObject yesNo;
+  [SerializeField] GameObject x300;
+  [SerializeField] GameObject x3000;
+  [SerializeField] GameObject single;
+  [SerializeField] GameObject multiple;
+
+  [SerializeField] GameObject funds;
+
+  [SerializeField] Button pull1;
+  [SerializeField] Button pull10;
 
   public static GachaManager instance;
 
@@ -10,10 +21,20 @@ public class GachaManager : MonoBehaviour {
   public bool onePull = false;
   public List<string> rarity;
 
-  int money = 5000;
+  List<int> standardPool;
+  List<int> diabloPool;
+  List<int> ruinartPool;
+
+  int money = 0;
 
   void Start() {
     instance = this;
+    yesNo.SetActive(false);
+    x3000.SetActive(false);
+    x300.SetActive(false);
+    single.SetActive(false);
+    multiple.SetActive(false);
+    funds.SetActive(false);
   }
 
   void Update() {
@@ -21,34 +42,82 @@ public class GachaManager : MonoBehaviour {
   }
 
   public void PullSingle() {
-    if(money >= 300) {
-      money -= 300;
+    x300.SetActive(true);
+    single.SetActive(true);
+    yesNo.SetActive(true);
 
-      Gacha();
-      onePull = true;
+    x3000.SetActive(false);
+    multiple.SetActive(false);
 
-      SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
-    }
-    else {
-      Debug.Log("You too Poor ):");
-    }
+    onePull = true;
   }
 
   public void PullTen() {
-    if (money >= 3000) {
-      money -= 3000;
+    x3000.SetActive(true);
+    multiple.SetActive(true);
+    yesNo.SetActive(true);
 
-      int gachas = 10;
+    x300.SetActive(false);
+    single.SetActive(false);
+  }
 
-      while(gachas > 0) {
+  public void Confirm() {
+    if(onePull) {
+      if (money >= 300) {
+        money -= 300;
+
         Gacha();
-        gachas--;
-      }
+        onePull = true;
+        Inventory.Instance.AddPity(1);
 
-      SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
-    } else {
-      Debug.Log("You too Poor ):");
+        SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
+      } else {
+        funds.SetActive(true);
+
+        yesNo.SetActive(false);
+        x300.SetActive(false);
+        single.SetActive(false);
+      }
     }
+    else {
+      if (money >= 3000) {
+        money -= 3000;
+
+        int gachas = 10;
+
+        while (gachas > 0) {
+          Gacha();
+          gachas--;
+        }
+
+        Inventory.Instance.AddPity(10);
+
+        SceneManager.LoadScene("PullScene", LoadSceneMode.Single);
+      } else {
+        funds.SetActive(true);
+
+        yesNo.SetActive(false);
+        x3000.SetActive(false);
+        multiple.SetActive(false);
+      }
+    }
+  }
+
+  public void Deny() {
+    yesNo.SetActive(false);
+    x3000.SetActive(false);
+    x300.SetActive(false);
+    single.SetActive(false);
+    multiple.SetActive(false);
+    onePull = false;
+  }
+
+  public void Ok() {
+    funds.SetActive(false);
+  }
+
+  public void Exit() {
+
   }
 
   private void Gacha() {

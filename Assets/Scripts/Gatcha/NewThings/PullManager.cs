@@ -19,8 +19,7 @@ public class PullManager : MonoBehaviour {
       obj.SetActive(false);
     }
 
-    //string rarity = Rarity();
-    string rarity = "Legendary";
+    string rarity = Rarity();
 
     switch (rarity) {
       case "Uncommon":

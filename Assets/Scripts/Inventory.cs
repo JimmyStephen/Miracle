@@ -11,6 +11,10 @@ public class Inventory : Singleton<Inventory>
     private int Funds;
     private readonly string fileName = "Inventory";
     private List<int> rewardsListInt;
+
+    //save pity to JSON
+    public int pity = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -189,4 +193,12 @@ public class Inventory : Singleton<Inventory>
         }
         return false;
     }
+
+  public int GetPity() {
+    return pity;
+  }
+
+  public void AddPity(int newPity) {
+    pity += newPity;
+  }
 }
