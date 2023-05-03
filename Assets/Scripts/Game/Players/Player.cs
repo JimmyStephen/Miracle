@@ -12,7 +12,7 @@ public class Player
     public int CurrentHealth { get; set; }
     public GameplayManager GM { get; private set; }
 
-    private int CurrentShield = 0;
+    public int CurrentShield = 0;
     private int StoredDamage = 0;
     private int StoredHealing = 0;
 

@@ -4,41 +4,57 @@ using UnityEngine;
 
 public class EnemyAI : Player
 {
-    public EnemyAI(Deck deck, int maxHealth, GameplayManager gM) : base(deck, maxHealth, gM) { }
+    RuleMachine ruleMachine = new RuleMachine();
+    public EnemyAI(Deck deck, int maxHealth, GameplayManager gM, Player player) : base(deck, maxHealth, gM) { Init(player); }
+
+    private void Init(Player player)
+    {
+        ruleMachine.AddRule(new HealRule  ("Heal Rule"  , "The rule checking if you should play a healing card"  , player, this ));
+        ruleMachine.AddRule(new ShieldRule("Shield Rule", "The rule checking if you should play a shielding card", player, this ));
+        ruleMachine.AddRule(new DamageRule("Damage Rule", "The rule checking if you should play a damaging card" , player, this ));
+    }
 
     public Card Play()
     {
-        int selection;
-
-        //check if healing is needed
-        if (CheckShouldHeal())
-        {
-            //find a healing card
-            selection = FindHealCard();
-            //if no healing was found, find a shield instead
-            if (selection == -1)
-            {
-                selection = FindShieldCard();
-            }
-        }
-        else
-        {
-            //choose a random non healing card
-            selection = FindNonHealCard();
-        }
-
-        //if nothing was found, choose randomly
-        if (selection == -1) selection = Random.Range(0, Hand.Count - 1);
-
-        //save the card
-        Card retCard = Hand[selection];
-
-        //remove card from hand
-        RemoveCard(retCard);
-
-        //return the selection
-        return retCard;
+        Rule selected = ruleMachine.GetBestRule();
+        Card toPlay = selected.RunRule();
+        RemoveCard(toPlay);
+        return toPlay;
     }
+
+    //public Card Play()
+    //{
+    //    int selection;
+
+    //    //check if healing is needed
+    //    if (CheckShouldHeal())
+    //    {
+    //        //find a healing card
+    //        selection = FindHealCard();
+    //        //if no healing was found, find a shield instead
+    //        if (selection == -1)
+    //        {
+    //            selection = FindShieldCard();
+    //        }
+    //    }
+    //    else
+    //    {
+    //        //choose a random non healing card
+    //        selection = FindNonHealCard();
+    //    }
+
+    //    //if nothing was found, choose randomly
+    //    if (selection == -1) selection = Random.Range(0, Hand.Count - 1);
+
+    //    //save the card
+    //    Card retCard = Hand[selection];
+
+    //    //remove card from hand
+    //    RemoveCard(retCard);
+
+    //    //return the selection
+    //    return retCard;
+    //}
     private bool CheckShouldHeal()
     {
         int missingHealth = (MaxHealth - CurrentHealth);

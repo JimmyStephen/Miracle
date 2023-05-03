@@ -14,6 +14,7 @@ public class Card_SwapEffect
     //the actual event values, in case they got changed from the base in some way
     private string OnPlayText;
     public Trigger EffectTrigger { get; private set; }
+    public string EffectType { get; private set; }
 
     /// <summary>
     /// Initalizes the Effect so that it can be called later without issue
@@ -21,6 +22,7 @@ public class Card_SwapEffect
     public void _Init(string Text)
     {
         EffectTrigger = SwapTrigger;
+        EffectType = "SWAP";
         OnPlayText = Text;
     }
 

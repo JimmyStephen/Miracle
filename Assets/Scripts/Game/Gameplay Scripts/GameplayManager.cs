@@ -36,7 +36,7 @@ public class GameplayManager : MonoBehaviour
         playerOneDeck.Init();
         playerTwoDeck.Init();
         player = new Player(playerOneDeck, PlayerStartingHealth, this);
-        opponent = new EnemyAI(playerTwoDeck, PlayerStartingHealth, this);
+        opponent = new EnemyAI(playerTwoDeck, PlayerStartingHealth, this, player);
         //set inital state
         currentGameState = CurrentMode.WAITING;
         GameplayEventManager.CheckStartOfGameEffects(this);
@@ -102,7 +102,8 @@ public class GameplayManager : MonoBehaviour
     }
     private void PlayCards()
     {
-        Card opponentCard = UI.DrawSelectedCard(opponent.Play().CardID, PlayerOption.PLAYER_TWO);
+        Card opponentCard = opponent.Play();
+        UI.DrawSelectedCard(opponentCard.CardID, PlayerOption.PLAYER_TWO);
         //Trigger the cards
         (string TopTextReturn, string BotTextReturn) = Random.Range(0.0f, 1.0f) > .5f ?
             (currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY), opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY)):
@@ -124,7 +125,6 @@ public class GameplayManager : MonoBehaviour
     }
     private void GameOver()
     {
-        UI.ClearHand();
         string WinnerDisplay = GameplayValidator.GetWinner(OngoingEvents, player, opponent);
         if (WinnerDisplay == "You Win!")
         {
@@ -134,5 +134,6 @@ public class GameplayManager : MonoBehaviour
         }
         else
             UI.UpdateDisplay(player, opponent, AllCardsList, WinnerDisplay);
+        UI.ClearHand();
     }
 }

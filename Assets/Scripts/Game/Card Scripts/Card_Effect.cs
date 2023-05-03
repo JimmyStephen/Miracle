@@ -12,8 +12,9 @@ public class Card_Effect
     [SerializeField] Data EffectValue;
 
     //the actual effect values in case they got changed from the base in some way
-    public Target effectTarget { get; private set; }
+    public Target CardTarget { get; private set; }
     public Trigger EffectTrigger { get; private set; }
+    public string EffectType { get; private set; }
     private string OnPlayText;
 
     /// <summary>
@@ -27,7 +28,7 @@ public class Card_Effect
         {
             //choose a random target
             int temp = UnityEngine.Random.Range(1, 4);
-            effectTarget = temp switch
+            CardTarget = temp switch
             {
                 1 => Target.SELF,
                 2 => Target.OPPONENT,
@@ -35,15 +36,16 @@ public class Card_Effect
             };
         }
         else
-            effectTarget = baseCardEffectTarget;
+            CardTarget = baseCardEffectTarget;
 
         EffectTrigger = baseEffectTrigger;
+        EffectType = baseCardEffectType.ToString();
         OnPlayText = SetOnPlayText(Text);
 
     }
     public string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
-        switch (effectTarget)
+        switch (CardTarget)
         {
             case Target.SELF:
                 if (PlayedByPlayer)
@@ -69,7 +71,7 @@ public class Card_Effect
 
     private string SetOnPlayText(string text)
     {
-        text = text.Replace("[target]", GetEnumAsString(effectTarget.ToString()));
+        text = text.Replace("[target]", GetEnumAsString(CardTarget.ToString()));
         text = text.Replace("[trigger]",GetEnumAsString(EffectTrigger.ToString()));
         text = text.Replace("[type]",   GetEnumAsString(baseCardEffectType.ToString()));
         text = text.Replace("[damage]", (EffectValue.DamageValue.GetValue() != 0) ? EffectValue.DamageValue.GetValue().ToString() : "");
@@ -87,5 +89,7 @@ public class Card_Effect
         if (EffectValue.HealValue.GetValue() != 0)   { ret += "\nHeal: "   + EffectValue.HealValue.GetValue().ToString(); }
         return ret;
     }
+
+    public Data GetEffectValue() { return EffectValue; }
 }
 

@@ -12,8 +12,9 @@ public class Card_CardEffect
     [SerializeField] Trigger baseEventTrigger = Trigger.NONE;
     [SerializeField, Tooltip("How many cards to draw, or discard")] DrawDiscard Value;
 
-    public CardEffectTarget _eventTarget { get; private set; }
+    public CardEffectTarget CardTarget { get; private set; }
     public Trigger EffectTrigger { get; private set; }
+    public string EffectType { get; private set; }
     private string OnPlayText;
 
     /// <summary>
@@ -22,6 +23,7 @@ public class Card_CardEffect
     public void _Init(string Text)
     {
         EffectTrigger = baseEventTrigger;
+        EffectType = "DRAW";
         OnPlayText = Text;
     }
 

@@ -1967,6 +1967,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 103964439}
     - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: playerOneDeck
+      value: 
+      objectReference: {fileID: 8520297303155310390}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: playerOneHandDisplay
       value: 
       objectReference: {fileID: 1241512103}
@@ -2185,23 +2189,23 @@ PrefabInstance:
     - target: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: startingDeck.Array.data[1]
       value: 
-      objectReference: {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+      objectReference: {fileID: 2710750311708037016, guid: b3ff6684e80e191459f64d636fe81f76, type: 3}
     - target: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: startingDeck.Array.data[2]
       value: 
-      objectReference: {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+      objectReference: {fileID: 2710750311708037016, guid: d44bdfd9aaceb0b44b73b693f199c73c, type: 3}
     - target: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: startingDeck.Array.data[3]
       value: 
-      objectReference: {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+      objectReference: {fileID: 2710750311708037016, guid: 5cf4e8d0888b72544b19fa23e0bb2987, type: 3}
     - target: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: startingDeck.Array.data[4]
       value: 
-      objectReference: {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+      objectReference: {fileID: 2710750311708037016, guid: ef9a4f64cbf504c4396f0e87eafb6b3c, type: 3}
     - target: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: startingDeck.Array.data[5]
       value: 
-      objectReference: {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+      objectReference: {fileID: 2710750311708037016, guid: 5acc76b8269b54648ad3dedae7dd024f, type: 3}
     - target: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: startingDeck.Array.data[6]
       value: 
@@ -2248,3 +2252,14 @@ MonoBehaviour:
   playerOneHandDisplay: {fileID: 1241512103}
   TopText: {fileID: 281917499}
   BotText: {fileID: 785024537}
+--- !u!114 &8520297303155310390 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8520297304228490896, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+  m_PrefabInstance: {fileID: 8520297303155310387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520297303155310388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07af397f47e72441a37945263d1a1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

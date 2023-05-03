@@ -15,10 +15,10 @@ public class Card : MonoBehaviour
     [SerializeField, Tooltip("Image should have the description")] Sprite Image;
     [SerializeField, Tooltip("Output discription when the card is played")] string CardOutputDescription = "Default Card Effect";
     [Header("What the card does")]
-    [SerializeField, Tooltip("List of all the effects the card can trigger")] Card_Effect[] Effects;
-    [SerializeField, Tooltip("List of all the events the card can trigger")] Card_Event[] Events;
-    [SerializeField, Tooltip("List of all the effects that effect other cards the card can trigger")] Card_CardEffect[] CardEffects;
-    [SerializeField, Tooltip("List of all the swap effects that can trigger")] Card_SwapEffect[] SwapEffects;
+    [SerializeField, Tooltip("List of all the effects the card can trigger")] List<Card_Effect> Effects;
+    [SerializeField, Tooltip("List of all the events the card can trigger")] List<Card_Event> Events;
+    [SerializeField, Tooltip("List of all the effects that effect other cards the card can trigger")] List<Card_CardEffect> CardEffects;
+    [SerializeField, Tooltip("List of all the swap effects that can trigger")] List<Card_SwapEffect> SwapEffects;
 
     public int CardID;
 
@@ -95,4 +95,18 @@ public class Card : MonoBehaviour
     {
         FindObjectOfType<GameplayManager>().SetSelectedCard(CardID);
     }
+
+    public (string, Target) CardEffectType()
+    {
+        foreach(var e in Effects) { return (e.EffectType, e.CardTarget); }
+        foreach(var e in Events) { return (e.EffectType, e.CardTarget); }
+        foreach(var e in CardEffects) { return (e.EffectType, Target.NONE); }
+        foreach(var e in SwapEffects) { return (e.EffectType, Target.NONE); }
+        return ("Unknown", Target.NONE);
+    }
+
+    public List<Card_Effect> GetEffects() { return Effects; }
+    public List<Card_Event> GetEvents() { return Events; }
+    public List<Card_CardEffect> GetCardEffects() { return CardEffects; }
+    public List<Card_SwapEffect> GetSwapEffects() { return SwapEffects; }
 }

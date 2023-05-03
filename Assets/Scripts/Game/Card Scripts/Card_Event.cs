@@ -17,7 +17,8 @@ public class Card_Event
     //the actual event values, in case they got changed from the base in some way
     public _Event _event { get; private set; }
     public Trigger EffectTrigger {get; private set;}
-    public Target _eventTarget {get; private set;}
+    public Target CardTarget { get; private set;}
+    public string EffectType { get; private set; }
     private string OnPlayText;
 
     /// <summary>
@@ -27,7 +28,8 @@ public class Card_Event
     {
         _event = baseCardEvent;
         EffectTrigger = baseEventTrigger;
-        _eventTarget = baseCardEventTarget;
+        CardTarget = baseCardEventTarget;
+        EffectType = baseCardEvent.ToString();
         OnPlayText = Text;
     }
 
@@ -72,15 +74,15 @@ public class Card_Event
     {
         if (playedByPlayer)
         {
-            if (_eventTarget == Target.SELF)
+            if (CardTarget == Target.SELF)
                 return PlayerOption.PLAYER_ONE;
-            if (_eventTarget == Target.OPPONENT)
+            if (CardTarget == Target.OPPONENT)
                 return PlayerOption.PLAYER_TWO;
             return PlayerOption.BOTH;
         }
-        if (_eventTarget == Target.SELF)
+        if (CardTarget == Target.SELF)
             return PlayerOption.PLAYER_TWO;
-        if (_eventTarget == Target.OPPONENT)
+        if (CardTarget == Target.OPPONENT)
             return PlayerOption.PLAYER_ONE;
         return PlayerOption.BOTH;
     }
