@@ -13,5 +13,5 @@ public abstract class Rule
     /// <summary>
     /// Runs the rule
     /// </summary>
-    public abstract Card RunRule();
+    public abstract Gameplay_Card RunRule();
 }

@@ -14,10 +14,10 @@ public class EnemyAI : Player
         ruleMachine.AddRule(new DamageRule("Damage Rule", "The rule checking if you should play a damaging card" , player, this ));
     }
 
-    public Card Play()
+    public Gameplay_Card Play()
     {
         Rule selected = ruleMachine.GetBestRule();
-        Card toPlay = selected.RunRule();
+        Gameplay_Card toPlay = selected.RunRule();
         RemoveCard(toPlay);
         return toPlay;
     }

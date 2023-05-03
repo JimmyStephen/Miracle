@@ -13,7 +13,7 @@ public class OpponentDiscardRule : Rule
         throw new NotImplementedException();
     }
 
-    public override Card RunRule()
+    public override Gameplay_Card RunRule()
     {
         throw new NotImplementedException();
     }

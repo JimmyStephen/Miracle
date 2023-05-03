@@ -69,6 +69,20 @@ public static class Enums
         NONE           
     }
 
+    public enum CardType
+    {
+        GATCHA,
+        GAMEPLAY,
+        UNKNOWN
+    }
+    public enum Rarity
+    {
+        COMMON,
+        UNCOMMON,
+        RARE,
+        LEGENDARY,
+        NONE
+    }
 
     public static string GetEnumAsString(string val)
     {

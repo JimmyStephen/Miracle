@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using static Enums;
 
-public class Card : MonoBehaviour
+public class Gameplay_Card : MonoBehaviour
 {
     [Header("How to Display")]
     [SerializeField] TMPro.TMP_Text NameTextbox;
@@ -104,7 +104,6 @@ public class Card : MonoBehaviour
         foreach(var e in SwapEffects) { return (e.EffectType, Target.NONE); }
         return ("Unknown", Target.NONE);
     }
-
     public List<Card_Effect> GetEffects() { return Effects; }
     public List<Card_Event> GetEvents() { return Events; }
     public List<Card_CardEffect> GetCardEffects() { return CardEffects; }

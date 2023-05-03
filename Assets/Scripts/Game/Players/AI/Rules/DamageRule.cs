@@ -11,7 +11,7 @@ public class DamageRule : Rule
     public override int CheckRule()
     {
         int maxDamage = 0;
-        foreach(Card c in AI.Hand)
+        foreach(Gameplay_Card c in AI.Hand)
         {
             int newDamage = AI_CardHelper.GetCardEffectValue(c, Enums.Effect.DAMAGE);
             maxDamage = newDamage > maxDamage ? newDamage : maxDamage;
@@ -21,9 +21,9 @@ public class DamageRule : Rule
         return 100 - (int)MathF.Floor((healthAfterDamage / player.MaxHealth) * 100f);
     }
 
-    public override Card RunRule()
+    public override Gameplay_Card RunRule()
     {
-        Card retCard = null;
+        Gameplay_Card retCard = null;
         int maxDamage = -1;
         AI.Hand.ForEach(card =>
         {

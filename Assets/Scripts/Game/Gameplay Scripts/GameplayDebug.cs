@@ -57,7 +57,7 @@ public static class GameplayDebug
         int id = 0;
         foreach (var v in AllCards)
         {
-            v.GetComponent<Card>().CardID = id++;
+            v.GetComponent<Gameplay_Card>().CardID = id++;
         }
     }
 }

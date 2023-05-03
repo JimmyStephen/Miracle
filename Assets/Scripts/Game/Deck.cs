@@ -6,15 +6,15 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    [SerializeField] Card[] startingDeck;
+    [SerializeField] Gameplay_Card[] startingDeck;
 
-    public List<Card> CurrentDeck { get; private set; }
-    public List<Card> UsedCards { get; private set; }
+    public List<Gameplay_Card> CurrentDeck { get; private set; }
+    public List<Gameplay_Card> UsedCards { get; private set; }
 
     public void Init()
     {
-        CurrentDeck = new List<Card>();
-        UsedCards = new List<Card>();
+        CurrentDeck = new List<Gameplay_Card>();
+        UsedCards = new List<Gameplay_Card>();
 //        int index = 0;
         foreach (var card in startingDeck)
         {
@@ -29,7 +29,7 @@ public class Deck : MonoBehaviour
     /// Draw a card from the deck, removing it from the deck
     /// </summary>
     /// <returns>The card that you got</returns>
-    public Card DrawCard(GameplayManager GM)
+    public Gameplay_Card DrawCard(GameplayManager GM)
     {
         if(CurrentDeck.Count == 0)
         {
@@ -37,7 +37,7 @@ public class Deck : MonoBehaviour
                 NewDeck();
             else return null;
         }
-        Card retCard = CurrentDeck[0];
+        Gameplay_Card retCard = CurrentDeck[0];
         CurrentDeck.RemoveAt(0);
         return retCard;
     }
@@ -55,23 +55,23 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public List<Card> DrawStartingHand()
+    public List<Gameplay_Card> DrawStartingHand()
     {
-        List<Card> retCards = new();
+        List<Gameplay_Card> retCards = new();
         for(int i = 0; i < 5; i++)
         {
             retCards.Add(DrawCard(null));
         }
         return retCards;
     }
-    public void AddToNewDeck(Card toAdd)
+    public void AddToNewDeck(Gameplay_Card toAdd)
     {
         UsedCards.Add(toAdd);
     }
 
-    public List<Card> GetStartingDeck()
+    public List<Gameplay_Card> GetStartingDeck()
     {
-        return startingDeck.ToList<Card>();
+        return startingDeck.ToList<Gameplay_Card>();
     }
 
     /// <summary>

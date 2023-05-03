@@ -17,7 +17,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] int PlayerStartingHealth = 20;
 
     [SerializeField] GameplayUI UI;
-    Card currentPlayerOneSelected = null;
+    Gameplay_Card currentPlayerOneSelected = null;
 
     //starting decks
     public Deck playerOneDeck;
@@ -102,7 +102,7 @@ public class GameplayManager : MonoBehaviour
     }
     private void PlayCards()
     {
-        Card opponentCard = opponent.Play();
+        Gameplay_Card opponentCard = opponent.Play();
         UI.DrawSelectedCard(opponentCard.CardID, PlayerOption.PLAYER_TWO);
         //Trigger the cards
         (string TopTextReturn, string BotTextReturn) = Random.Range(0.0f, 1.0f) > .5f ?

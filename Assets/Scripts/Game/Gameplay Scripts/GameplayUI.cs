@@ -53,18 +53,18 @@ public class GameplayUI : MonoBehaviour
     /// </summary>
     /// <param name="cardID">ID of the card to draw</param>
     /// <param name="player">What player is having a card drawn</param>
-    public Card DrawSelectedCard(int CardID, Enums.PlayerOption player)
+    public Gameplay_Card DrawSelectedCard(int CardID, Enums.PlayerOption player)
     {
         EraseCard(player);
         if (player == Enums.PlayerOption.PLAYER_ONE)
         {
             playerOneDisplay = Instantiate(AllCardsList[CardID], playerOneChosenDisplay.transform);
-            return playerOneDisplay.GetComponent<Card>();
+            return playerOneDisplay.GetComponent<Gameplay_Card>();
         }
         else
         {
             playerTwoDisplay = Instantiate(AllCardsList[CardID], playerTwoChosenDisplay.transform);
-            return playerTwoDisplay.GetComponent<Card>();
+            return playerTwoDisplay.GetComponent<Gameplay_Card>();
         }
     }
 

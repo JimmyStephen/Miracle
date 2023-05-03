@@ -7,7 +7,7 @@ using static Enums;
 
 static class AI_CardHelper
 {
-    public static (string, Target) CardEffectType(Card card)
+    public static (string, Target) CardEffectType(Gameplay_Card card)
     {
         foreach (var e in card.GetEffects()) { return (e.EffectType, e.CardTarget); }
         foreach (var e in card.GetEvents()) { return (e.EffectType, e.CardTarget); }
@@ -16,7 +16,7 @@ static class AI_CardHelper
         return ("Unknown", Target.NONE);
     }
 
-    public static int GetCardEffectValue(Card card, Effect effect)
+    public static int GetCardEffectValue(Gameplay_Card card, Effect effect)
     {
         foreach (var e in card.GetEffects()) 
         {

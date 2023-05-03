@@ -6,7 +6,7 @@ public class AI_Player : Player
 {
     public AI_Player(Deck deck, int maxHealth, GameplayManager gM) : base(deck, maxHealth, gM) { }
 
-    public Card Play()
+    public Gameplay_Card Play()
     {
         int selection;
 
@@ -31,7 +31,7 @@ public class AI_Player : Player
         if (selection == -1) selection = Random.Range(0, Hand.Count - 1);
 
         //save the card
-        Card retCard = Hand[selection];
+        Gameplay_Card retCard = Hand[selection];
 
         //remove card from hand
         RemoveCard(retCard);

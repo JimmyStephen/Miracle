@@ -26,7 +26,7 @@ public class HealRule : Rule
         return (int)MathF.Truncate((missingHealth / AI.MaxHealth) * 100f);
     }
 
-    public override Card RunRule()
+    public override Gameplay_Card RunRule()
     {
         //find each heal card
             //give each card a number value:
@@ -40,7 +40,7 @@ public class HealRule : Rule
                     //6: 120%
                     //7: 140%
                 //The card selected will be 5 because it is the closest to 100%. If two numbers are equal then it will randomly select one to use
-        Card retCard = null;
+        Gameplay_Card retCard = null;
         float currentPercent = 0;
         int missingHealth = AI.MaxHealth - AI.CurrentHealth;
         AI.Hand.ForEach(card => {

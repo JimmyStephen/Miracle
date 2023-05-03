@@ -24,9 +24,9 @@ public class ShieldRule : Rule
         return (int)MathF.Truncate((missingHealth / AI.MaxHealth) * 100f);
     }
 
-    public override Card RunRule()
+    public override Gameplay_Card RunRule()
     {
-        Card retCard = null;
+        Gameplay_Card retCard = null;
         int maxShield = -1;
         AI.Hand.ForEach(card =>
         {

@@ -8,7 +8,7 @@ public class Player
 {
     public int MaxHealth {get; private set;}
     public Deck Deck { get; set; }
-    public List<Card> Hand { get; set; }
+    public List<Gameplay_Card> Hand { get; set; }
     public int CurrentHealth { get; set; }
     public GameplayManager GM { get; private set; }
 
@@ -89,7 +89,7 @@ public class Player
     /// </summary>
     public void Draw()
     {
-        Card card = Deck.DrawCard(GM);
+        Gameplay_Card card = Deck.DrawCard(GM);
         if (card == null)
         {
             CurrentHealth -= 1;
@@ -138,11 +138,11 @@ public class Player
     /// </summary>
     /// <param name="toRemove">The card to remove from your hand</param>
     /// <returns>If the removal was successful</returns>
-    public bool RemoveCard(Card toRemove)
+    public bool RemoveCard(Gameplay_Card toRemove)
     {
         try
         {
-            foreach (Card card in Hand)
+            foreach (Gameplay_Card card in Hand)
             {
                 if (card.CardID == toRemove.CardID)
                 {
