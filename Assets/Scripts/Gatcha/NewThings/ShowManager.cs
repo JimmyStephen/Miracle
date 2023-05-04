@@ -24,16 +24,17 @@ public class ShowManager : MonoBehaviour {
 
   private void ShowCards() {
     if (!GachaManager.instance.onePull) {
+      Debug.Log("Character Count: " + characters.Count);
       for (int i = 0; i < characters.Count; i++) {
         cards[i].SetActive(true);
         posters[i].SetActive(true);
         //get image
-        cards[i].GetComponent<Image>().sprite = characters[i].GetComponent<Image>().sprite;
+        cards[i].GetComponent<Image>().sprite = characters[i].GetComponent<GatchaCard>().GetSprite();
       }
     } else {
       posters[0].SetActive(true);
       cards[0].SetActive(true);
-      cards[0].GetComponent<Image>().sprite = characters[0].GetComponent<Image>().sprite;
+      cards[0].GetComponent<Image>().sprite = characters[0].GetComponent<GatchaCard>().GetSprite();
     }
   }
 

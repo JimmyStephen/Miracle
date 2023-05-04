@@ -35,7 +35,7 @@ public class GachaManager : MonoBehaviour {
   List<int> ruinartPool;
   List<int> diabloPool;*/
 
-  int money = Inventory.Instance.GetFunds() + 3000;
+  int money = Inventory.Instance.GetFunds();
 
   void Start() {
     instance = this;

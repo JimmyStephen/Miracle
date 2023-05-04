@@ -7,7 +7,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject[] GameplayCardsList;
     [SerializeField] GameObject[] GatchaCardsList;
 
-    public void ChangeScene(int newScene)
+  //private void Start() {
+  //  for(int i = 0; i < GatchaCardsList.Length; i++) {
+  //    print(i);
+  //    GatchaCardsList[i].GetComponent<GatchaCard>().CardID = i;
+  //  }
+  //}
+  public void ChangeScene(int newScene)
     {
         SceneLoader.Instance.LoadScene(newScene);
     }
