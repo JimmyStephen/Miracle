@@ -1,7 +1,10 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+//TODO chack for doubles
 
 public class GachaManager : MonoBehaviour {
   [SerializeField] GameObject yesNo;
@@ -9,6 +12,7 @@ public class GachaManager : MonoBehaviour {
   [SerializeField] GameObject x3000;
   [SerializeField] GameObject single;
   [SerializeField] GameObject multiple;
+  [SerializeField] TMP_Text moneyTXT;
 
   [SerializeField] GameObject funds;
 
@@ -20,45 +24,83 @@ public class GachaManager : MonoBehaviour {
   public string active = "Diablo";
   public bool onePull = false;
   public List<string> rarity;
+  public List<Card> charactersPulled;
 
+  Card[] gachaCharacters = GameManager.Instance.GetGatchaCards_Cards();
+  //GameObject[] gachaCharacters = GameManager.Instance.GetGatchaCards_GameObjects();
+
+  List<int> activePool;
   List<int> standardPool;
-  List<int> diabloPool;
   List<int> ruinartPool;
+  List<int> diabloPool;
 
-  int money = 0;
+  int money = Inventory.Instance.GetFunds();
 
   void Start() {
     instance = this;
+
     yesNo.SetActive(false);
     x3000.SetActive(false);
     x300.SetActive(false);
     single.SetActive(false);
     multiple.SetActive(false);
     funds.SetActive(false);
+
+    charactersPulled = new List<Card>();
   }
 
   void Update() {
+    moneyTXT.text = money.ToString();
 
+    switch (active) {
+      case "Diablo":
+        activePool = diabloPool;
+        break;
+      case "Ruinart":
+        activePool = ruinartPool;
+        break;
+      case "Standard":
+        activePool = standardPool;
+        break;
+    }
+  }
+
+  private void SetSingle() {
+    x300.SetActive(true);
+    single.SetActive(true);
+    
+    x3000.SetActive(false);
+    multiple.SetActive(false);
+
+    yesNo.SetActive(true);
+  }
+
+  private void SetMultiple() {
+    x300.SetActive(false);
+    single.SetActive(false);
+
+    x3000.SetActive(true);
+    multiple.SetActive(true);
+
+    yesNo.SetActive(true);
+  }
+
+  private void ClearSettings() {
+    yesNo.SetActive(false);
+    x3000.SetActive(false);
+    x300.SetActive(false);
+    single.SetActive(false);
+    multiple.SetActive(false);
   }
 
   public void PullSingle() {
-    x300.SetActive(true);
-    single.SetActive(true);
-    yesNo.SetActive(true);
-
-    x3000.SetActive(false);
-    multiple.SetActive(false);
+    SetSingle();
 
     onePull = true;
   }
 
   public void PullTen() {
-    x3000.SetActive(true);
-    multiple.SetActive(true);
-    yesNo.SetActive(true);
-
-    x300.SetActive(false);
-    single.SetActive(false);
+    SetMultiple();
   }
 
   public void Confirm() {
@@ -74,9 +116,7 @@ public class GachaManager : MonoBehaviour {
       } else {
         funds.SetActive(true);
 
-        yesNo.SetActive(false);
-        x300.SetActive(false);
-        single.SetActive(false);
+        ClearSettings();
       }
     }
     else {
@@ -96,19 +136,14 @@ public class GachaManager : MonoBehaviour {
       } else {
         funds.SetActive(true);
 
-        yesNo.SetActive(false);
-        x3000.SetActive(false);
-        multiple.SetActive(false);
+        ClearSettings();
       }
     }
   }
 
   public void Deny() {
-    yesNo.SetActive(false);
-    x3000.SetActive(false);
-    x300.SetActive(false);
-    single.SetActive(false);
-    multiple.SetActive(false);
+    ClearSettings();
+
     onePull = false;
   }
 
@@ -117,12 +152,21 @@ public class GachaManager : MonoBehaviour {
   }
 
   public void Exit() {
+    SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+  }
+
+  public void ChangeBanner(string banner) {
+    active = banner;
+  }
+
+  //populate the pools
+  public void OrganizeGacha() {
 
   }
 
   private void Gacha() {
 
-    //redo for 4 rates
+    //Redo to have less chance for higher things
     int[] rates = {
       40,
       25,
@@ -148,19 +192,54 @@ public class GachaManager : MonoBehaviour {
       }
     }
 
+    //double check this
+    if(Inventory.Instance.GetPity() == 50) {
+      award = 5;
+    }
+
     switch (award) {
       case 5:
         rarity.Add("Legendary");
+        GetCharacter("Legendary");
         break;
       case 20:
         rarity.Add("Rare");
+        GetCharacter("Rare");
         break;
       case 25:
         rarity.Add("Common");
+        GetCharacter("Common");
         break;
       case 40:
         rarity.Add("Uncommon");
+        GetCharacter("Uncommon");
         break;
     }
+  }
+
+  private void GetCharacter(string rarity) {
+    int ran = 0;
+
+    switch(rarity) {
+      case "Uncommon":
+        ran = RandomNum(0, 12);
+        break;
+      case "Common":
+        ran = RandomNum(13, 20);
+        break;
+      case "Rare":
+        ran = RandomNum(21, 27);
+        break;
+      case "Legendary":
+        ran = RandomNum(28, 33);
+        break;
+    }
+
+    Debug.Log("Pulled: " + ran);
+    charactersPulled.Add(gachaCharacters[ran]);
+  }
+
+  private int RandomNum(int min, int max) {
+    return Random.Range(min, max);
   }
 }
