@@ -7,7 +7,7 @@ public class ShowManager : MonoBehaviour {
   [SerializeField] List<GameObject> posters;
   [SerializeField] List<GameObject> cards;
 
-  List<Card> characters = GachaManager.instance.charactersPulled;
+  List<GameObject> characters = GachaManager.instance.charactersPulled;
 
   void Start() {
     foreach (var item in posters) {
@@ -23,18 +23,6 @@ public class ShowManager : MonoBehaviour {
   }
 
   private void ShowCards() {
-    /*    if (!GachaManager.instance.onePull) {
-          foreach (var item in posters) {
-            item.SetActive(true);
-          }
-          foreach (var item in cards) {
-            item.SetActive(true);
-          }
-        } else {
-          posters[0].SetActive(true);
-          cards[0].SetActive(true);
-        }*/
-
     if (!GachaManager.instance.onePull) {
       for (int i = 0; i < characters.Count; i++) {
         cards[i].SetActive(true);

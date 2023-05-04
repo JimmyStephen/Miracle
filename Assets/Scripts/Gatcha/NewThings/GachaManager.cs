@@ -24,17 +24,18 @@ public class GachaManager : MonoBehaviour {
   public string active = "Diablo";
   public bool onePull = false;
   public List<string> rarity;
-  public List<Card> charactersPulled;
+  public List<GameObject> charactersPulled;
 
-  Card[] gachaCharacters = GameManager.Instance.GetGatchaCards_Cards();
+  [SerializeField] List<GameObject> gachaCharacters;
+  //Card[] gachaCharacters = GameManager.Instance.GetGatchaCards_Cards();
   //GameObject[] gachaCharacters = GameManager.Instance.GetGatchaCards_GameObjects();
 
-  List<int> activePool;
+/*  List<int> activePool;
   List<int> standardPool;
   List<int> ruinartPool;
-  List<int> diabloPool;
+  List<int> diabloPool;*/
 
-  int money = Inventory.Instance.GetFunds();
+  int money = Inventory.Instance.GetFunds() + 3000;
 
   void Start() {
     instance = this;
@@ -46,13 +47,13 @@ public class GachaManager : MonoBehaviour {
     multiple.SetActive(false);
     funds.SetActive(false);
 
-    charactersPulled = new List<Card>();
+    charactersPulled = new List<GameObject>();
   }
 
   void Update() {
     moneyTXT.text = money.ToString();
 
-    switch (active) {
+/*    switch (active) {
       case "Diablo":
         activePool = diabloPool;
         break;
@@ -62,7 +63,7 @@ public class GachaManager : MonoBehaviour {
       case "Standard":
         activePool = standardPool;
         break;
-    }
+    }*/
   }
 
   private void SetSingle() {
@@ -235,8 +236,10 @@ public class GachaManager : MonoBehaviour {
         break;
     }
 
-    Debug.Log("Pulled: " + ran);
+    Debug.Log("Pulled Character: " + ran);
     charactersPulled.Add(gachaCharacters[ran]);
+
+    Debug.Log("Name: " + gachaCharacters[ran].name);
   }
 
   private int RandomNum(int min, int max) {
