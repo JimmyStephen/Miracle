@@ -1021,15 +1021,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8dd861a6e819de241bca68a36048a6bd, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4937,41 +4937,6 @@ MonoBehaviour:
   funds: {fileID: 1898018448}
   pull1: {fileID: 216897478}
   pull10: {fileID: 1908831767}
-  gachaCharacters:
-  - {fileID: 2619116148004673107, guid: 93bb57a7951f9924e819882ae25eb172, type: 3}
-  - {fileID: 2619116148004673107, guid: acd6d184d11b6344892c139b10204037, type: 3}
-  - {fileID: 2619116148004673107, guid: f0c5f7c27fe42914aa7d571856124272, type: 3}
-  - {fileID: 2619116148004673107, guid: a2d5ff06b32f69848b2dba5e61be4f02, type: 3}
-  - {fileID: 2619116148004673107, guid: 485645f20d6c42f4aafb4b633755c1fe, type: 3}
-  - {fileID: 2619116148004673107, guid: 701064314e0ee2c4faba1cb1850901f4, type: 3}
-  - {fileID: 2619116148004673107, guid: ec58916320a13cf40bbebf30bc3502a0, type: 3}
-  - {fileID: 2619116148004673107, guid: 12f35e914549e824d903379791c12284, type: 3}
-  - {fileID: 2619116148004673107, guid: 255a8fe9986170142883ad63e0871406, type: 3}
-  - {fileID: 2619116148004673107, guid: 48abec38611daaa488a20c9456dfe0a6, type: 3}
-  - {fileID: 2619116148004673107, guid: 88123f6df46c1f44ca9573908ef9b767, type: 3}
-  - {fileID: 2619116148004673107, guid: 54b5f5649d55f33469f30e53f01f7dd0, type: 3}
-  - {fileID: 2619116148004673107, guid: 77ada3597621d8b4e89a09a30bb106a6, type: 3}
-  - {fileID: 2619116148004673107, guid: a7be96968a6aac546932eedaca935671, type: 3}
-  - {fileID: 2619116148004673107, guid: 7a185df17ac123845a7aa1481f5e9cbe, type: 3}
-  - {fileID: 2619116148004673107, guid: 2aaa5c27cce28164b89bb87655cab65a, type: 3}
-  - {fileID: 2619116148004673107, guid: 172ad8b9c0e6dd14d99fd737362c6cd0, type: 3}
-  - {fileID: 2619116148004673107, guid: 14638825da0bb1a449af854236d3e8f7, type: 3}
-  - {fileID: 2619116148004673107, guid: c9bdb53f12e43ae47a7f9d2b773bef86, type: 3}
-  - {fileID: 2619116148004673107, guid: 5b0fe43ee4d942c44bd3e05bf8a234d0, type: 3}
-  - {fileID: 2619116148004673107, guid: cbc28fe8fb8e60c45b4b5e520a8009dd, type: 3}
-  - {fileID: 2619116148004673107, guid: 0c145d1d56deddf47a2f2c26ff2effc1, type: 3}
-  - {fileID: 2619116148004673107, guid: cf5d3b4cf6e78224d947b08fb93f512e, type: 3}
-  - {fileID: 2619116148004673107, guid: 0372ef67233b56248bad838ecc60a3d7, type: 3}
-  - {fileID: 2619116148004673107, guid: df6737af35cda2249a7beaca60729a5f, type: 3}
-  - {fileID: 2619116148004673107, guid: 3bc0dc3b9b55d8c44b636b275b58578e, type: 3}
-  - {fileID: 2619116148004673107, guid: b4a20216fef315e469381c22c746896f, type: 3}
-  - {fileID: 2619116148004673107, guid: bc7284e0b2e376e408361ecfd18e2f18, type: 3}
-  - {fileID: 2619116148004673107, guid: 2e6cbb361a408ec40b160794e9606ace, type: 3}
-  - {fileID: 2619116148004673107, guid: caca27e390311364497bbb7b60e92f74, type: 3}
-  - {fileID: 2619116148004673107, guid: 59579167b73995b4eb6e03e793e862f2, type: 3}
-  - {fileID: 2619116148004673107, guid: 30af66c38ce7390448a6c7093ab4c88c, type: 3}
-  - {fileID: 2619116148004673107, guid: 91ec95f5451b8ff4c8572d3239b9371a, type: 3}
-  - {fileID: 2619116148004673107, guid: 8f4fd0889f6342b44a4ab923bc8544eb, type: 3}
   active: Diablo
   onePull: 0
   rarity: []

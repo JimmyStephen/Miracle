@@ -26,9 +26,7 @@ public class GachaManager : MonoBehaviour {
   public List<string> rarity;
   public List<GameObject> charactersPulled;
 
-  [SerializeField] List<GameObject> gachaCharacters;
-  //Card[] gachaCharacters = GameManager.Instance.GetGatchaCards_Cards();
-  //GameObject[] gachaCharacters = GameManager.Instance.GetGatchaCards_GameObjects();
+  GameObject[] gachaCharacters = GameManager.Instance.GetGatchaCards_GameObjects();
 
 /*  List<int> activePool;
   List<int> standardPool;
