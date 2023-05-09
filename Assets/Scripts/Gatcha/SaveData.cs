@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
 
-//Change to Save Data Later****
 [Serializable]
 public class SaveData
 {
     public List<int> rewards;
     public int funds;
+    public int pity;
 
-    public SaveData(List<int> rewards, int funds)
+    public SaveData(List<int> rewards, int funds, int pity)
     {
-        this.rewards = rewards;
-        this.funds = funds;
+        this.pity = pity;
     }
 }

@@ -26,6 +26,7 @@ public class Card : MonoBehaviour
     public string GetCardName()   { return CardName; }
     public CardType GetCardType() { return Type; }
     public Rarity GetCardRarity() { return CardRarity; }
+    public int GetCardID() {  return CardID; }
 
     public Sprite GetSprite() { return Image; }
 }

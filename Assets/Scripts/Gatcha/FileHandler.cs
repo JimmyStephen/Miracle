@@ -21,7 +21,7 @@ public static class FileHandler
         {
             List<SaveData> dataList = new();
             List<int> initalList = new();
-            dataList.Add(new SaveData(initalList, 0));
+            dataList.Add(new SaveData(initalList, 0, 0));
             SaveToJSON<SaveData>(dataList, path);
             return ReadFromJSON<T>(path);
         }
