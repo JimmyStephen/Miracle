@@ -5,22 +5,16 @@ using UnityEngine.UI;
 using System.Linq;
 using static Enums;
 
-public class Gameplay_Card : MonoBehaviour
+public class Gameplay_Card : Card
 {
-    [Header("How to Display")]
-    [SerializeField] TMPro.TMP_Text NameTextbox;
-    [SerializeField] Image ImageBox;
     [Header("What to Display")]
-    [SerializeField] string CardName;
-    [SerializeField, Tooltip("Image should have the description")] Sprite Image;
     [SerializeField, Tooltip("Output discription when the card is played")] string CardOutputDescription = "Default Card Effect";
+    [SerializeField] string CardDescription;
     [Header("What the card does")]
     [SerializeField, Tooltip("List of all the effects the card can trigger")] List<Card_Effect> Effects;
     [SerializeField, Tooltip("List of all the events the card can trigger")] List<Card_Event> Events;
     [SerializeField, Tooltip("List of all the effects that effect other cards the card can trigger")] List<Card_CardEffect> CardEffects;
     [SerializeField, Tooltip("List of all the swap effects that can trigger")] List<Card_SwapEffect> SwapEffects;
-
-    public int CardID;
 
     private void Start()
     {
@@ -52,7 +46,7 @@ public class Gameplay_Card : MonoBehaviour
     /// <returns>The effect of the card to display on the screen</returns>
     public string PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer, Trigger onTrigger)
     {
-        string S_Effect = "No Valid Effect";
+        string S_Effect = CardDescription;
         foreach (var effect in Effects)
         {
             if (effect.EffectTrigger == onTrigger)
@@ -100,8 +94,8 @@ public class Gameplay_Card : MonoBehaviour
     {
         foreach(var e in Effects) { return (e.EffectType, e.CardTarget); }
         foreach(var e in Events) { return (e.EffectType, e.CardTarget); }
-        foreach(var e in CardEffects) { return (e.EffectType, Target.NONE); }
-        foreach(var e in SwapEffects) { return (e.EffectType, Target.NONE); }
+        foreach(var e in CardEffects) { return (e.EffectType, e.CardTarget); }
+        foreach(var e in SwapEffects) { return (e.EffectType, e.CardTarget); }
         return ("Unknown", Target.NONE);
     }
     public List<Card_Effect> GetEffects() { return Effects; }

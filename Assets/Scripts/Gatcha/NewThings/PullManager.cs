@@ -8,7 +8,7 @@ public class PullManager : MonoBehaviour {
   [SerializeField] List<ParticleSystem> particles;
   [SerializeField] GameObject skip;
 
-  Animator light;
+  Animator animatorLight;
   List<ParticleSystem> list = new List<ParticleSystem>();
 
   void Start() {
@@ -23,26 +23,26 @@ public class PullManager : MonoBehaviour {
     switch (rarity) {
       case "Uncommon":
         objs[0].SetActive(true);
-        light = objs[0].GetComponent<Animator>();
+        animatorLight = objs[0].GetComponent<Animator>();
         list.Add(particles[0]);
         list.Add(particles[3]);
         break;
       case "Common":
         objs[1].SetActive(true);
-        light = objs[1].GetComponent<Animator>();
+        animatorLight = objs[1].GetComponent<Animator>();
         list.Add(particles[1]);
         list.Add(particles[4]);
         break;
       case "Rare":
         objs[2].SetActive(true);
-        light = objs[2].GetComponent<Animator>();
+        animatorLight = objs[2].GetComponent<Animator>();
         list.Add(particles[0]);
         list.Add(particles[2]);
         list.Add(particles[5]);
         break;
       case "Legendary":
         objs[3].SetActive(true);
-        light = objs[3].GetComponent<Animator>();
+        animatorLight = objs[3].GetComponent<Animator>();
         list.Add(particles[0]);
         list.Add(particles[1]);
         list.Add(particles[2]);
@@ -53,7 +53,7 @@ public class PullManager : MonoBehaviour {
 
   private void OnTriggerEnter(Collider other) {
     if (other.tag == "AnimStart") {
-      light.SetTrigger("StartAnim");
+      animatorLight.SetTrigger("StartAnim");
       foreach(var item in list) {
         item.Play();
       }

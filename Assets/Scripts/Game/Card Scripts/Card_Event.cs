@@ -74,15 +74,15 @@ public class Card_Event
     {
         if (playedByPlayer)
         {
-            if (CardTarget == Target.SELF)
+            if (CardTarget == Target.SELF_HEALTH)
                 return PlayerOption.PLAYER_ONE;
-            if (CardTarget == Target.OPPONENT)
+            if (CardTarget == Target.OPPONENT_HEALTH)
                 return PlayerOption.PLAYER_TWO;
             return PlayerOption.BOTH;
         }
-        if (CardTarget == Target.SELF)
+        if (CardTarget == Target.SELF_HEALTH)
             return PlayerOption.PLAYER_TWO;
-        if (CardTarget == Target.OPPONENT)
+        if (CardTarget == Target.OPPONENT_HEALTH)
             return PlayerOption.PLAYER_ONE;
         return PlayerOption.BOTH;
     }

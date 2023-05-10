@@ -11,7 +11,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] int victoryRewardMin = 100;
     [SerializeField] int victoryRewardMax = 1000;
     [SerializeField] TMPro.TMP_Text buttonText;
-    [SerializeField] public GameObject[] AllCardsList;
+    //[SerializeField] public GameObject[] AllCardsList;
 
     //Health
     [SerializeField] int PlayerStartingHealth = 20;
@@ -30,7 +30,7 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        /*Optional*/GameplayDebug.GiveCardsID(AllCardsList);
+        ///*Optional*/GameplayDebug.GiveCardsID(AllCardsList);
         //Initalize
         OngoingEvents = new();
         playerOneDeck.Init();
@@ -40,7 +40,7 @@ public class GameplayManager : MonoBehaviour
         //set inital state
         currentGameState = CurrentMode.WAITING;
         GameplayEventManager.CheckStartOfGameEffects(this);
-        UI.Init(AllCardsList);
+        UI.Init();
     }
 
     //Methods
@@ -51,16 +51,16 @@ public class GameplayManager : MonoBehaviour
         {
             case CurrentMode.WAITING:
                 //set starting display
-                UI.UpdateDisplay(player, opponent, AllCardsList);
+                UI.UpdateDisplay(player, opponent);
                 currentGameState = CurrentMode.SELECTING;
                 setButtonText = "Lock In";
                 break;
             case CurrentMode.SELECTING:
-                if (currentPlayerOneSelected != null)
+                if (currentPlayerOneSelected != null || player.Hand.Count == 0)
                 {
                     currentGameState = CurrentMode.ACTIVATING;
                     Continue();
-                    setButtonText = "Next Round";
+                    setButtonText = "Lock In";
                 }
                 else
                     setButtonText = "Lock In";
@@ -102,6 +102,11 @@ public class GameplayManager : MonoBehaviour
     }
     private void PlayCards()
     {
+        if(currentPlayerOneSelected == null)
+        {
+            currentPlayerOneSelected = CardConnector.GetGameplayCard("NoCards"); 
+            UI.DrawSelectedCard(currentPlayerOneSelected.CardID, PlayerOption.PLAYER_ONE);
+        }
         Gameplay_Card opponentCard = opponent.Play();
         UI.DrawSelectedCard(opponentCard.CardID, PlayerOption.PLAYER_TWO);
         //Trigger the cards
@@ -110,7 +115,7 @@ public class GameplayManager : MonoBehaviour
             (opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY), currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY));
 
         EndOfTurn();
-        UI.UpdateDisplay(player, opponent, AllCardsList, TopTextReturn, BotTextReturn);
+        UI.UpdateDisplay(player, opponent, TopTextReturn, BotTextReturn);
     }
     private void EndOfTurn()
     {
@@ -129,11 +134,11 @@ public class GameplayManager : MonoBehaviour
         if (WinnerDisplay == "You Win!")
         {
             int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
-            UI.UpdateDisplay(player, opponent, AllCardsList, WinnerDisplay, "Gain " + reward + " Money");
+            UI.UpdateDisplay(player, opponent, WinnerDisplay, "Gain " + reward + " Money");
             Inventory.Instance.UpdateFunds(reward);
         }
         else
-            UI.UpdateDisplay(player, opponent, AllCardsList, WinnerDisplay);
+            UI.UpdateDisplay(player, opponent, WinnerDisplay);
         UI.ClearHand();
     }
 }

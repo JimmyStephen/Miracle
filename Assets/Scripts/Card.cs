@@ -7,13 +7,13 @@ using static Enums;
 public class Card : MonoBehaviour
 {
     [Header("Where to Display")]
-    [SerializeField] TMPro.TMP_Text NameTextbox;
-    [SerializeField] Image ImageBox;
+    [SerializeField] protected TMPro.TMP_Text NameTextbox;
+    [SerializeField] protected Image ImageBox;
     [Header("What to Display")]
-    [SerializeField] string CardName;
-    [SerializeField, Tooltip("Image should have the description")] Sprite Image;
-    [SerializeField] CardType Type = CardType.UNKNOWN;
-    [SerializeField] Rarity CardRarity = Rarity.NONE;
+    [SerializeField] protected string CardName;
+    [SerializeField, Tooltip("Image should have the description")] protected Sprite Image;
+    [SerializeField] protected CardType Type = CardType.UNKNOWN;
+    [SerializeField] protected Rarity CardRarity = Rarity.NONE;
     public int CardID;
 
     public void Init() {

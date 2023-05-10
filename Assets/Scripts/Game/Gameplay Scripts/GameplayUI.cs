@@ -18,9 +18,9 @@ public class GameplayUI : MonoBehaviour
     private GameObject playerTwoDisplay;
     private List<GameObject> currentHandGameObjects;
 
-    public void Init(GameObject[] CardList)
+    public void Init()
     {
-        AllCardsList = CardList;
+        AllCardsList = GameManager.Instance.GetGameplayCards_GameObjects();
         currentHandGameObjects = new();
         ClearDisplay();
     }
@@ -28,25 +28,25 @@ public class GameplayUI : MonoBehaviour
     /// <summary>
     /// Update the display for the UI, health, and text
     /// </summary>
-    public void UpdateDisplay(Player player, EnemyAI opponent, GameObject[] CardsList, string TopText = "", string BotText = "")
+    public void UpdateDisplay(Player player, EnemyAI opponent, string TopText = "", string BotText = "")
     {
         playerOneHealthDisplay.text = player.GetHealthDisplay();
         playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
         this.TopText.text = TopText;
         this.BotText.text = BotText;
-        UpdatePlayerHandDisplay(player, CardsList);
+        UpdatePlayerHandDisplay(player);
     }
     
     //Draw
     /// <summary>
     /// Draw the players hand on the screen
     /// </summary>
-    public void UpdatePlayerHandDisplay(Player player, GameObject[] CardsList)
+    public void UpdatePlayerHandDisplay(Player player)
     {
         //Delete the entire hand
         ClearHand();
         //Redraw the hand
-        player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(CardsList[card.CardID], playerOneHandDisplay.transform)); });
+        player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.CardID], playerOneHandDisplay.transform)); });
     }
     /// <summary>
     /// Draws a card on the screen based on the selected ID

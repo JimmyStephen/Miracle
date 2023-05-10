@@ -24,15 +24,15 @@ public class Card_Effect
     {
         //Set the base variables for the effect
         //set the effect target
-        if (baseCardEffectTarget == Target.RANDOM)
+        if (baseCardEffectTarget == Target.RANDOM_HEALTH)
         {
             //choose a random target
             int temp = UnityEngine.Random.Range(1, 4);
             CardTarget = temp switch
             {
-                1 => Target.SELF,
-                2 => Target.OPPONENT,
-                _ => Target.BOTH
+                1 => Target.SELF_HEALTH,
+                2 => Target.OPPONENT_HEALTH,
+                _ => Target.BOTH_HEALTH
             };
         }
         else
@@ -47,19 +47,19 @@ public class Card_Effect
     {
         switch (CardTarget)
         {
-            case Target.SELF:
+            case Target.SELF_HEALTH:
                 if (PlayedByPlayer)
                     player.UpdateStored(EffectValue, PlayerOption.PLAYER_ONE);
                 else
                     AI.UpdateStored(EffectValue, PlayerOption.PLAYER_TWO);
                 break;
-            case Target.OPPONENT:
+            case Target.OPPONENT_HEALTH:
                 if (PlayedByPlayer)
                     AI.UpdateStored(EffectValue, PlayerOption.PLAYER_TWO);
                 else
                     player.UpdateStored(EffectValue, PlayerOption.PLAYER_ONE);
                 break;
-            case Target.BOTH:
+            case Target.BOTH_HEALTH:
                 AI.UpdateStored(EffectValue, PlayerOption.PLAYER_TWO);
                 player.UpdateStored(EffectValue, PlayerOption.PLAYER_ONE);
                 break;
@@ -89,7 +89,6 @@ public class Card_Effect
         if (EffectValue.HealValue.GetValue() != 0)   { ret += "\nHeal: "   + EffectValue.HealValue.GetValue().ToString(); }
         return ret;
     }
-
     public Data GetEffectValue() { return EffectValue; }
 }
 

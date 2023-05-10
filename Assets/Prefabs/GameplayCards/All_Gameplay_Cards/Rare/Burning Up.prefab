@@ -100,7 +100,7 @@ MonoBehaviour:
   Effects: []
   Events: []
   CardEffects:
-  - baseCardTarget: 1
+  - baseCardTarget: 5
     baseEventTrigger: 2
     Value:
       ToDraw: 0

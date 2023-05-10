@@ -583,6 +583,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects:
-  - SwapTarget: 1
+  - SwapTarget: 11
     SwapTrigger: 2
   CardID: 26

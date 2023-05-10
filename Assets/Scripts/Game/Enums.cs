@@ -4,14 +4,36 @@ using UnityEngine;
 
 public static class Enums
 {
+    //All Cards
     public enum Target
     {
-        SELF,
-        OPPONENT,
-        RANDOM,
-        BOTH,
+        SELF_HEALTH,
+        OPPONENT_HEALTH,
+        RANDOM_HEALTH,
+        BOTH_HEALTH,
+
+        SELF_HAND,
+        SELF_DECK,
+        OPPONENT_HAND,
+        OPPONENT_DECK,
+        BOTH_HAND,
+        BOTH_DECK,
+
+        SWAP_DECK,
+        SWAP_HAND,
+        SWAP_HEALTH,
+
         NONE
     }
+    public enum Trigger
+    {
+        START_OF_GAME,
+        IN_HAND,
+        ON_PLAY,
+        NONE
+    }  
+    
+    //Some Cards
     public enum _Event
     {
         NO_HEALS,
@@ -29,23 +51,15 @@ public static class Enums
         RANDOM,
         NONE
     }
-    public enum Trigger
+    public enum PlayerOption
     {
-        START_OF_GAME,
-        IN_HAND,
-        ON_PLAY,
-        NONE
-    }  
-    public enum CardEffectTarget
-    {
-        SELF_HAND,
-        SELF_DECK,
-        OPPONENT_HAND,
-        OPPONENT_DECK,
-        BOTH_HAND,
-        BOTH_DECK,
-        NONE
+        PLAYER_ONE,
+        PLAYER_TWO,
+        BOTH,
+        NONE           
     }
+    
+    //Gameplay
     public enum CurrentMode
     {
         WAITING,
@@ -54,21 +68,8 @@ public static class Enums
         ENDING,
         GAMEOVER
     }
-    public enum SwapTarget
-    {
-        DECK,
-        HAND,
-        HEALTH,
-        NONE
-    }
-    public enum PlayerOption
-    {
-        PLAYER_ONE,
-        PLAYER_TWO,
-        BOTH,
-        NONE           
-    }
-
+    
+    //Card
     public enum CardType
     {
         GATCHA,
@@ -84,8 +85,28 @@ public static class Enums
         NONE
     }
 
+    //Methods
     public static string GetEnumAsString(string val)
     {
         return val[..1] + val[1..].ToLower();
     }
+    
+    //Removed
+    //public enum CardEffectTarget
+    //{
+    //    SELF_HAND,
+    //    SELF_DECK,
+    //    OPPONENT_HAND,
+    //    OPPONENT_DECK,
+    //    BOTH_HAND,
+    //    BOTH_DECK,
+    //    NONE
+    //}
+    //public enum SwapTarget
+    //{
+    //    DECK,
+    //    HAND,
+    //    HEALTH,
+    //    NONE
+    //}
 }

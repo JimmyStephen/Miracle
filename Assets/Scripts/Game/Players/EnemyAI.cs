@@ -9,9 +9,13 @@ public class EnemyAI : Player
 
     private void Init(Player player)
     {
-        ruleMachine.AddRule(new HealRule  ("Heal Rule"  , "The rule checking if you should play a healing card"  , player, this ));
-        ruleMachine.AddRule(new ShieldRule("Shield Rule", "The rule checking if you should play a shielding card", player, this ));
-        ruleMachine.AddRule(new DamageRule("Damage Rule", "The rule checking if you should play a damaging card" , player, this ));
+        //Base Rules
+        ruleMachine.AddRule(new HealRule  (typeof(HealRule).Name, "The rule checking if you should play a healing card"    , player, this ));
+        ruleMachine.AddRule(new ShieldRule(typeof(ShieldRule).Name, "The rule checking if you should play a shielding card", player, this ));
+        ruleMachine.AddRule(new DamageRule(typeof(DamageRule).Name, "The rule checking if you should play a damaging card" , player, this ));
+
+        ruleMachine.AddRule(new DrawRule        (typeof(DrawRule).Name,         "The rule checking if you should draw a card" , player, this ));
+        ruleMachine.AddRule(new OpponentDrawRule(typeof(OpponentDrawRule).Name, "The rule checking if you should make your opponent draw a card" , player, this ));
     }
 
     public Gameplay_Card Play()

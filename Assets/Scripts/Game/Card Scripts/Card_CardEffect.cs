@@ -8,11 +8,11 @@ using static Enums;
 public class Card_CardEffect
 {
     [Header("Card Draw/Destruction Effects"), Tooltip("Effects effect the number of cards in play")]
-    [SerializeField] CardEffectTarget baseCardTarget = CardEffectTarget.NONE;
+    [SerializeField] Target baseCardTarget = Target.NONE;
     [SerializeField] Trigger baseEventTrigger = Trigger.NONE;
     [SerializeField, Tooltip("How many cards to draw, or discard")] DrawDiscard Value;
 
-    public CardEffectTarget CardTarget { get; private set; }
+    public Target CardTarget { get; private set; }
     public Trigger EffectTrigger { get; private set; }
     public string EffectType { get; private set; }
     private string OnPlayText;
@@ -31,35 +31,35 @@ public class Card_CardEffect
     {
         switch (baseCardTarget)
         {
-            case CardEffectTarget.SELF_HAND:
+            case Target.SELF_HAND:
                 if (PlayedByPlayer)
                     player.HandEffect(Value);
                 else
                     AI.HandEffect(Value);
                 break;
-            case CardEffectTarget.SELF_DECK:
+            case Target.SELF_DECK:
                 if (PlayedByPlayer)
                     player.DeckEffect(Value.ToDiscard);
                 else
                     AI.DeckEffect(Value.ToDiscard);
                 break;
-            case CardEffectTarget.OPPONENT_HAND:
+            case Target.OPPONENT_HAND:
                 if (PlayedByPlayer)
                     AI.HandEffect(Value);
                 else
                     player.HandEffect(Value);
                 break;
-            case CardEffectTarget.OPPONENT_DECK:
+            case Target.OPPONENT_DECK:
                 if (PlayedByPlayer)
                     player.DeckEffect(Value.ToDiscard);
                 else
                     AI.DeckEffect(Value.ToDiscard);
                 break;
-            case CardEffectTarget.BOTH_HAND:
+            case Target.BOTH_HAND:
                 player.HandEffect(Value);
                 AI.HandEffect(Value);
                 break;
-            case CardEffectTarget.BOTH_DECK:
+            case Target.BOTH_DECK:
                 player.DeckEffect(Value.ToDiscard);
                 AI.DeckEffect(Value.ToDiscard);
                 break;
