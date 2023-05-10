@@ -1,25 +1,24 @@
-using Sisus.ComponentNames;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Deck : MonoBehaviour
+public class RuntimeDeck
 {
-    [SerializeField] Gameplay_Card[] startingDeck;
-
+    private Gameplay_Card[] startingDeck;
     public List<Gameplay_Card> CurrentDeck { get; private set; }
     public List<Gameplay_Card> UsedCards { get; private set; }
-    public void SetStartingDeck(Gameplay_Card[] startingDeck)
+
+    public RuntimeDeck(Gameplay_Card[] Cards)
     {
-        this.startingDeck = startingDeck;
+        startingDeck = Cards;
     }
 
     public void Init()
     {
         CurrentDeck = new List<Gameplay_Card>();
         UsedCards = new List<Gameplay_Card>();
-//        int index = 0;
+        //        int index = 0;
         foreach (var card in startingDeck)
         {
             //card.index = index++;
@@ -35,9 +34,9 @@ public class Deck : MonoBehaviour
     /// <returns>The card that you got</returns>
     public Gameplay_Card DrawCard(GameplayManager GM)
     {
-        if(CurrentDeck.Count == 0)
+        if (CurrentDeck.Count == 0)
         {
-            if(!GameplayEventManager.CheckForEvent(GM.OngoingEvents, Enums._Event.LIMITED_DECK, Enums.PlayerOption.BOTH) && UsedCards.Count != 0)
+            if (!GameplayEventManager.CheckForEvent(GM.OngoingEvents, Enums._Event.LIMITED_DECK, Enums.PlayerOption.BOTH) && UsedCards.Count != 0)
                 NewDeck();
             else return null;
         }
@@ -45,7 +44,7 @@ public class Deck : MonoBehaviour
         CurrentDeck.RemoveAt(0);
         return retCard;
     }
-    
+
     /// <summary>
     /// Discard a number of cards from the top of the deck based on the int input
     /// </summary>
@@ -62,7 +61,7 @@ public class Deck : MonoBehaviour
     public List<Gameplay_Card> DrawStartingHand()
     {
         List<Gameplay_Card> retCards = new();
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             retCards.Add(DrawCard(null));
         }
@@ -93,7 +92,7 @@ public class Deck : MonoBehaviour
     }
     void NewDeck()
     {
-        foreach(var card in UsedCards)
+        foreach (var card in UsedCards)
         {
             CurrentDeck.Add(card);
         }

@@ -7,10 +7,13 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] GameObject[] GameplayCardsList;
     [SerializeField] GameObject[] GatchaCardsList;
 
-  private void Start() {
+    public RuntimeDeck CustomDeck { get; set; }
+
+    private void Start()
+    {
         CardConnector.InitCardID();
-  }
-  public void ChangeScene(int newScene)
+    }
+    public void ChangeScene(int newScene)
     {
         SceneLoader.Instance.LoadScene(newScene);
     }
@@ -22,7 +25,7 @@ public class GameManager : Singleton<GameManager>
     public Gameplay_Card[] GetGameplayCards_Cards()
     {
         List<Gameplay_Card> cards = new();
-        foreach(var v in GameplayCardsList)
+        foreach (var v in GameplayCardsList)
         {
             cards.Add(v.GetComponent<Gameplay_Card>());
         }
