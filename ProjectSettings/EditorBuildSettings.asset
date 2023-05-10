@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/InventoryScene.unity
     guid: f50ca15916b1a884b85f59850eb16756
   - enabled: 1
-    path: Assets/Scenes/Testing Scenes/TestShop.unity
+    path: Assets/Scenes/Testing Scenes/GachaShop.unity
     guid: 05548dc6989cc88449bdc90fd3d7049c
   - enabled: 1
     path: Assets/Scenes/Testing Scenes/PullScene.unity

@@ -40,6 +40,6 @@ public class ShowManager : MonoBehaviour {
   }
 
   public void Exit() {
-    SceneManager.LoadScene("TestShop", LoadSceneMode.Single);
+    SceneManager.LoadScene("GachaShop", LoadSceneMode.Single);
   }
 }
