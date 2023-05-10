@@ -9,7 +9,6 @@ public class Gameplay_Card : Card
 {
     [Header("What to Display")]
     [SerializeField, Tooltip("Output discription when the card is played")] string CardOutputDescription = "Default Card Effect";
-    [SerializeField] string CardDescription;
     [Header("What the card does")]
     [SerializeField, Tooltip("List of all the effects the card can trigger")] List<Card_Effect> Effects;
     [SerializeField, Tooltip("List of all the events the card can trigger")] List<Card_Event> Events;
@@ -46,7 +45,7 @@ public class Gameplay_Card : Card
     /// <returns>The effect of the card to display on the screen</returns>
     public string PlayCard(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer, Trigger onTrigger)
     {
-        string S_Effect = CardDescription;
+        string S_Effect = CardOutputDescription;
         foreach (var effect in Effects)
         {
             if (effect.EffectTrigger == onTrigger)

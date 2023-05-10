@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoCardRule : MonoBehaviour
+public class NoCardRule : Rule
 {
-    // Start is called before the first frame update
-    void Start()
+    public NoCardRule(string name, string desc, Player player, EnemyAI AI) : base(name, desc, player, AI) { }
+
+    public override int CheckRule()
     {
-        
+        return AI.Hand.Count == 0 ? 100 : 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override Gameplay_Card RunRule()
     {
-        
+        return CardConnector.GetGameplayCard("Hand Empty!");
     }
 }

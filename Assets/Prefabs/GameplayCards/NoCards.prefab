@@ -312,9 +312,9 @@ MonoBehaviour:
   Image: {fileID: 0}
   Type: 2
   CardRarity: 4
-  CardID: 0
+  CardID: 34
   CardOutputDescription: Hand Empty!
-  CardDescription: 
+  CardDescription: Hand Empty!
   Effects: []
   Events: []
   CardEffects: []

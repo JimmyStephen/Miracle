@@ -45,8 +45,10 @@ public static class CardConnector
         var cards = GameManager.Instance.GetGameplayCards_Cards();
         foreach (Gameplay_Card card in cards)
         {
-            if (card.GetCardName() == name)
+            if (card.GetCardName().Equals(name))
                 return card;
+            else
+                Debug.Log($"{card.GetCardName()} != {name}");
         }
         throw new System.Exception("Card not found");
     }

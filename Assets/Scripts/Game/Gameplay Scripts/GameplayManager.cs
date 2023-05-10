@@ -104,18 +104,23 @@ public class GameplayManager : MonoBehaviour
     {
         if(currentPlayerOneSelected == null)
         {
-            currentPlayerOneSelected = CardConnector.GetGameplayCard("NoCards"); 
+            currentPlayerOneSelected = CardConnector.GetGameplayCard("Hand Empty!"); 
             UI.DrawSelectedCard(currentPlayerOneSelected.CardID, PlayerOption.PLAYER_ONE);
         }
         Gameplay_Card opponentCard = opponent.Play();
         UI.DrawSelectedCard(opponentCard.CardID, PlayerOption.PLAYER_TWO);
         //Trigger the cards
-        (string TopTextReturn, string BotTextReturn) = Random.Range(0.0f, 1.0f) > .5f ?
-            (currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY), opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY)):
-            (opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY), currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY));
+        string TopTextReturn, BotTextReturn;
+        //(string TopTextReturn, string BotTextReturn) = Random.Range(0.0f, 1.0f) > .5f ?
+        //    (currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY), opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY)):
+        //    (opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY), currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY));
+        if(Random.Range(0.0f, 1.0f) > .5f)
+            (TopTextReturn, BotTextReturn) = (currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY), opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY));
+        else
+            (BotTextReturn, TopTextReturn) = (opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY), currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY));
 
         EndOfTurn();
-        UI.UpdateDisplay(player, opponent, TopTextReturn, BotTextReturn);
+        UI.UpdateDisplay(player, opponent, "Player: " + TopTextReturn, "AI: " + BotTextReturn);
     }
     private void EndOfTurn()
     {
