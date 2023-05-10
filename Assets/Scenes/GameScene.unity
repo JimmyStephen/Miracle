@@ -1686,7 +1686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nameOverride: TestingDeck
   tooltipOverride: 
-  target: {fileID: 8520297303155310392}
+  target: {fileID: 0}
 --- !u!1 &1562500833
 GameObject:
   m_ObjectHideFlags: 0
@@ -2020,7 +2020,7 @@ PrefabInstance:
     - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: playerTwoDeck
       value: 
-      objectReference: {fileID: 8520297303155310392}
+      objectReference: {fileID: 0}
     - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: playerOneHandDisplay
       value: 
@@ -2319,21 +2319,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8520297304228490902, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
   m_PrefabInstance: {fileID: 8520297303155310387}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8520297303155310392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8520297303155310388}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07af397f47e72441a37945263d1a1c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingDeck:
-  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
-  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
-  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
-  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
-  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
