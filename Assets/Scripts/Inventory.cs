@@ -14,9 +14,10 @@ public class Inventory : Singleton<Inventory>
 
     //save pity to JSON
     public int pity = 0;
+    public List<bool> cheatUse = new List<bool>() { false, false };
 
-    // Start is called before the first frame update
-    void Start()
+  // Start is called before the first frame update
+  void Start()
     {
         //Set Index (If Needed Uncomment)
         for(int i = 0; i < FullRewardList.Length; i++)
@@ -63,6 +64,11 @@ public class Inventory : Singleton<Inventory>
         SaveData();
     }
 
+    public void SetCheatUse(bool cheat, int index) {
+      cheatUse[index] = cheat;
+      SaveData();
+    }
+
     /// <summary>
     /// Adds one item to the inventory
     /// </summary>
@@ -106,6 +112,11 @@ public class Inventory : Singleton<Inventory>
     public int GetPity() {
         return pity;
     }
+
+    public List<bool> GetCheatUse() {
+      return cheatUse;
+    }
+
     /// <summary>
     /// Gets the funds from the inventory
     /// </summary>
