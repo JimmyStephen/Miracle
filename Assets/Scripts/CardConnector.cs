@@ -15,6 +15,7 @@ public static class CardConnector
         for(int i = 1; i < GameplayCards.Length; i++)
         {
             GameplayCards[i].CardID = i;
+            Debug.Log($"{GameplayCards[i].GetCardName()} : {GameplayCards[i].GetCardID()}");
             try { GetGatchaCard(GameplayCards[i].GetCardName(), true).CardID = i; }
             catch { Debug.Log($"No Gatcha Card \"{GameplayCards[i].GetCardName()}\" Found"); }
         }
@@ -78,7 +79,7 @@ public static class CardConnector
         var cards = GameManager.Instance.GetGatchaCards_Cards();
         foreach (GatchaCard card in cards)
         {
-            if (card.CardID == ID)
+            if (card.GetCardID() == ID)
                 return card;
         }
         throw new System.Exception("Card not found");

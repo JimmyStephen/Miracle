@@ -39,7 +39,7 @@ public class GameManager : Singleton<GameManager>
     public GatchaCard[] GetGatchaCards_Cards()
     {
         List<GatchaCard> cards = new();
-        foreach (var v in GameplayCardsList)
+        foreach (var v in GatchaCardsList)
         {
             cards.Add(v.GetComponent<GatchaCard>());
         }

@@ -20,8 +20,9 @@ public static class FileHandler
         if (string.IsNullOrEmpty(content) || content =="{}")
         {
             List<SaveData> dataList = new();
-            List<int> initalList = new();
-            dataList.Add(new SaveData(initalList, 0, 0));
+            List<CustomDeck> initialDecks = new();
+            List<int> initialList = new();
+            dataList.Add(new SaveData(initialList, 0, 0, initialDecks));
             SaveToJSON<SaveData>(dataList, path);
             return ReadFromJSON<T>(path);
         }

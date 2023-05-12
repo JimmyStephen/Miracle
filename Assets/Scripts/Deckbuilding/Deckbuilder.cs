@@ -5,6 +5,8 @@ using UnityEngine;
 public class Deckbuilder : MonoBehaviour
 {
     List<int> CardID = new();
+    [SerializeField, Tooltip("The Prefab to be displayed")] GameObject Display;
+    [SerializeField, Tooltip("Where the prefab will be displayed")] GameObject DisplayParent;
 
     /// <summary>
     /// Attempts to add a card to the current list
@@ -15,6 +17,7 @@ public class Deckbuilder : MonoBehaviour
         if (CanAddToList(ToAdd))
         {
             CardID.Add(ToAdd);
+            Instantiate(Display, DisplayParent.transform).GetComponent<InDeckDisplay>().Init(GetCardName(ToAdd), GetNumInDeck(ToAdd), ToAdd, this);
             OutputText.SetText($"Deck Output\n{ToAdd} Added");
         }
         else
@@ -32,20 +35,37 @@ public class Deckbuilder : MonoBehaviour
         try
         {
             CardConnector.GetGameplayCard(ToAdd);
-            int InDeck = 0;
-            CardID.ForEach(id =>
-            {
-                if (id == ToAdd)
-                {
-                    InDeck++;
-                }
-            });
+            int InDeck = GetNumInDeck(ToAdd);
             return InDeck < 2 && CardID.Count < 15;
         }
         catch
         {
             return false;
         }
+    }
+    private int GetNumInDeck(int ID)
+    {
+        int InDeck = 0;
+        CardID.ForEach(id =>
+        {
+            if (id == ID)
+            {
+                InDeck++;
+            }
+        });
+        return InDeck;
+    }
+    private string GetCardName(int ID)
+    {
+        return CardConnector.GetGatchaCard(ID).GetCardName();
+    }
+
+    public void RemoveFromList(int toRemove)
+    {
+        if (CardID.Remove(toRemove))
+            Debug.Log("Card Removed");
+        else
+            Debug.Log("Error");
     }
 
     /// <summary>
@@ -76,6 +96,19 @@ public class Deckbuilder : MonoBehaviour
         GameManager.Instance.CustomDeck = RD;
     }
 
+    //Build Deck from saved CustomDeck
+    public void BuildDeck(CustomDeck SavedDeck)
+    {
+        List<Gameplay_Card> InitialDeck = new();
+        SavedDeck.Cards.ForEach(id =>
+        {
+            InitialDeck.Add(CardConnector.GetGameplayCard(id));
+        });
+        OutputDeck(InitialDeck);
+        RuntimeDeck RD = new RuntimeDeck(InitialDeck.ToArray());
+        RD.Init();
+        GameManager.Instance.CustomDeck = RD;
+    }
 
     //Debug and Testing
     [SerializeField] TMPro.TMP_Text OutputText;
@@ -88,7 +121,6 @@ public class Deckbuilder : MonoBehaviour
         });
         OutputText.SetText(output);
     }
-
     public void OutputGMDeck()
     {
         string output = "Deck Output\n";
@@ -98,7 +130,6 @@ public class Deckbuilder : MonoBehaviour
         });
         OutputText.SetText(output);
     }
-
     public void DrawAndDisplayStartingHand()
     {
         string output = "Deck Output\n";

@@ -143,7 +143,7 @@ public class GameplayManager : MonoBehaviour
         {
             int reward = Random.Range(victoryRewardMin, victoryRewardMax + 1);
             UI.UpdateDisplay(player, opponent, WinnerDisplay, "Gain " + reward + " Money");
-            Inventory.Instance.UpdateFunds(reward);
+            Inventory.Instance.AddFunds(reward);
         }
         else
             UI.UpdateDisplay(player, opponent, WinnerDisplay);

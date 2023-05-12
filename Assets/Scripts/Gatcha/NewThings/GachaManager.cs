@@ -106,7 +106,7 @@ public class GachaManager : MonoBehaviour {
     if (onePull) {
       if (money >= 300) {
         money -= 300;
-        Inventory.Instance.UpdateFunds(-300);
+        Inventory.Instance.AddFunds(-300);
         Gacha();
         onePull = true;
         Inventory.Instance.AddPity(1);
@@ -119,7 +119,7 @@ public class GachaManager : MonoBehaviour {
     } else {
       if (money >= 3000) {
         money -= 3000;
-        Inventory.Instance.UpdateFunds(-3000);
+        Inventory.Instance.AddFunds(-3000);
         int gachas = 10;
 
         while (gachas > 0) {

@@ -15,4 +15,15 @@ public class GatchaCard : Card
     {
         Init();
     }
+
+    public void Select()
+    {
+        //Debug.Log($"{CardName} Selected");
+        GameObject DeckBuilderObject = GameObject.Find("DeckBuilder");
+        if(DeckBuilderObject.TryGetComponent<Deckbuilder>(out Deckbuilder DeckBuilderComponent))
+        {
+            //Debug.Log("Deckbuilder Found!");
+            DeckBuilderComponent.AddToList(CardID);
+        }
+    }
 }
