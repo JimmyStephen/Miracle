@@ -15,7 +15,6 @@ public static class CardConnector
         for(int i = 1; i < GameplayCards.Length; i++)
         {
             GameplayCards[i].CardID = i;
-            Debug.Log($"{GameplayCards[i].GetCardName()} : {GameplayCards[i].GetCardID()}");
             try { GetGatchaCard(GameplayCards[i].GetCardName(), true).CardID = i; }
             catch { Debug.Log($"No Gatcha Card \"{GameplayCards[i].GetCardName()}\" Found"); }
         }
@@ -97,12 +96,12 @@ public static class CardConnector
         {
             if (ConnectionName)
             {
-                if (card.GetConnectionName() == name)
+                if (card.GetConnectionName().ToLower().Replace(" ", "").Equals(name.ToLower().Replace(" ", "")))
                     return card;
             }
             else
             {
-                if (card.GetCardName() == name)
+                if (card.GetCardName().ToLower().Replace(" ", "").Equals(name.ToLower().Replace(" ", "")))
                     return card;
             }
            

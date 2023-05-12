@@ -8,4 +8,5 @@ public class CustomDeck
 {
     public string DeckName;
     public List<int> Cards;
+    public bool IsValid;
 }

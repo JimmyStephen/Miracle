@@ -5,6 +5,7 @@ using UnityEngine;
 public class Deckbuilder : MonoBehaviour
 {
     List<int> CardID = new();
+    [SerializeField] TMPro.TMP_InputField NameInput;
     [SerializeField, Tooltip("The Prefab to be displayed")] GameObject Display;
     [SerializeField, Tooltip("Where the prefab will be displayed")] GameObject DisplayParent;
 
@@ -110,11 +111,27 @@ public class Deckbuilder : MonoBehaviour
         GameManager.Instance.CustomDeck = RD;
     }
 
+
+    private void SaveDeck()
+    {
+        //remove
+        string DeckName = NameInput.text;
+        List<int> Cards = CardID;
+        bool IsValid = CanBuild();
+        //
+        CustomDeck cd = new();
+        cd.DeckName = DeckName;
+        cd.Cards = Cards;
+        cd.IsValid = IsValid;
+        //Save to persistance
+            //if deck already exists, override it
+            //else create a new one
+    }
     //Debug and Testing
     [SerializeField] TMPro.TMP_Text OutputText;
     private void OutputDeck(List<Gameplay_Card> Cards)
     {
-        string output = "Deck Output\n";
+        string output = "Deck Output\nName:" + NameInput.text + "\n";
         Cards.ForEach(card =>
         {
             output += $"{card.GetCardName()} : {card.GetCardID()}\n";

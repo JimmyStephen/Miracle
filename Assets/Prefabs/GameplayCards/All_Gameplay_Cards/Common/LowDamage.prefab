@@ -94,8 +94,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
   ImageBox: {fileID: 1014160268381931446}
-  CardName: Low damagE
+  CardName: Low Damage
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 3
   CardOutputDescription: Do [damage] damage
   Effects:
   - baseCardEffectTarget: 1
@@ -114,7 +117,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 0
 --- !u!1 &1322194778904230300
 GameObject:
   m_ObjectHideFlags: 0

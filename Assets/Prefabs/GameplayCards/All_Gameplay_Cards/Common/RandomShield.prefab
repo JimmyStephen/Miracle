@@ -94,8 +94,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
   ImageBox: {fileID: 0}
-  CardName: Random shielD
+  CardName: Random Shield
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 11
   CardOutputDescription: Block [shield] damage
   Effects:
   - baseCardEffectTarget: 0
@@ -114,7 +117,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 0
 --- !u!1 &1034452494025597161
 GameObject:
   m_ObjectHideFlags: 0

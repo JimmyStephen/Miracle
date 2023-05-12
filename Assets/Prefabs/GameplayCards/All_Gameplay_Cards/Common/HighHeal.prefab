@@ -95,8 +95,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 6059776540971571542}
   ImageBox: {fileID: 0}
-  CardName: High heaL
+  CardName: High Heal
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 1
   CardOutputDescription: Heal [heal] health
   Effects:
   - baseCardEffectTarget: 0
@@ -115,7 +118,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 0
 --- !u!1 &3022637810084833981
 GameObject:
   m_ObjectHideFlags: 0
