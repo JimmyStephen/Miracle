@@ -2917,6 +2917,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8971189684188793248, guid: f9b25fbd17d3c954a9f0c053baa5ee7c, type: 3}
+      propertyPath: transitionTime
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 8971189684188793250, guid: f9b25fbd17d3c954a9f0c053baa5ee7c, type: 3}
       propertyPath: m_Name
       value: SceneLoader

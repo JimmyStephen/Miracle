@@ -18,11 +18,13 @@ public class MenuManager : MonoBehaviour {
   [SerializeField] GameObject optionsBox;
 
   int money;
-  List<string> cheats;
+  List<string> cheats = new List<string>() { "DiabloTheCheater", "ILU"};
+  string given;
 
   void Start() {
     money = Inventory.Instance.GetFunds();
     menu.SetActive(false);
+    optionsBox.SetActive(false);
   }
 
   void Update() {
@@ -39,14 +41,45 @@ public class MenuManager : MonoBehaviour {
   }
 
   public void ButtonSubmit() {
-    //do cheats things
+    ReadInput();
+    CheatCheck();
   }
 
   public void ButtonOk() {
     menu.SetActive(false);
   }
 
-  public void ButtonTitle() {
-    SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
+  public void ReadInput() {
+    if (!string.IsNullOrEmpty(inputField.text)) {
+      given = inputField.text;
+      inputField.text = "";
+    } else {
+      invalid.text = "Please input a code";
+    }
+  }
+
+  public void CheatCheck() {
+    List<bool> cheatUse = Inventory.Instance.GetCheatUse();
+
+    if(given == cheats[0] && !cheatUse[0]) {
+      money += 50000;
+      Inventory.Instance.SetCheatUse(true, 0);
+
+      invalid.text = "Gained 50000";
+    }
+    else if(given == cheats[1] && !cheatUse[1]) {
+      money += 3000;
+      Inventory.Instance.SetCheatUse(true, 1);
+
+      invalid.text = "Gained 3000";
+    }
+    else if(given != cheats[0] && given != cheats[1]) {
+      invalid.text = "Incorrect Value";
+    }
+    else if((given == cheats[0] && cheatUse[0]) || (given == cheats[1] && !cheatUse[1])) {
+      invalid.text = "Code has already been used";
+    }
+
+    Inventory.Instance.UpdateFunds(money);
   }
 }

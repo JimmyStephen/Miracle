@@ -313,6 +313,7 @@ MonoBehaviour:
   Type: 0
   CardRarity: 1
   CardID: 0
+  ConnectionName: MediumShield
 --- !u!1 &4982894928042716038
 GameObject:
   m_ObjectHideFlags: 0
