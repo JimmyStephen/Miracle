@@ -148,10 +148,6 @@ public class GachaManager : MonoBehaviour {
     funds.SetActive(false);
   }
 
-  public void Exit() {
-    SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
-  }
-
   public void ChangeBanner(string banner) {
     active = banner;
   }

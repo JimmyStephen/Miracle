@@ -49,10 +49,6 @@ public class MenuManager : MonoBehaviour {
     menu.SetActive(false);
   }
 
-  public void ButtonTitle() {
-    SceneManager.LoadScene("StartScene", LoadSceneMode.Single);
-  }
-
   public void ReadInput() {
     if (!string.IsNullOrEmpty(inputField.text)) {
       given = inputField.text;
