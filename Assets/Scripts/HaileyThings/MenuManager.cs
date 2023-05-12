@@ -80,6 +80,6 @@ public class MenuManager : MonoBehaviour {
       invalid.text = "Code has already been used";
     }
 
-    Inventory.Instance.UpdateFunds(money);
+    Inventory.Instance.AddFunds(money);
   }
 }
