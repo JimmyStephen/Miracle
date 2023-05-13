@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class InventoryComunicator : MonoBehaviour
@@ -8,6 +9,7 @@ public class InventoryComunicator : MonoBehaviour
     [SerializeField] GameObject InventorySlotBackground;
     [SerializeField] GameObject SelectedLocation;
     [SerializeField] TMPro.TMP_Text pageNumDisplay;
+    [SerializeField] TMP_Text money;
     private List<GameObject> currentDisplayedInventory;
 
     private int currentPageNum = 0;
@@ -15,6 +17,7 @@ public class InventoryComunicator : MonoBehaviour
     private Inventory inventory;
     private void Start()
     {
+        money.text = Inventory.Instance.GetFunds().ToString();
         //Get Inventory
         inventory = Inventory.Instance;
         currentDisplayedInventory = new List<GameObject>();
