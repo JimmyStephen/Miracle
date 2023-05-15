@@ -34,11 +34,12 @@ public class GameplayManager : MonoBehaviour
         //Initalize
         OngoingEvents = new();
         playerTwoDeck.Init();
-        Deck customDeck = gameObject.AddComponent<Deck>();
-        customDeck.SetStartingDeck(GameManager.Instance.CustomDeck.GetStartingDeck().ToArray());
-        playerOneDeck = customDeck;
         playerOneDeck.Init();
-        player = new Player(customDeck, PlayerStartingHealth, this);
+        Deck customDeck = gameObject.AddComponent<Deck>();
+        //customDeck.SetStartingDeck(GameManager.Instance.CustomDeck.GetStartingDeck().ToArray());
+        //playerOneDeck = customDeck;
+        //playerOneDeck.Init();
+        player = new Player(playerOneDeck, PlayerStartingHealth, this);
         opponent = new EnemyAI(playerTwoDeck, PlayerStartingHealth, this, player);
         //set inital state
         currentGameState = CurrentMode.WAITING;
