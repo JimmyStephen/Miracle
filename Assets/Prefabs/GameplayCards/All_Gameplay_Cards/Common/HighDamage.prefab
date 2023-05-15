@@ -98,7 +98,7 @@ MonoBehaviour:
   Image: {fileID: 0}
   Type: 2
   CardRarity: 4
-  CardID: 4
+  CardID: 19
   CardOutputDescription: Do [damage] damage
   Effects:
   - baseCardEffectTarget: 1

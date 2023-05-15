@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TestingStuffScript : MonoBehaviour
 {
-    public void CreateCustomDeck()
+    public void CreateCustomDeck()  
     {
         Inventory.Instance.AddFunds(Random.Range(0, 100));
         Inventory.Instance.AddPity(Random.Range(0, 100));

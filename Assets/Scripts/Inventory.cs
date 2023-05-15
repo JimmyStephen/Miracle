@@ -8,6 +8,7 @@ public class Inventory : Singleton<Inventory>
     [SerializeField] GameObject[] FullRewardList;
     [SerializeField] int numPerPage;
     private List<GameObject> InventoryList;
+    private string SelectedDeck;
     private int Funds;
     private readonly string fileName = "Inventory_Test";
     private List<int> rewardsListInt;
@@ -34,6 +35,7 @@ public class Inventory : Singleton<Inventory>
 
         Funds = data.funds;
         rewardsListInt = data.rewards;
+        SelectedDeck = data.CurrentDeckName;
         pity = data.pity;
         CustomDeckLists = data.CDecks;
         foreach (var v in rewardsListInt)
@@ -104,10 +106,30 @@ public class Inventory : Singleton<Inventory>
         SaveData();
     }
 
+    public void SetSelectedDeck(string DeckName)
+    {
+        SelectedDeck = DeckName;
+        SaveData();
+    }
     public void AddCustomDeck(CustomDeck toAdd)
     {
         CustomDeckLists.Add(toAdd);
         SaveData();
+    }
+    public void RemoveCustomDeck(string toRemove)
+    {
+        Debug.Log("Before Remove: " + GetCustomDeck(toRemove));
+        CustomDeck DeckToRemove = null;
+        foreach(var v in CustomDeckLists)
+        {
+            if(v.DeckName == toRemove)
+            {
+                DeckToRemove = v;
+                break;
+            }
+        }
+        CustomDeckLists.Remove(DeckToRemove);
+        Debug.Log("After Remove: " + GetCustomDeck(toRemove));
     }
 
     //Get Methods
@@ -117,6 +139,11 @@ public class Inventory : Singleton<Inventory>
     /// <returns>The current pity value</returns>
     public int GetPity() {
         return pity;
+    }
+
+    public CustomDeck GetSelectedDeck()
+    {
+        return GetCustomDeck(SelectedDeck);
     }
 
     public List<bool> GetCheatUse() {
@@ -155,7 +182,14 @@ public class Inventory : Singleton<Inventory>
     }
     public CustomDeck GetCustomDeck(string DeckName)
     {
-        return CustomDeckLists.First(cd => cd.DeckName.Equals(DeckName));
+        try
+        {
+            return CustomDeckLists.First(cd => cd.DeckName.Equals(DeckName));
+        }
+        catch
+        {
+            return null;
+        }
     }
 
     public GameObject GetReward(int index)
@@ -165,17 +199,17 @@ public class Inventory : Singleton<Inventory>
     }
 
 
+    //Private
     /// <summary>
     /// Saves the current Inventory to JSON
     /// </summary>
     private void SaveData()
     {
         List<SaveData> dataList = new();
-        dataList.Add(new SaveData(rewardsListInt, Funds, pity, CustomDeckLists));
+        dataList.Add(new SaveData(rewardsListInt, Funds, pity, CustomDeckLists, SelectedDeck));
         FileHandler.SaveToJSON<SaveData>(dataList, fileName);
     }
 
-    //Private
     private bool CheckIfContains(GatchaCard checking)
     {
         foreach (var v in InventoryList)

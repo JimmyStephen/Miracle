@@ -12,10 +12,10 @@ public static class CardConnector
     {
         var GameplayCards = GameManager.Instance.GetGameplayCards_Cards();
 
-        for(int i = 1; i < GameplayCards.Length; i++)
+        for(int i = 0; i < GameplayCards.Length; i++)
         {
-            GameplayCards[i].CardID = i;
-            try { GetGatchaCard(GameplayCards[i].GetCardName(), true).CardID = i; }
+            GameplayCards[i].CardID = i+1;
+            try { GetGatchaCard(GameplayCards[i].GetCardName(), true).CardID = i+1; }
             catch { Debug.Log($"No Gatcha Card \"{GameplayCards[i].GetCardName()}\" Found"); }
         }
     }

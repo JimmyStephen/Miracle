@@ -19,10 +19,7 @@ public static class FileHandler
         string content = ReadFile(GetPath(path));
         if (string.IsNullOrEmpty(content) || content =="{}")
         {
-            List<SaveData> dataList = new();
-            List<CustomDeck> initialDecks = new();
-            List<int> initialList = new();
-            dataList.Add(new SaveData(initialList, 0, 0, initialDecks));
+            List<SaveData> dataList = InitialSaveData();
             SaveToJSON<SaveData>(dataList, path);
             return ReadFromJSON<T>(path);
         }
@@ -47,6 +44,22 @@ public static class FileHandler
             return File.ReadAllText(path);
         }
         return "";
+    }
+
+    private static List<SaveData> InitialSaveData()
+    {
+        List<SaveData> dataList = new();
+        List<CustomDeck> initialDecks = new();
+        CustomDeck cd = new()
+        {
+            DeckName = "Default",
+            Cards = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 },
+            IsValid = true
+        };
+        initialDecks.Add(cd);
+        List<int> initialList = new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
+        dataList.Add(new SaveData(initialList, 1000, 0, initialDecks, "Default"));
+        return dataList;
     }
 }
 

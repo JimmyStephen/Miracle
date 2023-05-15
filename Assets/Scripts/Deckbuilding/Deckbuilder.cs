@@ -83,8 +83,21 @@ public class Deckbuilder : MonoBehaviour
     /// <returns>A valid deck</returns>
     public void BuildDeck()
     {
+        CustomDeck customDeck = new CustomDeck();
+        if (NameInput.text.Trim() == "")
+        {
+            Debug.Log("Unnamed");
+            return;
+        }
+        Debug.Log($"Name: {NameInput.text} | Cards: {CardID} | IsValid: {CanBuild()}");
+        customDeck.DeckName = NameInput.text;
+        customDeck.Cards = CardID;
+        customDeck.IsValid = CanBuild();
+        DeckSaver.SaveDeck(customDeck);
+
         if (!CanBuild())
             throw new System.Exception("Deck cannot be built");
+
 
         List<Gameplay_Card> InitialDeck = new();
         CardID.ForEach(id =>

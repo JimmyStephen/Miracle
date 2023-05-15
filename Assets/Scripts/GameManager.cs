@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     {
         CardConnector.InitCardID();
     }
+
     public void ChangeScene(int newScene)
     {
         SceneLoader.Instance.LoadScene(newScene);

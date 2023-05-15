@@ -35,7 +35,7 @@ public class GameplayManager : MonoBehaviour
         OngoingEvents = new();
         playerTwoDeck.Init();
         playerOneDeck.Init();
-        Deck customDeck = gameObject.AddComponent<Deck>();
+        //Deck customDeck = gameObject.AddComponent<Deck>();
         //customDeck.SetStartingDeck(GameManager.Instance.CustomDeck.GetStartingDeck().ToArray());
         //playerOneDeck = customDeck;
         //playerOneDeck.Init();
