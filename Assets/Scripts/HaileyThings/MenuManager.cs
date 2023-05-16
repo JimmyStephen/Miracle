@@ -11,7 +11,6 @@ public class MenuManager : MonoBehaviour {
   [Header("Cheat Menu")]
   [SerializeField] GameObject cheatBox;
   [SerializeField] TMP_Text invalid;
-  //double check this is the right one in PS
   [SerializeField] TMP_InputField inputField;
 
   [Header("Options Menu")]
@@ -24,6 +23,7 @@ public class MenuManager : MonoBehaviour {
   void Start() {
     money = Inventory.Instance.GetFunds();
     menu.SetActive(false);
+    invalid.text = "";
     optionsBox.SetActive(false);
   }
 

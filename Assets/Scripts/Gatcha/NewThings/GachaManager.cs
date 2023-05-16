@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-//TODO chack for doubles
+//TODO check for doubles
 
 public class GachaManager : MonoBehaviour {
   [SerializeField] GameObject yesNo;
