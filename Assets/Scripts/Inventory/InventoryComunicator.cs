@@ -114,7 +114,6 @@ public class InventoryComunicator : MonoBehaviour
         ClearInventoryDisplay();
         DisplayInventory(temp);
     }
-
     private void SetPageNumDisplay()
     {
         pageNumDisplay.text = "Page " + (currentPageNum + 1) + "/" + inventory.GetMaxPages();

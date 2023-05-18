@@ -11,7 +11,6 @@ public static class DeckLoader
         customDeck.SetStartingDeck(GetCards(cd));
         return customDeck;
     }
-
     private static Gameplay_Card[] GetCards(CustomDeck cd)
     {
         List<Gameplay_Card> retCards = new();

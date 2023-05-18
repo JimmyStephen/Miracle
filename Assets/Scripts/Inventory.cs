@@ -10,44 +10,19 @@ public class Inventory : Singleton<Inventory>
     private List<GameObject> InventoryList;
     private string SelectedDeck;
     private int Funds;
-    private readonly string fileName = "Inventory_Test";
+    private readonly string fileName = "Inventory_Test_Three";
     private List<int> rewardsListInt;
     private List<CustomDeck> CustomDeckLists;
-
-    //save pity to JSON
     public int pity = 0;
     public List<bool> cheatUse = new List<bool>() { false, false };
 
-  // Start is called before the first frame update
   void Start()
     {
-        //Set Index (If Needed Uncomment)
-        for(int i = 0; i < FullRewardList.Length; i++)
-        {
-            FullRewardList[i].GetComponent<Reward>().SetIndex(i);
-        }
-
-        //read the saved data
-        List<SaveData> dataList = FileHandler.ReadFromJSON<SaveData>(fileName);
-        if(dataList == null) { Debug.Log("Empty List | File Does Not Exist"); }
-        SaveData data = dataList[0];
-        InventoryList = new List<GameObject>();
-
-        Funds = data.funds;
-        rewardsListInt = data.rewards;
-        SelectedDeck = data.CurrentDeckName;
-        pity = data.pity;
-        CustomDeckLists = data.CDecks;
-        foreach (var v in rewardsListInt)
-        {
-            InventoryList.Add(FullRewardList[v]);
-            //Debug.Log("Stored Data: " + InventoryList[v].GetComponent<Reward>().GetName() + " Rarity: " + InventoryList[v].GetComponent<Reward>().GetRarity());
-        }
-
+        ReadInInventory();
         SortByRarity();
     }
 
-    //Set Methods
+    //Add/Update/Remove Methods
     /// <summary>
     /// Updates the funds
     /// </summary>
@@ -66,12 +41,10 @@ public class Inventory : Singleton<Inventory>
         pity += newPity;
         SaveData();
     }
-
     public void SetCheatUse(bool cheat, int index) {
       cheatUse[index] = cheat;
       SaveData();
     }
-
     /// <summary>
     /// Adds one item to the inventory
     /// </summary>
@@ -105,15 +78,14 @@ public class Inventory : Singleton<Inventory>
         }
         SaveData();
     }
-
-    public void SetSelectedDeck(string DeckName)
-    {
-        SelectedDeck = DeckName;
-        SaveData();
-    }
     public void AddCustomDeck(CustomDeck toAdd)
     {
         CustomDeckLists.Add(toAdd);
+        SaveData();
+    }
+    public void SetSelectedDeck(string DeckName)
+    {
+        SelectedDeck = DeckName;
         SaveData();
     }
     public void RemoveCustomDeck(string toRemove)
@@ -140,16 +112,13 @@ public class Inventory : Singleton<Inventory>
     public int GetPity() {
         return pity;
     }
-
     public CustomDeck GetSelectedDeck()
     {
         return GetCustomDeck(SelectedDeck);
     }
-
     public List<bool> GetCheatUse() {
       return cheatUse;
     }
-
     /// <summary>
     /// Gets the funds from the inventory
     /// </summary>
@@ -175,7 +144,6 @@ public class Inventory : Singleton<Inventory>
     {
         return InventoryList.ToArray();
     }
-
     public CustomDeck[] GetCustomDecks()
     {
         return CustomDeckLists.ToArray();
@@ -191,13 +159,11 @@ public class Inventory : Singleton<Inventory>
             return null;
         }
     }
-
     public GameObject GetReward(int index)
     {
         if (index < 0 || index >= FullRewardList.Count()) return null;
         return FullRewardList[index];
     }
-
 
     //Private
     /// <summary>
@@ -208,8 +174,26 @@ public class Inventory : Singleton<Inventory>
         List<SaveData> dataList = new();
         dataList.Add(new SaveData(rewardsListInt, Funds, pity, CustomDeckLists, SelectedDeck));
         FileHandler.SaveToJSON<SaveData>(dataList, fileName);
+        ReadInInventory();
     }
-
+    private void ReadInInventory()
+    {
+        List<SaveData> dataList = FileHandler.ReadFromJSON<SaveData>(fileName);
+        if (dataList == null) Debug.Log("Empty List | File Does Not Exist");
+        SaveData data = dataList[0];
+        ReadInSaveData(data);
+    }
+    private void ReadInSaveData(SaveData data)
+    {
+        Funds = data.funds;
+        rewardsListInt = data.rewards;
+        CustomDeckLists = data.CDecks;
+        SelectedDeck = data.CurrentDeckName;
+        pity = data.pity;
+        InventoryList = new List<GameObject>();
+        foreach (var v in rewardsListInt)
+            InventoryList.Add(FullRewardList[v]);
+    }
     private bool CheckIfContains(GatchaCard checking)
     {
         foreach (var v in InventoryList)

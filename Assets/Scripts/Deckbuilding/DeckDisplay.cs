@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class DeckDisplay : MonoBehaviour
@@ -19,7 +18,6 @@ public class DeckDisplay : MonoBehaviour
 
     public void Select()
     {
-        Deck ActualDeck = DeckLoader.LoadDeck(deck.DeckName);
-        Selector.DisplayCards(ActualDeck, deck.DeckName);
+        Selector.Select(deck.DeckName);
     }
 }

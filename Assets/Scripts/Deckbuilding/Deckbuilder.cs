@@ -5,9 +5,27 @@ using UnityEngine;
 public class Deckbuilder : MonoBehaviour
 {
     List<int> CardID = new();
+    List<GameObject> DisplayObjects = new();
     [SerializeField] TMPro.TMP_InputField NameInput;
     [SerializeField, Tooltip("The Prefab to be displayed")] GameObject Display;
     [SerializeField, Tooltip("Where the prefab will be displayed")] GameObject DisplayParent;
+
+    public void FromBaseDeck(CustomDeck InitialDeck)
+    {
+        ClearDisplay();
+        //If InitalDeck is null, make a new deck instead
+        if (InitialDeck == null) return;
+        //Draw the new data
+        NameInput.text = InitialDeck.DeckName;
+        InitialDeck.Cards.ForEach(id => AddToList(id));
+    }
+    public void ClearDisplay()
+    {
+        NameInput.text = "";
+        CardID.Clear();
+        DisplayObjects.ForEach(obj => Destroy(obj));
+        DisplayObjects.Clear();
+    }
 
     /// <summary>
     /// Attempts to add a card to the current list
@@ -18,13 +36,13 @@ public class Deckbuilder : MonoBehaviour
         if (CanAddToList(ToAdd))
         {
             CardID.Add(ToAdd);
-            Instantiate(Display, DisplayParent.transform).GetComponent<InDeckDisplay>().Init(GetCardName(ToAdd), GetNumInDeck(ToAdd), ToAdd, this);
+            var temp = Instantiate(Display, DisplayParent.transform);
+            DisplayObjects.Add(temp);
+            temp.GetComponent<InDeckDisplay>().Init(GetCardName(ToAdd), GetNumInDeck(ToAdd), ToAdd, this);
             OutputText.SetText($"Deck Output\n{ToAdd} Added");
         }
         else
-        {
             OutputText.SetText($"Deck Output\n{ToAdd} Not Added");
-        }
     }
     /// <summary>
     /// Makes sure the input can be added to the list
@@ -89,25 +107,24 @@ public class Deckbuilder : MonoBehaviour
             Debug.Log("Unnamed");
             return;
         }
-        Debug.Log($"Name: {NameInput.text} | Cards: {CardID} | IsValid: {CanBuild()}");
         customDeck.DeckName = NameInput.text;
         customDeck.Cards = CardID;
         customDeck.IsValid = CanBuild();
         DeckSaver.SaveDeck(customDeck);
 
-        if (!CanBuild())
-            throw new System.Exception("Deck cannot be built");
-
-
-        List<Gameplay_Card> InitialDeck = new();
-        CardID.ForEach(id =>
-        {
-            InitialDeck.Add(CardConnector.GetGameplayCard(id));
-        });
-        OutputDeck(InitialDeck);
-        RuntimeDeck RD = new RuntimeDeck(InitialDeck.ToArray());
-        RD.Init();
-        GameManager.Instance.CustomDeck = RD;
+        //if (!CanBuild())
+        //    throw new System.Exception("Deck cannot be built");
+        //
+        //
+        //List<Gameplay_Card> InitialDeck = new();
+        //CardID.ForEach(id =>
+        //{
+        //    InitialDeck.Add(CardConnector.GetGameplayCard(id));
+        //});
+        //OutputDeck(InitialDeck);
+        //RuntimeDeck RD = new RuntimeDeck(InitialDeck.ToArray());
+        //RD.Init();
+        //GameManager.Instance.CustomDeck = RD;
     }
 
     //Build Deck from saved CustomDeck

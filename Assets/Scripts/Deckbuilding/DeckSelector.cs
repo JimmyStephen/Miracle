@@ -7,41 +7,44 @@ public class DeckSelector : MonoBehaviour
     [SerializeField, Tooltip("The Prefab to be displayed")] GameObject Display;
     [SerializeField, Tooltip("Where the prefab will be displayed")] GameObject DisplayParent;
     [SerializeField, Tooltip("Where the cards in the deck are displayed")] GameObject DisplayDeck;
-    private List<GameObject> DisplayedCards = new();
-    private string CurrentSelectedName = Inventory.Instance.GetSelectedDeck().DeckName;
+    private List<GameObject> DisplayedDecks = new();
+    private string CurrentSelectedName;
 
-    void Start()
+    private void OnEnable()
     {
-        //Display all the decks on the display list
+        ClearDisplay();
         var decks = Inventory.Instance.GetCustomDecks();
-        foreach(var deck in decks)
+        foreach (var deck in decks)
         {
             var temp = Instantiate(Display, DisplayParent.transform);
+            DisplayedDecks.Add(temp);
             temp.GetComponent<DeckDisplay>().Init(deck, this);
         }
     }
 
     public void SaveSelectedDeck()
     {
+        Debug.Log("Deck Saved: " + CurrentSelectedName);
         Inventory.Instance.SetSelectedDeck(CurrentSelectedName);
     }
-
-    public void DisplayCards(Deck DeckToDisplay, string DeckName)
+    
+    public void Select(string DeckName)
     {
         CurrentSelectedName = DeckName;
-        ClearDisplay();
-        var Cards = GameManager.Instance.GetGameplayCards_GameObjects();
-        DeckToDisplay.GetStartingDeck().ForEach(card =>
-        {
-            DisplayedCards.Add(Instantiate(Cards[card.CardID], DisplayDeck.transform));
-        });
+        InventoryManager IM = FindObjectOfType<InventoryManager>();
+        if (IM.CurrentMode == InventoryMode.DECK_SELECTOR)
+            SaveSelectedDeck();
+        else
+            IM.Toggle(InventoryMode.DECK_EDITOR);
     }
     private void ClearDisplay()
     {
-        DisplayedCards.ForEach(obj =>
-        {
-            Destroy(obj);
-        });
-        DisplayedCards.Clear();
+        DisplayedDecks.ForEach(obj => Destroy(obj));
+        DisplayedDecks.Clear();
+    }
+    public CustomDeck GetSelectedDeck()
+    {
+        var temp = Inventory.Instance.GetCustomDeck(CurrentSelectedName);
+        return temp;
     }
 }
