@@ -146,6 +146,6 @@ public class GameplayManager : MonoBehaviour
         }
         else
             UI.UpdateDisplay(player, opponent, WinnerDisplay);
-        UI.ClearHand();
+        UI.ClearHands();
     }
 }

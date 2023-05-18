@@ -10,8 +10,11 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] GameObject playerOneChosenDisplay;
     [SerializeField] GameObject playerTwoChosenDisplay;
     [SerializeField] GameObject playerOneHandDisplay;
+    [SerializeField] GameObject playerTwoHandDisplay;
     [SerializeField] TMPro.TMP_Text TopText;
     [SerializeField] TMPro.TMP_Text BotText;
+
+    [SerializeField] GameObject CardBackObj;
 
     private GameObject playerOneDisplay;
     private GameObject playerTwoDisplay;
@@ -34,10 +37,18 @@ public class GameplayUI : MonoBehaviour
         playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
         this.TopText.text = TopText;
         this.BotText.text = BotText;
-        UpdatePlayerHandDisplay(player);
+        UpdateBothHandDisplays(player, opponent);
     }
     
     //Draw
+    /// <summary>
+    /// Update the hand display for both players
+    /// </summary>
+    public void UpdateBothHandDisplays(Player player, EnemyAI opponent)
+    {
+        UpdatePlayerHandDisplay(player);
+        UpdateOpponentHandDisplay(opponent);
+    }
     /// <summary>
     /// Draw the players hand on the screen
     /// </summary>
@@ -54,6 +65,19 @@ public class GameplayUI : MonoBehaviour
             currentPlayerHandGameObjects.Add(Instantiate(CardConnector.GetGameplayCardObj(card), playerOneHandDisplay.transform)); 
         });
     }
+    /// <summary>
+    /// Draw cards on the opponents side of the screen
+    /// </summary>
+    /// <param name="opponent"></param>
+    public void UpdateOpponentHandDisplay(EnemyAI opponent)
+    {
+        ClearAIHand();
+        opponent.Hand.ForEach((card) =>
+        {
+            currentOpponentHandGameObjects.Add(Instantiate(CardBackObj, playerTwoHandDisplay.transform));
+        });
+    }
+    
     /// <summary>
     /// Draws a card on the screen based on the selected ID
     /// </summary>
@@ -74,19 +98,30 @@ public class GameplayUI : MonoBehaviour
         }
     }
 
+
+
     //Clear
     /// <summary>
     /// Clears the entire display setting everything to be blank
     /// </summary>
     public void ClearDisplay()
     {
-        ClearHand();
+        ClearHands();
         EraseCard(Enums.PlayerOption.BOTH);
         playerOneHealthDisplay.text = "";
         playerTwoHealthDisplay.text = "";
         TopText.text = "";
         BotText.text = "";
     }
+    
+    /// <summary>
+    /// Clear both hands from the display
+    /// </summary>
+    public void ClearHands()
+    {
+        ClearHand();
+        ClearAIHand();
+    }    
     /// <summary>
     /// Remove the current hand from the display
     /// </summary>
@@ -95,6 +130,15 @@ public class GameplayUI : MonoBehaviour
         currentPlayerHandGameObjects.ForEach(go => { Destroy(go); });
         currentPlayerHandGameObjects.Clear();
     }
+    /// <summary>
+    /// Remove the current opponents hand from the display
+    /// </summary>
+    public void ClearAIHand()
+    {
+        currentOpponentHandGameObjects.ForEach(go => { Destroy(go); });
+        currentOpponentHandGameObjects.Clear();
+    }
+
     /// <summary>
     /// Erases the card display
     /// </summary>

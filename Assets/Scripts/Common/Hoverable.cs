@@ -35,11 +35,15 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
         //if (TextDisplay != null) TextDisplay.text = TextToShow;
         //remove
         if (PlayerDisplay)
-            if (TextDisplay != null) 
+        {
+            if (TextDisplay != null)
                 TextDisplay.text = DeckSizeDisplay ? FindObjectOfType<GameplayManager>().player.Deck.CurrentDeck.Count.ToString() : FindObjectOfType<GameplayManager>().player.Hand.Count.ToString();
+        }
         else
-            if (TextDisplay != null) 
+        {
+            if (TextDisplay != null)
                 TextDisplay.text = DeckSizeDisplay ? FindObjectOfType<GameplayManager>().opponent.Deck.CurrentDeck.Count.ToString() : FindObjectOfType<GameplayManager>().opponent.Hand.Count.ToString();
+        }
         //end remove
         if (TextWindow != null) TextWindow.gameObject.SetActive(true);
     }
