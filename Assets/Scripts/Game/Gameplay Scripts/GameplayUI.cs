@@ -13,15 +13,15 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] TMPro.TMP_Text TopText;
     [SerializeField] TMPro.TMP_Text BotText;
 
-    private GameObject[] AllCardsList;
     private GameObject playerOneDisplay;
     private GameObject playerTwoDisplay;
-    private List<GameObject> currentHandGameObjects;
+    private List<GameObject> currentPlayerHandGameObjects;
+    private List<GameObject> currentOpponentHandGameObjects;
 
     public void Init()
     {
-        AllCardsList = GameManager.Instance.GetGameplayCards_GameObjects();
-        currentHandGameObjects = new();
+        currentPlayerHandGameObjects = new();
+        currentOpponentHandGameObjects = new();
         ClearDisplay();
     }
 
@@ -46,7 +46,13 @@ public class GameplayUI : MonoBehaviour
         //Delete the entire hand
         ClearHand();
         //Redraw the hand
-        player.Hand.ForEach(card => { currentHandGameObjects.Add(Instantiate(AllCardsList[card.CardID], playerOneHandDisplay.transform)); });
+        player.Hand.ForEach(card => 
+        {
+            //Debug.Log($"Card In Hand: {card.GetCardName()} : ID: {card.GetCardID()}");
+            //GameObject CardToDraw = CardConnector.GetGameplayCard(card);
+            //Debug.Log($"Card In Hand: {CardToDraw.GetComponent<Gameplay_Card>().GetCardName()} : ID: {CardToDraw.GetComponent<Gameplay_Card>().GetCardID()}");
+            currentPlayerHandGameObjects.Add(Instantiate(CardConnector.GetGameplayCardObj(card), playerOneHandDisplay.transform)); 
+        });
     }
     /// <summary>
     /// Draws a card on the screen based on the selected ID
@@ -58,12 +64,12 @@ public class GameplayUI : MonoBehaviour
         EraseCard(player);
         if (player == Enums.PlayerOption.PLAYER_ONE)
         {
-            playerOneDisplay = Instantiate(AllCardsList[CardID], playerOneChosenDisplay.transform);
+            playerOneDisplay = Instantiate(CardConnector.GetGameplayCardObj(CardID), playerOneChosenDisplay.transform);
             return playerOneDisplay.GetComponent<Gameplay_Card>();
         }
         else
         {
-            playerTwoDisplay = Instantiate(AllCardsList[CardID], playerTwoChosenDisplay.transform);
+            playerTwoDisplay = Instantiate(CardConnector.GetGameplayCardObj(CardID), playerTwoChosenDisplay.transform);
             return playerTwoDisplay.GetComponent<Gameplay_Card>();
         }
     }
@@ -86,8 +92,8 @@ public class GameplayUI : MonoBehaviour
     /// </summary>
     public void ClearHand()
     {
-        currentHandGameObjects.ForEach(go => { Destroy(go); });
-        currentHandGameObjects.Clear();
+        currentPlayerHandGameObjects.ForEach(go => { Destroy(go); });
+        currentPlayerHandGameObjects.Clear();
     }
     /// <summary>
     /// Erases the card display

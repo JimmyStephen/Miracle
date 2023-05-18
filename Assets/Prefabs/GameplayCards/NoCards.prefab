@@ -312,9 +312,8 @@ MonoBehaviour:
   Image: {fileID: 0}
   Type: 2
   CardRarity: 4
-  CardID: 34
-  CardOutputDescription: Hand Empty!
-  CardDescription: Hand Empty!
+  CardID: 35
+  CardOutputDescription: Hand Empty! Take 1 Damage!
   Effects: []
   Events: []
   CardEffects: []

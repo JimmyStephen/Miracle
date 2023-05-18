@@ -11,7 +11,6 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] int victoryRewardMin = 100;
     [SerializeField] int victoryRewardMax = 1000;
     [SerializeField] TMPro.TMP_Text buttonText;
-    //[SerializeField] public GameObject[] AllCardsList;
 
     //Health
     [SerializeField] int PlayerStartingHealth = 20;
@@ -30,11 +29,10 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        ///*Optional*/GameplayDebug.GiveCardsID(AllCardsList);
         //Initalize
         OngoingEvents = new();
-        playerTwoDeck.Init();
         playerOneDeck.Init();
+        playerTwoDeck.Init();
         //Deck customDeck = gameObject.AddComponent<Deck>();
         //customDeck.SetStartingDeck(GameManager.Instance.CustomDeck.GetStartingDeck().ToArray());
         //playerOneDeck = customDeck;

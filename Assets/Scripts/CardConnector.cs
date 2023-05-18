@@ -47,8 +47,6 @@ public static class CardConnector
         {
             if (card.GetCardName().Equals(name))
                 return card;
-            else
-                Debug.Log($"{card.GetCardName()} != {name}");
         }
         throw new System.Exception("Card not found");
     }
@@ -122,5 +120,36 @@ public static class CardConnector
                 return card;
         }
         throw new System.Exception("Card not found");
+    }
+
+    /// <summary>
+    /// Gets the GameplayCard's GameObject based on the GameplayCard script
+    /// </summary>
+    /// <param name="gameplayCard">The script you are looking for</param>
+    /// <returns></returns>
+    public static GameObject GetGameplayCardObj(Gameplay_Card gameplayCard)
+    {
+        var CardsObj = GameManager.Instance.GetGameplayCards_GameObjects();
+        foreach (var cardObj in CardsObj)
+        {
+            if(cardObj.GetComponent<Gameplay_Card>().GetCardID() == gameplayCard.GetCardID())
+                return cardObj;
+        }
+        throw new System.Exception("Card not found, this shouldn't happen");
+    }
+    /// <summary>
+    /// Gets the GameplayCard's GameObject based on the GameplayCard script
+    /// </summary>
+    /// <param name="gameplayCard">The script you are looking for</param>
+    /// <returns></returns>
+    public static GameObject GetGameplayCardObj(int CardID)
+    {
+        var CardsObj = GameManager.Instance.GetGameplayCards_GameObjects();
+        foreach (var cardObj in CardsObj)
+        {
+            if (cardObj.GetComponent<Gameplay_Card>().GetCardID() == CardID)
+                return cardObj;
+        }
+        throw new System.Exception("Card not found, this shouldn't happen");
     }
 }

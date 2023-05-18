@@ -20,6 +20,7 @@ public class InventoryManager : MonoBehaviour
         CurrentMode = InventoryMode.VIEWER;
     }
 
+    //IGNORE
     public void UIToggle(int NewMode)
     {
         switch (NewMode)
