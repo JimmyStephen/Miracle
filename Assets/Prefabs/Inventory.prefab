@@ -78,4 +78,6 @@ MonoBehaviour:
   - {fileID: 4802635342797792628, guid: fd3fac00fed6ba442a406dacfd1617d0, type: 3}
   - {fileID: 1723788376817463335, guid: e44443399783666429207e71bac54b8c, type: 3}
   - {fileID: 1723788376817463335, guid: b185e52a85935434dbf9dfa00c23e62b, type: 3}
-  numPerPage: 12
+  numPerPage: 10
+  pity: 0
+  cheatUse: 0000

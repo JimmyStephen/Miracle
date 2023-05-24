@@ -96,7 +96,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Burning Up
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 21
   CardOutputDescription: Discard the top 3 cards of your deck
+  CardDescription: Discard the top 3 cards of your deck
   Effects: []
   Events: []
   CardEffects:
@@ -106,7 +110,6 @@ MonoBehaviour:
       ToDraw: 0
       ToDiscard: 3
   SwapEffects: []
-  CardID: 21
 --- !u!1 &2693299540979701119
 GameObject:
   m_ObjectHideFlags: 0

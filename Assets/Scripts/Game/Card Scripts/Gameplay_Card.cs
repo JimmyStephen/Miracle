@@ -9,6 +9,7 @@ public class Gameplay_Card : Card
 {
     [Header("What to Display")]
     [SerializeField, Tooltip("Output discription when the card is played")] string CardOutputDescription = "Default Card Effect";
+    [SerializeField, Tooltip("Output discription when the card is played")] string CardDescription = "Default Card Description";
     [Header("What the card does")]
     [SerializeField, Tooltip("List of all the effects the card can trigger")] List<Card_Effect> Effects;
     [SerializeField, Tooltip("List of all the events the card can trigger")] List<Card_Event> Events;
@@ -101,4 +102,5 @@ public class Gameplay_Card : Card
     public List<Card_Event> GetEvents() { return Events; }
     public List<Card_CardEffect> GetCardEffects() { return CardEffects; }
     public List<Card_SwapEffect> GetSwapEffects() { return SwapEffects; }
+    public string GetCardDescription() { return CardOutputDescription; }
 }

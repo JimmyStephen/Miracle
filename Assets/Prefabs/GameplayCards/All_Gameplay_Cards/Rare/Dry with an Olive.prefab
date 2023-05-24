@@ -310,7 +310,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Dry with Olive
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 22
   CardOutputDescription: Skip your next draw phase
+  CardDescription: Skip your next draw phase
   Effects: []
   Events:
   - baseCardEventTarget: 0
@@ -319,7 +323,6 @@ MonoBehaviour:
     eventDuration: 1
   CardEffects: []
   SwapEffects: []
-  CardID: 22
 --- !u!1 &5647847057805563478
 GameObject:
   m_ObjectHideFlags: 0

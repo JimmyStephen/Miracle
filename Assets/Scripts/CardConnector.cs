@@ -67,6 +67,19 @@ public static class CardConnector
     }
 
     /// <summary>
+    /// Gets the gamplay cards based on the ID values
+    /// </summary>
+    /// <param name="IDs">The ID's to search for</param>
+    /// <returns></returns>
+    public static Gameplay_Card[] GetGameplayCards(List<int> IDs)
+    {
+        List<Gameplay_Card> retCards = new();
+        foreach (int ID in IDs)
+            retCards.Add(GetGameplayCard(ID));
+        return retCards.ToArray();
+    }
+
+    /// <summary>
     /// Gets the Gatcha card based on its name
     /// </summary>
     /// <param name="ID">The id to find</param>
@@ -138,9 +151,9 @@ public static class CardConnector
         throw new System.Exception("Card not found, this shouldn't happen");
     }
     /// <summary>
-    /// Gets the GameplayCard's GameObject based on the GameplayCard script
+    /// Gets the GameplayCard's GameObject based on an ID
     /// </summary>
-    /// <param name="gameplayCard">The script you are looking for</param>
+    /// <param name="CardID">The ID you are looking for</param>
     /// <returns></returns>
     public static GameObject GetGameplayCardObj(int CardID)
     {
@@ -148,6 +161,22 @@ public static class CardConnector
         foreach (var cardObj in CardsObj)
         {
             if (cardObj.GetComponent<Gameplay_Card>().GetCardID() == CardID)
+                return cardObj;
+        }
+        throw new System.Exception("Card not found, this shouldn't happen");
+    }
+
+    /// <summary>
+    /// Gets the GatchaCard's GameObject based on an ID
+    /// </summary>
+    /// <param name="CardID">The ID you are looking for</param>
+    /// <returns></returns>
+    public static GameObject GetGatchaCardObj(int CardID)
+    {
+        var CardsObj = GameManager.Instance.GetGatchaCards_GameObjects();
+        foreach (var cardObj in CardsObj)
+        {
+            if (cardObj.GetComponent<GatchaCard>().GetCardID() == CardID)
                 return cardObj;
         }
         throw new System.Exception("Card not found, this shouldn't happen");

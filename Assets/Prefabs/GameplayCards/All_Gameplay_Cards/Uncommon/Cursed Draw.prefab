@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Draw
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 15
   CardOutputDescription: Opponent Draws 2 Cards
+  CardDescription: Opponent Draws 2 Cards
   Effects: []
   Events: []
   CardEffects:
@@ -374,7 +378,6 @@ MonoBehaviour:
       ToDraw: 2
       ToDiscard: 0
   SwapEffects: []
-  CardID: 15
 --- !u!1 &7092888187312801652
 GameObject:
   m_ObjectHideFlags: 0

@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: New Hand
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 18
   CardOutputDescription: Discard your hand, redraw 4 cards
+  CardDescription: Discard your hand, redraw 4 cards
   Effects: []
   Events: []
   CardEffects:
@@ -374,7 +378,6 @@ MonoBehaviour:
       ToDraw: 3
       ToDiscard: 25
   SwapEffects: []
-  CardID: 18
 --- !u!1 &7699021992320370698
 GameObject:
   m_ObjectHideFlags: 0

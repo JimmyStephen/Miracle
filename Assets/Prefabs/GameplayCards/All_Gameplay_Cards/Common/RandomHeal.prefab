@@ -101,6 +101,7 @@ MonoBehaviour:
   CardRarity: 4
   CardID: 10
   CardOutputDescription: Heal [heal] health
+  CardDescription: Do a random amount of healing
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 2

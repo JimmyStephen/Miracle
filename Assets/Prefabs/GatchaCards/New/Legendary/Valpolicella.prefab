@@ -570,8 +570,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Card, Assembly-CSharp
+      - m_Target: {fileID: 3021758053488349988}
+        m_TargetAssemblyTypeName: GatchaCard, Assembly-CSharp
         m_MethodName: Select
         m_Mode: 1
         m_Arguments:

@@ -5,7 +5,7 @@ using System.Linq;
 
 public class Inventory : Singleton<Inventory>
 {
-    [SerializeField] GameObject[] FullRewardList;
+    //[SerializeField] GameObject[] FullRewardList;
     [SerializeField] int numPerPage;
     private List<GameObject> InventoryList;
     private string SelectedDeck;
@@ -16,8 +16,11 @@ public class Inventory : Singleton<Inventory>
     public int pity = 0;
     public List<bool> cheatUse = new List<bool>() { false, false };
 
+    private GameObject[] GatchaCards;
+
   void Start()
     {
+        GatchaCards = GameManager.Instance.GetGatchaCards_GameObjects();
         ReadInInventory();
         SortByRarity();
     }
@@ -161,8 +164,8 @@ public class Inventory : Singleton<Inventory>
     }
     public GameObject GetReward(int index)
     {
-        if (index < 0 || index >= FullRewardList.Count()) return null;
-        return FullRewardList[index];
+        if (index < 0 || index >= GatchaCards.Count()) return null;
+        return GatchaCards[index];
     }
 
     //Private
@@ -192,7 +195,7 @@ public class Inventory : Singleton<Inventory>
         pity = data.pity;
         InventoryList = new List<GameObject>();
         foreach (var v in rewardsListInt)
-            InventoryList.Add(FullRewardList[v]);
+            InventoryList.Add(CardConnector.GetGatchaCardObj(v));
     }
     private bool CheckIfContains(GatchaCard checking)
     {
@@ -236,19 +239,21 @@ public class Inventory : Singleton<Inventory>
     //Sort (Remove/Move)
     public void SortByAlphabetical()
     {
-        InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetName()).ToList();
+        Debug.Log("Sort By Alphabetical : Unimplemented");
+        //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetName()).ToList();
     }
     public void SortByRarity()
     {
-        InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetRarityE()).ToList();
-        InventoryList.Reverse();
+        Debug.Log("Sort By Rarity : Unimplemented");
+        //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetRarityE()).ToList();
+        //InventoryList.Reverse();
     }
     public void SortByReceived()
     {
         InventoryList.Clear();
         foreach (var v in rewardsListInt)
         {
-            InventoryList.Add(FullRewardList[v]);
+            InventoryList.Add(GatchaCards[v]);
         }
     }
     public void ReverseSort()

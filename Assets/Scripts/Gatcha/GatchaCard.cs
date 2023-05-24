@@ -18,8 +18,9 @@ public class GatchaCard : Card
 
     public void Select()
     {
+        Debug.Log("Select | " + GetCardName());
         GameObject DeckBuilderObject = GameObject.Find("DeckBuilder");
-        if(DeckBuilderObject.TryGetComponent<Deckbuilder>(out Deckbuilder DeckBuilderComponent))
+        if(DeckBuilderObject != null && DeckBuilderObject.TryGetComponent<Deckbuilder>(out Deckbuilder DeckBuilderComponent))
             DeckBuilderComponent.AddToList(CardID);
     }
 }

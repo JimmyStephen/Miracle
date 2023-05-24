@@ -96,7 +96,12 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Hopeful Start
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 30
   CardOutputDescription: Restore 2 health to opponent
+  CardDescription: Start of game, your opponent has 2 less health, each turn while
+    this is in your hand they heal 2 health
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 0
@@ -127,7 +132,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 30
 --- !u!1 &2403897326726978557
 GameObject:
   m_ObjectHideFlags: 0

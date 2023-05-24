@@ -96,7 +96,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: True Random
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 12
   CardOutputDescription: 'Target: [target][unknown]'
+  CardDescription: Do a random effect to a random target
   Effects:
   - baseCardEffectTarget: 2
     baseEffectTrigger: 2
@@ -114,7 +118,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 12
 --- !u!1 &2748718878113362842
 GameObject:
   m_ObjectHideFlags: 0

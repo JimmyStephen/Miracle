@@ -578,7 +578,12 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Beginnings
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 28
   CardOutputDescription: Restore 1 health to yourself
+  CardDescription: Start of Game you start with 3 less health, each turn this is
+    in your hand, heal 1 health
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 0
@@ -609,4 +614,3 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 28

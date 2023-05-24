@@ -100,6 +100,7 @@ MonoBehaviour:
   CardRarity: 4
   CardID: 11
   CardOutputDescription: Block [shield] damage
+  CardDescription: Give a random amount of shield
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 2

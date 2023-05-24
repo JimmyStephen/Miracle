@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Card
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 14
   CardOutputDescription: Deal 2 damage to each player
+  CardDescription: Deal 2 damage to each player
   Effects:
   - baseCardEffectTarget: 3
     baseEffectTrigger: 2
@@ -382,7 +386,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 14
 --- !u!1 &7245218963164523244
 GameObject:
   m_ObjectHideFlags: 0

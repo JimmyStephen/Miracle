@@ -13,6 +13,7 @@ public class GameplayUI : MonoBehaviour
     [SerializeField] GameObject playerTwoHandDisplay;
     [SerializeField] TMPro.TMP_Text TopText;
     [SerializeField] TMPro.TMP_Text BotText;
+    [SerializeField] TMPro.TMP_Text EventsText;
 
     [SerializeField] GameObject CardBackObj;
 
@@ -20,9 +21,11 @@ public class GameplayUI : MonoBehaviour
     private GameObject playerTwoDisplay;
     private List<GameObject> currentPlayerHandGameObjects;
     private List<GameObject> currentOpponentHandGameObjects;
+    private GameplayManager gameplayManager;
 
     public void Init()
     {
+        gameplayManager = FindObjectOfType<GameplayManager>();
         currentPlayerHandGameObjects = new();
         currentOpponentHandGameObjects = new();
         ClearDisplay();
@@ -37,6 +40,11 @@ public class GameplayUI : MonoBehaviour
         playerTwoHealthDisplay.text = opponent.GetHealthDisplay();
         this.TopText.text = TopText;
         this.BotText.text = BotText;
+        string eventText = "Events\n";
+        foreach(var events in gameplayManager.OngoingEvents)
+            eventText += $"{events.EventType} | {events.EventTarget} | {events.EventDuration}\n";
+        Debug.Log(eventText);
+        if (EventsText != null) EventsText.text = eventText;
         UpdateBothHandDisplays(player, opponent);
     }
     
@@ -59,9 +67,6 @@ public class GameplayUI : MonoBehaviour
         //Redraw the hand
         player.Hand.ForEach(card => 
         {
-            //Debug.Log($"Card In Hand: {card.GetCardName()} : ID: {card.GetCardID()}");
-            //GameObject CardToDraw = CardConnector.GetGameplayCard(card);
-            //Debug.Log($"Card In Hand: {CardToDraw.GetComponent<Gameplay_Card>().GetCardName()} : ID: {CardToDraw.GetComponent<Gameplay_Card>().GetCardID()}");
             currentPlayerHandGameObjects.Add(Instantiate(CardConnector.GetGameplayCardObj(card), playerOneHandDisplay.transform)); 
         });
     }

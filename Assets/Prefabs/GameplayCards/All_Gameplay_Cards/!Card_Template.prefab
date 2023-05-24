@@ -364,16 +364,14 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: CurseD CarD
   Image: {fileID: 0}
-  baseCardEffectTarget: 2
-  baseEffectTrigger: 2
-  baseCardEffectType: 3
-  effectMinValue: 1
-  eventMaxValue: 10
-  baseCardEventTarget: 4
-  baseEventTrigger: 3
-  baseCardEvent: 4
-  eventDuration: 0
-  index: 12
+  Type: 2
+  CardRarity: 4
+  CardID: 0
+  CardOutputDescription: Default Card Effect
+  Effects: []
+  Events: []
+  CardEffects: []
+  SwapEffects: []
 --- !u!1 &7329322379444642304
 GameObject:
   m_ObjectHideFlags: 0

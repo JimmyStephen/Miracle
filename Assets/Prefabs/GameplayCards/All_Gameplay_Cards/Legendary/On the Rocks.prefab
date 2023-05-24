@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: On the Rocks
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 31
   CardOutputDescription: Nothing Happened
+  CardDescription: Decks are limited and do not reshuffle
   Effects: []
   Events:
   - baseCardEventTarget: 3
@@ -373,7 +377,6 @@ MonoBehaviour:
     eventDuration: 100
   CardEffects: []
   SwapEffects: []
-  CardID: 31
 --- !u!1 &8018618436487857305
 GameObject:
   m_ObjectHideFlags: 0

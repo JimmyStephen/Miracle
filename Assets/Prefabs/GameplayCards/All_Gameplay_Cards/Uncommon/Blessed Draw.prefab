@@ -96,7 +96,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Blessed Draw
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 12
   CardOutputDescription: Draw 1 Card
+  CardDescription: Draw 1 Card
   Effects: []
   Events: []
   CardEffects:
@@ -106,7 +110,6 @@ MonoBehaviour:
       ToDraw: 1
       ToDiscard: 0
   SwapEffects: []
-  CardID: 12
 --- !u!1 &2689826127972559541
 GameObject:
   m_ObjectHideFlags: 0

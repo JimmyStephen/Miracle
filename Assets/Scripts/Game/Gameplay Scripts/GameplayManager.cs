@@ -29,17 +29,15 @@ public class GameplayManager : MonoBehaviour
 
     void Start()
     {
-        //Initalize
+        //Init variables & players
         OngoingEvents = new();
-        playerOneDeck.Init();
-        playerTwoDeck.Init();
-        //Deck customDeck = gameObject.AddComponent<Deck>();
-        //customDeck.SetStartingDeck(GameManager.Instance.CustomDeck.GetStartingDeck().ToArray());
-        //playerOneDeck = customDeck;
-        //playerOneDeck.Init();
+        Debug.Log(Inventory.Instance.GetSelectedDeck().DeckName);
+        playerOneDeck.SetStartingDeck(CardConnector.GetGameplayCards(Inventory.Instance.GetSelectedDeck().Cards));
+        playerOneDeck.Init(); //Read in the player deck from inventory
+        playerTwoDeck.Init(); //Choose a random AI Deck (Later)
         player = new Player(playerOneDeck, PlayerStartingHealth, this);
         opponent = new EnemyAI(playerTwoDeck, PlayerStartingHealth, this, player);
-        //set inital state
+        //set inital game state
         currentGameState = CurrentMode.WAITING;
         GameplayEventManager.CheckStartOfGameEffects(this);
         UI.Init();

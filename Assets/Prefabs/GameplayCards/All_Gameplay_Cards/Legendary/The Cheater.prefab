@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Diablo the Cheater
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 32
   CardOutputDescription: Deal 3 to yourself, then swap health
+  CardDescription: Deal 3 damage to yourself, then swap health with your opponent
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 2
@@ -384,7 +388,6 @@ MonoBehaviour:
   SwapEffects:
   - SwapTarget: 12
     SwapTrigger: 2
-  CardID: 32
 --- !u!1 &6922763850656089321
 GameObject:
   m_ObjectHideFlags: 0

@@ -233,6 +233,7 @@ MonoBehaviour:
   CardRarity: 4
   CardID: 6
   CardOutputDescription: Do [damage] damage
+  CardDescription: Do 5 damage
   Effects:
   - baseCardEffectTarget: 1
     baseEffectTrigger: 2

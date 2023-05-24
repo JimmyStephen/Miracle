@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Flamethrower
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 23
   CardOutputDescription: Discard a random card from your opponents hand
+  CardDescription: Discard a random card from your opponents hand
   Effects: []
   Events: []
   CardEffects:
@@ -374,7 +378,6 @@ MonoBehaviour:
       ToDraw: 0
       ToDiscard: 1
   SwapEffects: []
-  CardID: 23
 --- !u!1 &7601987835661404298
 GameObject:
   m_ObjectHideFlags: 0

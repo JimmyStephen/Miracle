@@ -39,10 +39,7 @@ public class Deckbuilder : MonoBehaviour
             var temp = Instantiate(Display, DisplayParent.transform);
             DisplayObjects.Add(temp);
             temp.GetComponent<InDeckDisplay>().Init(GetCardName(ToAdd), GetNumInDeck(ToAdd), ToAdd, this);
-            OutputText.SetText($"Deck Output\n{ToAdd} Added");
         }
-        else
-            OutputText.SetText($"Deck Output\n{ToAdd} Not Added");
     }
     /// <summary>
     /// Makes sure the input can be added to the list
@@ -76,7 +73,7 @@ public class Deckbuilder : MonoBehaviour
     }
     private string GetCardName(int ID)
     {
-        return CardConnector.GetGatchaCard(ID).GetCardName();
+        return CardConnector.GetGameplayCard(ID).GetCardName();
     }
 
     public void RemoveFromList(int toRemove)
@@ -111,20 +108,6 @@ public class Deckbuilder : MonoBehaviour
         customDeck.Cards = CardID;
         customDeck.IsValid = CanBuild();
         DeckSaver.SaveDeck(customDeck);
-
-        //if (!CanBuild())
-        //    throw new System.Exception("Deck cannot be built");
-        //
-        //
-        //List<Gameplay_Card> InitialDeck = new();
-        //CardID.ForEach(id =>
-        //{
-        //    InitialDeck.Add(CardConnector.GetGameplayCard(id));
-        //});
-        //OutputDeck(InitialDeck);
-        //RuntimeDeck RD = new RuntimeDeck(InitialDeck.ToArray());
-        //RD.Init();
-        //GameManager.Instance.CustomDeck = RD;
     }
 
     //Build Deck from saved CustomDeck
@@ -135,55 +118,8 @@ public class Deckbuilder : MonoBehaviour
         {
             InitialDeck.Add(CardConnector.GetGameplayCard(id));
         });
-        OutputDeck(InitialDeck);
         RuntimeDeck RD = new RuntimeDeck(InitialDeck.ToArray());
         RD.Init();
         GameManager.Instance.CustomDeck = RD;
-    }
-
-
-    private void SaveDeck()
-    {
-        //remove
-        string DeckName = NameInput.text;
-        List<int> Cards = CardID;
-        bool IsValid = CanBuild();
-        //
-        CustomDeck cd = new();
-        cd.DeckName = DeckName;
-        cd.Cards = Cards;
-        cd.IsValid = IsValid;
-        //Save to persistance
-            //if deck already exists, override it
-            //else create a new one
-    }
-    //Debug and Testing
-    [SerializeField] TMPro.TMP_Text OutputText;
-    private void OutputDeck(List<Gameplay_Card> Cards)
-    {
-        string output = "Deck Output\nName:" + NameInput.text + "\n";
-        Cards.ForEach(card =>
-        {
-            output += $"{card.GetCardName()} : {card.GetCardID()}\n";
-        });
-        OutputText.SetText(output);
-    }
-    public void OutputGMDeck()
-    {
-        string output = "Deck Output\n";
-        GameManager.Instance.CustomDeck.GetStartingDeck().ForEach(card =>
-        {
-            output += $"{card.GetCardName()} : {card.GetCardID()}\n";
-        });
-        OutputText.SetText(output);
-    }
-    public void DrawAndDisplayStartingHand()
-    {
-        string output = "Deck Output\n";
-        GameManager.Instance.CustomDeck.DrawStartingHand().ForEach(card =>
-        {
-            output += $"{card.GetCardName()} : {card.GetCardID()}\n";
-        });
-        OutputText.SetText(output);
     }
 }

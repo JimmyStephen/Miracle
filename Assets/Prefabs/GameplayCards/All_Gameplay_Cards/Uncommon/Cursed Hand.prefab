@@ -310,7 +310,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Cursed Hand
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 17
   CardOutputDescription: Opponent discards hand and draws 5 cards
+  CardDescription: Opponent discards hand and draws 5 cards
   Effects: []
   Events: []
   CardEffects:
@@ -320,7 +324,6 @@ MonoBehaviour:
       ToDraw: 4
       ToDiscard: 25
   SwapEffects: []
-  CardID: 17
 --- !u!1 &5067406410638040056
 GameObject:
   m_ObjectHideFlags: 0

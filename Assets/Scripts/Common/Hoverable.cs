@@ -27,6 +27,7 @@ public class Hoverable : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     }
     public void OnPointerExit(PointerEventData eventData)
     {
+        StopAllCoroutines();
         HideMessage();
     }
 

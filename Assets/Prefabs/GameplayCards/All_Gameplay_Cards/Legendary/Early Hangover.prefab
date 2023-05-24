@@ -310,7 +310,12 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Early Hangover
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 29
   CardOutputDescription: Deal 3 Damage to both
+  CardDescription: On play deal three damage to each player, while this is in your
+    hand each player takes 1 damage at the end of each turn
   Effects:
   - baseCardEffectTarget: 3
     baseEffectTrigger: 1
@@ -341,7 +346,6 @@ MonoBehaviour:
   Events: []
   CardEffects: []
   SwapEffects: []
-  CardID: 29
 --- !u!1 &4835316668987551077
 GameObject:
   m_ObjectHideFlags: 0

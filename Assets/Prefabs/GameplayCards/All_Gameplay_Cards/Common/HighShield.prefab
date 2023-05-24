@@ -100,6 +100,7 @@ MonoBehaviour:
   CardRarity: 4
   CardID: 2
   CardOutputDescription: Block [shield] damage
+  CardDescription: Block 5 damage
   Effects:
   - baseCardEffectTarget: 0
     baseEffectTrigger: 2

@@ -578,11 +578,14 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Swap Health
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 19
   CardOutputDescription: Swap health with your opponent
+  CardDescription: Swap health with your opponent
   Effects: []
   Events: []
   CardEffects: []
   SwapEffects:
   - SwapTarget: 12
     SwapTrigger: 2
-  CardID: 19

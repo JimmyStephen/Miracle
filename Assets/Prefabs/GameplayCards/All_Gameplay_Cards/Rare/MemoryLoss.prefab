@@ -364,7 +364,11 @@ MonoBehaviour:
   ImageBox: {fileID: 0}
   CardName: Memory Loss
   Image: {fileID: 0}
+  Type: 2
+  CardRarity: 4
+  CardID: 24
   CardOutputDescription: Your opponent skips there next draw phase
+  CardDescription: 
   Effects: []
   Events:
   - baseCardEventTarget: 1
@@ -373,7 +377,6 @@ MonoBehaviour:
     eventDuration: 1
   CardEffects: []
   SwapEffects: []
-  CardID: 24
 --- !u!1 &7199445283814557114
 GameObject:
   m_ObjectHideFlags: 0
