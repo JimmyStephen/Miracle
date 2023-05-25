@@ -102,5 +102,5 @@ public class Gameplay_Card : Card
     public List<Card_Event> GetEvents() { return Events; }
     public List<Card_CardEffect> GetCardEffects() { return CardEffects; }
     public List<Card_SwapEffect> GetSwapEffects() { return SwapEffects; }
-    public string GetCardDescription() { return CardOutputDescription; }
+    public string GetCardDescription() { return CardDescription; }
 }
