@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class Inventory : Singleton<Inventory>
 {
@@ -18,10 +19,11 @@ public class Inventory : Singleton<Inventory>
 
     private GameObject[] GatchaCards;
 
-  void Start()
+    void Start()
     {
-        GatchaCards = GameManager.Instance.GetGatchaCards_GameObjects();
-        ReadInInventory();
+        StartCoroutine(WaitForGameManager());
+        //GatchaCards = GameManager.Instance.GetGatchaCards_GameObjects();
+        //ReadInInventory();
         SortByRarity();
     }
 
@@ -45,8 +47,8 @@ public class Inventory : Singleton<Inventory>
         SaveData();
     }
     public void SetCheatUse(bool cheat, int index) {
-      cheatUse[index] = cheat;
-      SaveData();
+        cheatUse[index] = cheat;
+        SaveData();
     }
     /// <summary>
     /// Adds one item to the inventory
@@ -70,7 +72,7 @@ public class Inventory : Singleton<Inventory>
     public void AddToInventory(GameObject[] toAdd)
     {
         //add in mass
-        foreach(var adding in toAdd)
+        foreach (var adding in toAdd)
         {
             //check if it already contains
             if (!CheckIfContains(adding.GetComponent<GatchaCard>()))
@@ -95,9 +97,9 @@ public class Inventory : Singleton<Inventory>
     {
         Debug.Log("Before Remove: " + GetCustomDeck(toRemove));
         CustomDeck DeckToRemove = null;
-        foreach(var v in CustomDeckLists)
+        foreach (var v in CustomDeckLists)
         {
-            if(v.DeckName == toRemove)
+            if (v.DeckName == toRemove)
             {
                 DeckToRemove = v;
                 break;
@@ -120,7 +122,7 @@ public class Inventory : Singleton<Inventory>
         return GetCustomDeck(SelectedDeck);
     }
     public List<bool> GetCheatUse() {
-      return cheatUse;
+        return cheatUse;
     }
     /// <summary>
     /// Gets the funds from the inventory
@@ -208,6 +210,15 @@ public class Inventory : Singleton<Inventory>
             }
         }
         return false;
+    }
+
+    private IEnumerator WaitForGameManager()
+    {
+        Debug.Log("Waiting for GameManager");
+        yield return new WaitUntil(() => GameManager.Instance != null);
+        Debug.Log("GameManager != Null = " + (GameManager.Instance != null));
+        GatchaCards = GameManager.Instance.GetGatchaCards_GameObjects();
+        ReadInInventory();
     }
 
     //--------------------------------------------------------

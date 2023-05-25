@@ -226,6 +226,7 @@ GameObject:
   - component: {fileID: 3021758053488349989}
   - component: {fileID: 7880863693379419955}
   - component: {fileID: 3021758053488349988}
+  - component: {fileID: 2828909327867357473}
   m_Layer: 5
   m_Name: Roku
   m_TagString: Untagged
@@ -312,8 +313,20 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 68ed20cef2139724381b743d4ffd8d0e, type: 3}
   Type: 0
   CardRarity: 3
-  CardID: 0
+  CardID: 31
   ConnectionName: Hopeful Start
+--- !u!114 &2828909327867357473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2619116148004673107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73bb25a6b2f2bdd4a9cd2d0d128074d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4982894928042716038
 GameObject:
   m_ObjectHideFlags: 0
