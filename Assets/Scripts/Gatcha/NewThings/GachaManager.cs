@@ -19,6 +19,10 @@ public class GachaManager : MonoBehaviour {
   [SerializeField] Button pull1;
   [SerializeField] Button pull10;
 
+  [SerializeField] GameObject Ruinart;
+  [SerializeField] GameObject Diablo;
+  [SerializeField] GameObject Standard;
+
   public static GachaManager instance;
 
   public string active = "Diablo";
@@ -46,22 +50,35 @@ public class GachaManager : MonoBehaviour {
 
     money = Inventory.Instance.GetFunds();
     charactersPulled = new List<GameObject>();
+
+    Diablo.SetActive(false);
+    Standard.SetActive(false);
+    Ruinart.SetActive(false);
   }
 
   void Update() {
     moneyTXT.text = money.ToString();
 
-    /*    switch (active) {
-          case "Diablo":
-            activePool = diabloPool;
-            break;
-          case "Ruinart":
-            activePool = ruinartPool;
-            break;
-          case "Standard":
-            activePool = standardPool;
-            break;
-        }*/
+    switch (active) {
+      case "Diablo":
+        //activePool = diabloPool;
+        Diablo.SetActive(true);
+        Ruinart.SetActive(false);
+        Standard.SetActive(false);
+        break;
+      case "Ruinart":
+        //activePool = ruinartPool;
+        Ruinart.SetActive(true);
+        Diablo.SetActive(false);
+        Standard.SetActive(false);
+        break;
+      case "Standard":
+        Standard.SetActive(true);
+        Diablo.SetActive(false);
+        Ruinart.SetActive(false);
+        //activePool = standardPool;
+        break;
+    }
   }
 
   private void SetSingle() {
