@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Testing Scenes/PullShow.unity
     guid: af0d6972799c1a84e968536aad48ef80
+  - enabled: 1
+    path: Assets/Scenes/DeckSelector.unity
+    guid: 9d133809b1a40fb45b3b13ace2b6553c
   m_configObjects: {}
