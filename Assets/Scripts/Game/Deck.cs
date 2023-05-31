@@ -7,7 +7,6 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [SerializeField] Gameplay_Card[] startingDeck;
-
     public List<Gameplay_Card> CurrentDeck { get; private set; }
     public List<Gameplay_Card> UsedCards { get; private set; }
     public void SetStartingDeck(Gameplay_Card[] startingDeck)
@@ -37,6 +36,7 @@ public class Deck : MonoBehaviour
     {
         if(CurrentDeck.Count == 0)
         {
+            //Debug.Log("Events: " + GM.OngoingEvents);
             if(!GameplayEventManager.CheckForEvent(GM.OngoingEvents, Enums._Event.LIMITED_DECK, Enums.PlayerOption.BOTH) && UsedCards.Count != 0)
                 NewDeck();
             else return null;
@@ -61,6 +61,7 @@ public class Deck : MonoBehaviour
 
     public List<Gameplay_Card> DrawStartingHand()
     {
+        Debug.Log("Draw Starting Hand");
         List<Gameplay_Card> retCards = new();
         for(int i = 0; i < 5; i++)
         {

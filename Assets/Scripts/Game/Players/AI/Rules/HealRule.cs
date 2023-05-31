@@ -23,7 +23,7 @@ public class HealRule : Rule
             return -1;
 
         float missingHealth = AI.MaxHealth - AI.CurrentHealth;
-        return (int)MathF.Truncate((missingHealth / AI.MaxHealth) * 100f);
+        return (int)MathF.Truncate((missingHealth / AI.MaxHealth) * 100f) + 5;
     }
 
     public override Gameplay_Card RunRule()

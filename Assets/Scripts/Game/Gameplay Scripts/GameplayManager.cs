@@ -29,21 +29,36 @@ public class GameplayManager : MonoBehaviour
     //Event, Duration
     [HideInInspector] public List<EventDictionary> OngoingEvents;
 
+    private List<int>[] AIDecksInt = new List<int>[]
+    {
+        new() { 2, 2, 3, 3, 11, 11, 12, 12, 16, 16, 28 },    //Draw
+        new() { 1, 1, 7, 7, 13, 10, 10, 14, 24, 24 },        //Aggro
+        new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, //Default
+        new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, //Default
+        new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }  //Default
+    };
     void Start()
     {
+        Debug.Log("Start");
         //Init variables & players
         OngoingEvents = new();
+        UI.Init();
 
         playerOneDeck.SetStartingDeck(CardConnector.GetGameplayCards(Inventory.Instance.GetSelectedDeck().Cards));
         playerOneDeck.Init();
-        playerTwoDeck = AIDecks[Random.Range(0, AIDecks.Length)];
+
+        //playerTwoDeck.SetStartingDeck(CardConnector.GetGameplayCards(new() { 2, 2, 3, 3, 11, 11, 12, 12, 16, 16, 28 }));
+        int AIDeckSelected = Random.Range(0, AIDecksInt.Length);
+        playerTwoDeck.SetStartingDeck(CardConnector.GetGameplayCards(AIDecksInt[AIDeckSelected]));
+        Debug.Log("Deck Selected: " + AIDeckSelected);
+        //playerTwoDeck.SetStartingDeck(CardConnector.GetGameplayCards(AIDecksInt[Random.Range(0, AIDecksInt.Length)]));
         playerTwoDeck.Init();
+
         player = new Player(playerOneDeck, PlayerStartingHealth, this);
         opponent = new EnemyAI(playerTwoDeck, PlayerStartingHealth, this, player);
         
         currentGameState = CurrentMode.WAITING; //set inital game state
         GameplayEventManager.CheckStartOfGameEffects(this);
-        UI.Init();
     }
 
     //Methods
@@ -133,7 +148,7 @@ public class GameplayManager : MonoBehaviour
         opponent.Draw();
         player.TriggerStored(PlayerOption.PLAYER_ONE);
         opponent.TriggerStored(PlayerOption.PLAYER_TWO);
-        GameplayEventManager.UpdateEvents(OngoingEvents);
+        GameplayEventManager.UpdateEvents(this);
         currentPlayerOneSelected = null;
     }
     private void GameOver()

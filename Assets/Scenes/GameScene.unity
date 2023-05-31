@@ -1846,10 +1846,10 @@ RectTransform:
   m_Father: {fileID: 334090719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: -100, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &697229920
 MonoBehaviour:
@@ -4301,10 +4301,10 @@ RectTransform:
   m_Father: {fileID: 153401556}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: -100, y: -60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2105287202
 MonoBehaviour:
@@ -4450,6 +4450,14 @@ PrefabInstance:
       propertyPath: buttonText
       value: 
       objectReference: {fileID: 162959745}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AIDecks.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8520297304228490897, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+      propertyPath: AIDecks.Array.data[0]
+      value: 
+      objectReference: {fileID: 8520297303155310388}
     - target: {fileID: 8520297304228490898, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
       propertyPath: m_Name
       value: GameplayManager
@@ -4500,3 +4508,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+--- !u!114 &8520297303155310388 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8520297304228490903, guid: 2c2be9014ce0bc14688a123903833a15, type: 3}
+  m_PrefabInstance: {fileID: 8520297303155310387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07af397f47e72441a37945263d1a1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

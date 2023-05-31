@@ -175,8 +175,8 @@ MonoBehaviour:
   Image: {fileID: 21300000, guid: 1dc3a3bf9159a4d4395f535d0a044c99, type: 3}
   Type: 0
   CardRarity: 3
-  CardID: 29
-  ConnectionName: Cursed Beginnings
+  CardID: 25
+  ConnectionName: Cursed Start
 --- !u!114 &230901033995193309
 MonoBehaviour:
   m_ObjectHideFlags: 0

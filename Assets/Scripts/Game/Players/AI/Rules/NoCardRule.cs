@@ -13,6 +13,7 @@ public class NoCardRule : Rule
 
     public override Gameplay_Card RunRule()
     {
+        Debug.Log("AI NoCardRule | HandSize: " + AI.Hand.Count);
         if (AI.Hand.Count == 0)
             return CardConnector.GetGameplayCard("Hand Empty!");
         else

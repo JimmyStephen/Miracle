@@ -362,11 +362,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 2159668098743662338}
   ImageBox: {fileID: 0}
-  CardName: Diablo the Cheater
+  CardName: The Cheater
   Image: {fileID: 0}
   Type: 2
   CardRarity: 4
-  CardID: 32
+  CardID: 29
   CardOutputDescription: Deal 3 to yourself, then swap health
   CardDescription: Deal 3 damage to yourself, then swap health with your opponent
   Effects:

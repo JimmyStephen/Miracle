@@ -11,7 +11,15 @@ public class DamageRule : Rule
     public override int CheckRule()
     {
         int maxDamage = 0;
-        foreach(Gameplay_Card c in AI.Hand)
+        bool DamageCard = false;
+        AI.Hand.ForEach(card => {
+            if (card.CardEffectType().Item1 == "DAMAGE")
+                DamageCard = true;
+        });
+        if (!DamageCard)
+            return -1;
+
+        foreach (Gameplay_Card c in AI.Hand)
         {
             int newDamage = AI_CardHelper.GetCardEffectValue(c, Enums.Effect.DAMAGE);
             maxDamage = newDamage > maxDamage ? newDamage : maxDamage;

@@ -15,7 +15,7 @@ public class OpponentDrawRule : Rule
             foreach(Gameplay_Card card in AI.Hand)
             {
                 var CardData = card.CardEffectType();
-                if(CardData.Item1 == "Draw" && CardData.Item2 == Enums.Target.OPPONENT_HAND)
+                if(CardData.Item1 == "DRAW" && CardData.Item2 == Enums.Target.OPPONENT_HAND)
                 {
                     //Return a random number between 45-55 if this is a valid play
                     return UnityEngine.Random.Range(45, 56);
@@ -31,7 +31,7 @@ public class OpponentDrawRule : Rule
         foreach (Gameplay_Card card in AI.Hand)
         {
             var CardData = card.CardEffectType();
-            if (CardData.Item1 == "Draw" && CardData.Item2 == Enums.Target.OPPONENT_HAND)
+            if (CardData.Item1 == "DRAW" && CardData.Item2 == Enums.Target.OPPONENT_HAND)
             {
                 //Return the first card that draws for your opponent
                 return card;

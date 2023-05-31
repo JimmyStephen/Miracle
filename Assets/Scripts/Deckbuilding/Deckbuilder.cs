@@ -90,7 +90,7 @@ public class Deckbuilder : MonoBehaviour
     /// <returns>If the deck is a valid deck</returns>
     public bool CanBuild()
     {
-        return CardID.Count >= 5 && CardID.Count < 16;
+        return CardID.Count >= 10 && CardID.Count < 16;
     }
     /// <summary>
     /// Build a deck, as long as it is valid

@@ -265,14 +265,14 @@ MonoBehaviour:
   buttonText: {fileID: 0}
   PlayerStartingHealth: 20
   UI: {fileID: 8520297303155310389}
-  playerOneDeck: {fileID: 8520297304228490903}
-  playerTwoDeck: {fileID: 8520297304228490896}
   AIDecks:
   - {fileID: 8520297304228490896}
   - {fileID: 8520297304228490903}
   - {fileID: 8520297304228490896}
   - {fileID: 4770721807352756395}
   - {fileID: 8520297304228490896}
+  playerOneDeck: {fileID: 8520297304228490903}
+  playerTwoDeck: {fileID: 8520297304228490896}
 --- !u!114 &8520297303155310389
 MonoBehaviour:
   m_ObjectHideFlags: 0

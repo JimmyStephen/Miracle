@@ -11,7 +11,8 @@ public class Inventory : Singleton<Inventory>
     private List<GameObject> InventoryList;
     private string SelectedDeck;
     private int Funds;
-    private readonly string fileName = "Inventory_Test_Three";
+    //private readonly string fileName = "Inventory_Test_Three";
+    private readonly string fileName = "Inventory";
     private List<int> rewardsListInt;
     private List<CustomDeck> CustomDeckLists;
     public int pity = 0;

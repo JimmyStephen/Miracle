@@ -25,7 +25,11 @@ public class EnemyAI : Player
     public Gameplay_Card Play()
     {
         Rule selected = ruleMachine.GetBestRule();
+        if (selected.GetType() == typeof(NoCardRule))
+            Debug.Log("Pause");
         Gameplay_Card toPlay = selected.RunRule();
+        if(toPlay == null)
+            Debug.Log("Pause");
         RemoveCard(toPlay);
         return toPlay;
     }

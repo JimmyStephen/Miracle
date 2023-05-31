@@ -24,6 +24,7 @@ public class Card_CardEffect
     {
         EffectTrigger = baseEventTrigger;
         EffectType = "DRAW";
+        CardTarget = baseCardTarget;
         OnPlayText = Text;
     }
 

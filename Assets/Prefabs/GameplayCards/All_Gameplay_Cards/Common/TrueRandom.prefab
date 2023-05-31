@@ -98,8 +98,8 @@ MonoBehaviour:
   Image: {fileID: 0}
   Type: 2
   CardRarity: 4
-  CardID: 12
-  CardOutputDescription: 'Target: [target][unknown]'
+  CardID: 13
+  CardOutputDescription: Trigger Random Effects
   CardDescription: Do a random effect to a random target
   Effects:
   - baseCardEffectTarget: 2

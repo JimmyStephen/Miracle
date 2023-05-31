@@ -29,16 +29,16 @@ public static class GameplayEventManager
     /// Update all of the events to reduce duration, and then remove the event if the duration reaches 0
     /// </summary>
     /// <param name="OngoingEvents">The list of events to update</param>
-    public static void UpdateEvents(List<EventDictionary> OngoingEvents)
+    public static void UpdateEvents(GameplayManager gm)
     {
         List<EventDictionary> temp = new();
-        OngoingEvents.ForEach(evnt => {
+        gm.OngoingEvents.ForEach(evnt => {
             if (evnt.EventDuration - 1 >= 0)
                 temp.Add(new(evnt.EventType, evnt.EventTarget, evnt.EventDuration - 1));
             else
                 Debug.Log($"{evnt.EventType} Removed");
         });
-        OngoingEvents = temp;
+        gm.OngoingEvents = temp;
     }
 
     //Trigger Passive Card Effects/Events

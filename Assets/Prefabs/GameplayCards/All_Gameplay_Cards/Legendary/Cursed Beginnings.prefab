@@ -576,11 +576,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 2802602955048879855}
   ImageBox: {fileID: 0}
-  CardName: Cursed Beginnings
+  CardName: Cursed Start
   Image: {fileID: 0}
   Type: 2
   CardRarity: 4
-  CardID: 28
+  CardID: 25
   CardOutputDescription: Restore 1 health to yourself
   CardDescription: Start of Game you start with 3 less health, each turn this is
     in your hand, heal 1 health
