@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 8771099465681525171}
-  ImageBox: {fileID: 2572285129107146579}
+  ImageBox: {fileID: 7880863693379419955}
   CardName: Marzen
   Image: {fileID: 21300000, guid: 72c17c52f0b63dc46b9340f50559713f, type: 3}
   Type: 0

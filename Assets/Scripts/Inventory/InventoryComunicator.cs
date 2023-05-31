@@ -50,28 +50,28 @@ public class InventoryComunicator : MonoBehaviour
         ClearInventoryDisplay();
         DisplayInventory(temp);
     }
-    public void Order(int orderOption)
-    {
-        switch (orderOption)
-        {
-            case 0:
-                inventory.SortByAlphabetical();
-                break;
-            case 1:
-                inventory.SortByReceived();
-                break;
-            case 2:
-                inventory.SortByRarity();
-                break;
-            case 3:
-                inventory.ReverseSort();
-                break;
-            default:
-                Debug.Log("How??");
-                break;
-        }
-        GetPageOne();
-    }
+    //public void Order(int orderOption)
+    //{
+    //    switch (orderOption)
+    //    {
+    //        case 0:
+    //            inventory.SortByAlphabetical();
+    //            break;
+    //        case 1:
+    //            inventory.SortByReceived();
+    //            break;
+    //        case 2:
+    //            inventory.SortByRarity();
+    //            break;
+    //        case 3:
+    //            inventory.ReverseSort();
+    //            break;
+    //        default:
+    //            Debug.Log("How??");
+    //            break;
+    //    }
+    //    GetPageOne();
+    //}
 
     GameObject currentSelected;
     public void ToggleFocused(int index)
@@ -101,7 +101,8 @@ public class InventoryComunicator : MonoBehaviour
         foreach (var v in toDisplay)
         {
             GameObject temp = Instantiate(InventorySlotBackground, InventoryDisplay.transform);
-            Instantiate(v, temp.transform);
+            GameObject temp2 = Instantiate(v, temp.transform);
+            temp2.GetComponent<GatchaCard>().Init();
             currentDisplayedInventory.Add(temp);
         }
         SetPageNumDisplay();

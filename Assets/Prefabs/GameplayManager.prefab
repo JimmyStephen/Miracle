@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5537514703365683994
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6592981454714759574}
+  - component: {fileID: 3926277729819838708}
+  m_Layer: 0
+  m_Name: NameContainer(EditorOnly)
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6592981454714759574
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537514703365683994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8520297304228490902}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3926277729819838708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5537514703365683994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameOverride: AggroDeck
+  tooltipOverride: 
+  target: {fileID: 4770721807352756395}
 --- !u!1 &8520297302344850084
 GameObject:
   m_ObjectHideFlags: 1
@@ -44,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOverride: PlayerOneDeck
+  nameOverride: OpponentDrawDeck
   tooltipOverride: 
   target: {fileID: 8520297304228490903}
 --- !u!1 &8520297303670441669
@@ -91,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 190d9e9918d0aaf48a103a2bb6995059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameOverride: PlayerTwoDeck
+  nameOverride: DefaultDeck
   tooltipOverride: 
   target: {fileID: 8520297304228490896}
 --- !u!1 &8520297304228490898
@@ -105,7 +152,9 @@ GameObject:
   - component: {fileID: 8520297304228490902}
   - component: {fileID: 8520297304228490903}
   - component: {fileID: 8520297304228490896}
+  - component: {fileID: 4770721807352756395}
   - component: {fileID: 8520297304228490897}
+  - component: {fileID: 8520297303155310389}
   m_Layer: 0
   m_Name: GameplayManager
   m_TagString: Untagged
@@ -127,6 +176,7 @@ Transform:
   m_Children:
   - {fileID: 8520297302344850091}
   - {fileID: 8520297303670441668}
+  - {fileID: 6592981454714759574}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -143,19 +193,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingDeck:
-  - {fileID: 2710750311708037016, guid: b3ff6684e80e191459f64d636fe81f76, type: 3}
-  - {fileID: 2710750311708037016, guid: 5acc76b8269b54648ad3dedae7dd024f, type: 3}
-  - {fileID: 2710750311708037016, guid: ef9a4f64cbf504c4396f0e87eafb6b3c, type: 3}
-  - {fileID: 2710750311708037016, guid: c966b7a744fb0294da844544afce7479, type: 3}
-  - {fileID: 2710750311708037016, guid: dfba02151d92b394996a9f9b852524ac, type: 3}
-  - {fileID: 2710750311708037016, guid: d44bdfd9aaceb0b44b73b693f199c73c, type: 3}
-  - {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
   - {fileID: 2710750311708037016, guid: cab1bb4e709379544b05bfd25e9b7b61, type: 3}
-  - {fileID: 2710750311708037016, guid: c4583540b4a8689478f7a04c7ffc5d53, type: 3}
-  - {fileID: 2710750311708037016, guid: 5ef9677baaaee4444800d5c4a3378a82, type: 3}
-  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
   - {fileID: 2710750311708037016, guid: 5cf4e8d0888b72544b19fa23e0bb2987, type: 3}
-  - {fileID: 2710750311708037016, guid: c50e0ee7bd209d8439bc07e2fdd6b40e, type: 3}
+  - {fileID: 2710750311708037016, guid: d44bdfd9aaceb0b44b73b693f199c73c, type: 3}
+  - {fileID: 2710750311708037016, guid: 5cf4e8d0888b72544b19fa23e0bb2987, type: 3}
+  - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
+  - {fileID: 2710750311708037016, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
+  - {fileID: 1984644345867461838, guid: 8ce27c6f986c95d4c8e9b181266f6231, type: 3}
+  - {fileID: 7146032707278447036, guid: a24bb75c8a8e9c94f881389d7e066059, type: 3}
+  - {fileID: 7927201909704647249, guid: 7ae5f22fcfc3d2046b0ad38e0986afff, type: 3}
 --- !u!114 &8520297304228490896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +227,27 @@ MonoBehaviour:
   - {fileID: 2710750311708037016, guid: 5ef9677baaaee4444800d5c4a3378a82, type: 3}
   - {fileID: 2710750311708037016, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
   - {fileID: 2710750311708037016, guid: 5cf4e8d0888b72544b19fa23e0bb2987, type: 3}
-  - {fileID: 2710750311708037016, guid: c50e0ee7bd209d8439bc07e2fdd6b40e, type: 3}
+--- !u!114 &4770721807352756395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520297304228490898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07af397f47e72441a37945263d1a1c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingDeck:
+  - {fileID: 3830697830062040558, guid: bba6e5f901b6e6c46a1866f72bc8cd72, type: 3}
+  - {fileID: 2970188300238196624, guid: 921190b7845f0114d8473f418efc2521, type: 3}
+  - {fileID: 2710750311708037016, guid: b3ff6684e80e191459f64d636fe81f76, type: 3}
+  - {fileID: 2710750311708037016, guid: c4583540b4a8689478f7a04c7ffc5d53, type: 3}
+  - {fileID: 2710750311708037016, guid: 5acc76b8269b54648ad3dedae7dd024f, type: 3}
+  - {fileID: 2710750311708037016, guid: c966b7a744fb0294da844544afce7479, type: 3}
+  - {fileID: 3047104442416305855, guid: 9c49cd12f53b3304a90ef66c5359a76c, type: 3}
+  - {fileID: 2710750311708037016, guid: ef9a4f64cbf504c4396f0e87eafb6b3c, type: 3}
 --- !u!114 &8520297304228490897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,28 +263,35 @@ MonoBehaviour:
   victoryRewardMin: 100
   victoryRewardMax: 1000
   buttonText: {fileID: 0}
-  playerOneHandDisplay: {fileID: 0}
-  initalCards:
-  - {fileID: 718722802651567798, guid: b3ff6684e80e191459f64d636fe81f76, type: 3}
-  - {fileID: 718722802651567798, guid: 5acc76b8269b54648ad3dedae7dd024f, type: 3}
-  - {fileID: 718722802651567798, guid: ef9a4f64cbf504c4396f0e87eafb6b3c, type: 3}
-  - {fileID: 718722802651567798, guid: c966b7a744fb0294da844544afce7479, type: 3}
-  - {fileID: 718722802651567798, guid: dfba02151d92b394996a9f9b852524ac, type: 3}
-  - {fileID: 718722802651567798, guid: d44bdfd9aaceb0b44b73b693f199c73c, type: 3}
-  - {fileID: 718722802651567798, guid: d9253235113eaf24ba08821f62f4a976, type: 3}
-  - {fileID: 718722802651567798, guid: cab1bb4e709379544b05bfd25e9b7b61, type: 3}
-  - {fileID: 718722802651567798, guid: c4583540b4a8689478f7a04c7ffc5d53, type: 3}
-  - {fileID: 718722802651567798, guid: 5ef9677baaaee4444800d5c4a3378a82, type: 3}
-  - {fileID: 718722802651567798, guid: 87e8f125d4ded5b4f96bf17745b49abe, type: 3}
-  - {fileID: 718722802651567798, guid: 5cf4e8d0888b72544b19fa23e0bb2987, type: 3}
-  - {fileID: 718722802651567798, guid: c50e0ee7bd209d8439bc07e2fdd6b40e, type: 3}
-  - {fileID: 8311974531352375194, guid: 06dae3d26fd08734099369bfed43fc39, type: 3}
-  playerOneChosenDisplay: {fileID: 0}
-  playerTwoChosenDisplay: {fileID: 0}
-  TopText: {fileID: 0}
-  BotText: {fileID: 0}
-  startingHealth: 10
-  playerOneHealthDisplay: {fileID: 0}
-  playerTwoHealthDisplay: {fileID: 0}
+  PlayerStartingHealth: 20
+  UI: {fileID: 8520297303155310389}
   playerOneDeck: {fileID: 8520297304228490903}
   playerTwoDeck: {fileID: 8520297304228490896}
+  AIDecks:
+  - {fileID: 8520297304228490896}
+  - {fileID: 8520297304228490903}
+  - {fileID: 8520297304228490896}
+  - {fileID: 4770721807352756395}
+  - {fileID: 8520297304228490896}
+--- !u!114 &8520297303155310389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8520297304228490898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3224c25643da0314ca26202b917064d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerOneHealthDisplay: {fileID: 0}
+  playerTwoHealthDisplay: {fileID: 0}
+  playerOneChosenDisplay: {fileID: 0}
+  playerTwoChosenDisplay: {fileID: 0}
+  playerOneHandDisplay: {fileID: 0}
+  playerTwoHandDisplay: {fileID: 0}
+  TopText: {fileID: 0}
+  BotText: {fileID: 0}
+  EventsText: {fileID: 0}
+  CardBackObj: {fileID: 7707799882415706831, guid: 868a85b184534c24293b6deb9bb61292, type: 3}

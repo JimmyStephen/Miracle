@@ -46,4 +46,30 @@ public class GameManager : Singleton<GameManager>
         }
         return cards.ToArray();
     }
+
+
+    public void SortCardsByID()
+    {
+        SortGameplayCardsByID();
+        SortGatchaCardsByID();
+    }
+    public void SortGameplayCardsByID()
+    {
+        GameObject[] TempArr = new GameObject[GameplayCardsList.Length];
+        for (int i = 0; i < GameplayCardsList.Length; i++)
+        {
+            TempArr[i] = CardConnector.GetGameplayCardObj(i + 1);
+        }
+        GameplayCardsList = TempArr;
+    }
+    public void SortGatchaCardsByID()
+    {
+        GameObject[] TempArr = new GameObject[GatchaCardsList.Length];
+        for(int i = 0; i < GatchaCardsList.Length; i++)
+        {
+            TempArr[i] = CardConnector.GetGatchaCardObj(i + 1);
+        }
+        GatchaCardsList = TempArr;
+    }
 }
+

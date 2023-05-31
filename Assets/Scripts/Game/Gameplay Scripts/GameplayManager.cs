@@ -16,13 +16,15 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] int PlayerStartingHealth = 20;
 
     [SerializeField] GameplayUI UI;
-    Gameplay_Card currentPlayerOneSelected = null;
 
-    //starting decks
-    public Deck playerOneDeck;
-    public Deck playerTwoDeck;
+    //decks & players
+    public Deck[] AIDecks;
     public Player player { get; private set;}
     public EnemyAI opponent { get; private set; }
+    
+    [HideInInspector] public Deck playerOneDeck;
+    [HideInInspector] public Deck playerTwoDeck;
+    private Gameplay_Card currentPlayerOneSelected = null;
 
     //Event, Duration
     [HideInInspector] public List<EventDictionary> OngoingEvents;
@@ -31,14 +33,15 @@ public class GameplayManager : MonoBehaviour
     {
         //Init variables & players
         OngoingEvents = new();
-        Debug.Log(Inventory.Instance.GetSelectedDeck().DeckName);
+
         playerOneDeck.SetStartingDeck(CardConnector.GetGameplayCards(Inventory.Instance.GetSelectedDeck().Cards));
-        playerOneDeck.Init(); //Read in the player deck from inventory
-        playerTwoDeck.Init(); //Choose a random AI Deck (Later)
+        playerOneDeck.Init();
+        playerTwoDeck = AIDecks[Random.Range(0, AIDecks.Length)];
+        playerTwoDeck.Init();
         player = new Player(playerOneDeck, PlayerStartingHealth, this);
         opponent = new EnemyAI(playerTwoDeck, PlayerStartingHealth, this, player);
-        //set inital game state
-        currentGameState = CurrentMode.WAITING;
+        
+        currentGameState = CurrentMode.WAITING; //set inital game state
         GameplayEventManager.CheckStartOfGameEffects(this);
         UI.Init();
     }

@@ -205,7 +205,6 @@ public class GachaManager : MonoBehaviour {
     //double check this
     if (Inventory.Instance.GetPity() == 50) {
       award = 5;
-      Inventory.Instance.AddPity(-50);
     }
 
     switch (award) {
@@ -234,16 +233,16 @@ public class GachaManager : MonoBehaviour {
 
     switch (rarity) {
       case "Uncommon":
-        ran = RandomNum(0, 12);
+        ran = RandomNum(0, 13);
         break;
       case "Common":
-        ran = RandomNum(13, 20);
+        ran = RandomNum(13, 19);
         break;
       case "Rare":
-        ran = RandomNum(21, 27);
+        ran = RandomNum(19, 24);
         break;
       case "Legendary":
-        ran = RandomNum(28, 33);
+        ran = RandomNum(24, 30);
         break;
     }
     var AlreadyOwned = Inventory.Instance.GetInventory();

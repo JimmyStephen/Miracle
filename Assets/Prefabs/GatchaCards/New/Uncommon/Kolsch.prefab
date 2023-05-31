@@ -308,7 +308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NameTextbox: {fileID: 8771099465681525171}
-  ImageBox: {fileID: 2572285129107146579}
+  ImageBox: {fileID: 7880863693379419955}
   CardName: Kolsch
   Image: {fileID: 21300000, guid: 9fac185816f628f43bb26d54366c65a4, type: 3}
   Type: 0

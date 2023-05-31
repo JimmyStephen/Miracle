@@ -8,11 +8,14 @@ public class NoCardRule : Rule
 
     public override int CheckRule()
     {
-        return AI.Hand.Count == 0 ? 100 : 0;
+        return AI.Hand.Count == 0 ? 100 : 1;
     }
 
     public override Gameplay_Card RunRule()
     {
-        return CardConnector.GetGameplayCard("Hand Empty!");
+        if (AI.Hand.Count == 0)
+            return CardConnector.GetGameplayCard("Hand Empty!");
+        else
+            return AI.Hand[Random.Range(0, AI.Hand.Count)];
     }
 }

@@ -24,7 +24,7 @@ public class Inventory : Singleton<Inventory>
         StartCoroutine(WaitForGameManager());
         //GatchaCards = GameManager.Instance.GetGatchaCards_GameObjects();
         //ReadInInventory();
-        SortByRarity();
+        //SortByRarity();
     }
 
     //Add/Update/Remove Methods
@@ -44,6 +44,7 @@ public class Inventory : Singleton<Inventory>
     public void AddPity(int newPity)
     {
         pity += newPity;
+        if(pity <= 0) pity = 0;
         SaveData();
     }
     public void SetCheatUse(bool cheat, int index) {
@@ -233,11 +234,9 @@ public class Inventory : Singleton<Inventory>
         int endIndex = startIndex + numPerPage;
         if (startIndex > InventoryList.Count())
         {
-            //            Debug.Log("Start is beyond the limits, returning");
             return null;
         }
         if (startIndex < 0) startIndex = 0;
-        //Debug.Log("Start Index: " + startIndex + " End Index: " + endIndex + " Num in Array: " + InventoryList.Count());
         return GetInventory(startIndex, endIndex);
     }
     public int GetMaxPages()
@@ -248,27 +247,27 @@ public class Inventory : Singleton<Inventory>
         return ret;
     }
     //Sort (Remove/Move)
-    public void SortByAlphabetical()
-    {
-        Debug.Log("Sort By Alphabetical : Unimplemented");
-        //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetName()).ToList();
-    }
-    public void SortByRarity()
-    {
-        Debug.Log("Sort By Rarity : Unimplemented");
-        //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetRarityE()).ToList();
-        //InventoryList.Reverse();
-    }
-    public void SortByReceived()
-    {
-        InventoryList.Clear();
-        foreach (var v in rewardsListInt)
-        {
-            InventoryList.Add(GatchaCards[v]);
-        }
-    }
-    public void ReverseSort()
-    {
-        InventoryList.Reverse();
-    }
+    //public void SortByAlphabetical()
+    //{
+    //    Debug.Log("Sort By Alphabetical : Unimplemented");
+    //    //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetName()).ToList();
+    //}
+    //public void SortByRarity()
+    //{
+    //    //Debug.Log("Sort By Rarity : Unimplemented");
+    //    //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetRarityE()).ToList();
+    //    //InventoryList.Reverse();
+    //}
+    //public void SortByReceived()
+    //{
+    //    InventoryList.Clear();
+    //    foreach (var v in rewardsListInt)
+    //    {
+    //        InventoryList.Add(GatchaCards[v]);
+    //    }
+    //}
+    //public void ReverseSort()
+    //{
+    //    InventoryList.Reverse();
+    //}
 }
