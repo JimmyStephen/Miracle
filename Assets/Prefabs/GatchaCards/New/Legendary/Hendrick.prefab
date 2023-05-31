@@ -310,7 +310,7 @@ MonoBehaviour:
   NameTextbox: {fileID: 8771099465681525171}
   ImageBox: {fileID: 2572285129107146579}
   CardName: Hendrick
-  Image: {fileID: 21300000, guid: 68ed20cef2139724381b743d4ffd8d0e, type: 3}
+  Image: {fileID: 21300000, guid: 1dc3a3bf9159a4d4395f535d0a044c99, type: 3}
   Type: 0
   CardRarity: 3
   CardID: 29

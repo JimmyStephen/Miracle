@@ -310,7 +310,7 @@ MonoBehaviour:
   NameTextbox: {fileID: 8771099465681525171}
   ImageBox: {fileID: 2572285129107146579}
   CardName: Roku
-  Image: {fileID: 21300000, guid: 68ed20cef2139724381b743d4ffd8d0e, type: 3}
+  Image: {fileID: 21300000, guid: f3e01b6cdc8809444b76a81a3800b94a, type: 3}
   Type: 0
   CardRarity: 3
   CardID: 31

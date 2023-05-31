@@ -169,11 +169,11 @@ public class GachaManager : MonoBehaviour {
     active = banner;
   }
 
-  //populate the pools
+/*  //populate the pools
   public void OrganizeGacha() {
 
   }
-
+*/
   private void Gacha() {
 
     //Redo to have less chance for higher things
@@ -205,12 +205,14 @@ public class GachaManager : MonoBehaviour {
     //double check this
     if (Inventory.Instance.GetPity() == 50) {
       award = 5;
+      Inventory.Instance.AddPity(-50);
     }
 
     switch (award) {
       case 5:
         rarity.Add("Legendary");
         GetCharacter("Legendary");
+        Inventory.Instance.AddPity(-50);
         break;
       case 20:
         rarity.Add("Rare");
