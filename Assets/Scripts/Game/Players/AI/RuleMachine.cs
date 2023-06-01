@@ -24,9 +24,7 @@ public class RuleMachine
         {
             int tempPriority = rule.CheckRule();
             (currentPriority, CurrentRule) = tempPriority > currentPriority ? (tempPriority, rule) : (currentPriority, CurrentRule);
-            //UnityEngine.Debug.Log($"Rule: {rule} | Priority: {tempPriority}");
         }
-        //UnityEngine.Debug.Log($"Final Selected Rule: {CurrentRule.RuleName} | Priority: {currentPriority}");
         return CurrentRule;
     }
 

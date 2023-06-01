@@ -97,7 +97,6 @@ public class Inventory : Singleton<Inventory>
     }
     public void RemoveCustomDeck(string toRemove)
     {
-        Debug.Log("Before Remove: " + GetCustomDeck(toRemove));
         CustomDeck DeckToRemove = null;
         foreach (var v in CustomDeckLists)
         {
@@ -108,7 +107,6 @@ public class Inventory : Singleton<Inventory>
             }
         }
         CustomDeckLists.Remove(DeckToRemove);
-        Debug.Log("After Remove: " + GetCustomDeck(toRemove));
     }
 
     //Get Methods
@@ -186,7 +184,6 @@ public class Inventory : Singleton<Inventory>
     private void ReadInInventory()
     {
         List<SaveData> dataList = FileHandler.ReadFromJSON<SaveData>(fileName);
-        if (dataList == null) Debug.Log("Empty List | File Does Not Exist");
         SaveData data = dataList[0];
         ReadInSaveData(data);
     }
@@ -216,9 +213,7 @@ public class Inventory : Singleton<Inventory>
 
     private IEnumerator WaitForGameManager()
     {
-        Debug.Log("Waiting for GameManager");
         yield return new WaitUntil(() => GameManager.Instance != null);
-        Debug.Log("GameManager != Null = " + (GameManager.Instance != null));
         GatchaCards = GameManager.Instance.GetGatchaCards_GameObjects();
         ReadInInventory();
     }
@@ -247,28 +242,4 @@ public class Inventory : Singleton<Inventory>
         if (ret <= 0) ret = 1;
         return ret;
     }
-    //Sort (Remove/Move)
-    //public void SortByAlphabetical()
-    //{
-    //    Debug.Log("Sort By Alphabetical : Unimplemented");
-    //    //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetName()).ToList();
-    //}
-    //public void SortByRarity()
-    //{
-    //    //Debug.Log("Sort By Rarity : Unimplemented");
-    //    //InventoryList = InventoryList.OrderBy(v => v.GetComponent<Reward>().GetRarityE()).ToList();
-    //    //InventoryList.Reverse();
-    //}
-    //public void SortByReceived()
-    //{
-    //    InventoryList.Clear();
-    //    foreach (var v in rewardsListInt)
-    //    {
-    //        InventoryList.Add(GatchaCards[v]);
-    //    }
-    //}
-    //public void ReverseSort()
-    //{
-    //    InventoryList.Reverse();
-    //}
 }

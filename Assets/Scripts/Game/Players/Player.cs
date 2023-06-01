@@ -93,7 +93,6 @@ public class Player
         if (card == null)
         {
             CurrentHealth -= 1;
-            Debug.Log("Deck Empty! You start to feel tipsy (Fatigue damage ignores shields)");
         }
         else
         {
@@ -154,7 +153,6 @@ public class Player
         }
         catch
         {
-            Debug.Log("Unable to remove card");
             return false;
         }
         return true;

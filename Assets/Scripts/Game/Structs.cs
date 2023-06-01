@@ -47,8 +47,6 @@ public struct EventDictionary
 
     public void UpdateDuration()
     {
-        Debug.Log($"Event: {EventType} Duration: {EventDuration}");
         EventDuration--;
-        Debug.Log($"Event: {EventType} (Updated) Duration: {EventDuration}");
     }
 }

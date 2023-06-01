@@ -37,9 +37,9 @@ public class GameplayManager : MonoBehaviour
         new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, //Default
         new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }  //Default
     };
+
     void Start()
     {
-        Debug.Log("Start");
         //Init variables & players
         OngoingEvents = new();
         UI.Init();
@@ -47,11 +47,8 @@ public class GameplayManager : MonoBehaviour
         playerOneDeck.SetStartingDeck(CardConnector.GetGameplayCards(Inventory.Instance.GetSelectedDeck().Cards));
         playerOneDeck.Init();
 
-        //playerTwoDeck.SetStartingDeck(CardConnector.GetGameplayCards(new() { 2, 2, 3, 3, 11, 11, 12, 12, 16, 16, 28 }));
         int AIDeckSelected = Random.Range(0, AIDecksInt.Length);
         playerTwoDeck.SetStartingDeck(CardConnector.GetGameplayCards(AIDecksInt[AIDeckSelected]));
-        Debug.Log("Deck Selected: " + AIDeckSelected);
-        //playerTwoDeck.SetStartingDeck(CardConnector.GetGameplayCards(AIDecksInt[Random.Range(0, AIDecksInt.Length)]));
         playerTwoDeck.Init();
 
         player = new Player(playerOneDeck, PlayerStartingHealth, this);
@@ -129,9 +126,6 @@ public class GameplayManager : MonoBehaviour
         UI.DrawSelectedCard(opponentCard.CardID, PlayerOption.PLAYER_TWO);
         //Trigger the cards
         string TopTextReturn, BotTextReturn;
-        //(string TopTextReturn, string BotTextReturn) = Random.Range(0.0f, 1.0f) > .5f ?
-        //    (currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY), opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY)):
-        //    (opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY), currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY));
         if(Random.Range(0.0f, 1.0f) > .5f)
             (TopTextReturn, BotTextReturn) = (currentPlayerOneSelected.PlayCard(player, opponent, this, true, Trigger.ON_PLAY), opponentCard.PlayCard(player, opponent, this, false, Trigger.ON_PLAY));
         else

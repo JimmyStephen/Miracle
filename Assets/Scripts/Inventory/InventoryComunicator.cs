@@ -31,7 +31,6 @@ public class InventoryComunicator : MonoBehaviour
         GameObject[] temp = inventory.GetPage(currentPageNum);
         if (temp == null || temp.Length == 0)
         {
-            //Debug.Log("Temp is null or empty");
             currentPageNum--;
             return;
         }
@@ -50,28 +49,6 @@ public class InventoryComunicator : MonoBehaviour
         ClearInventoryDisplay();
         DisplayInventory(temp);
     }
-    //public void Order(int orderOption)
-    //{
-    //    switch (orderOption)
-    //    {
-    //        case 0:
-    //            inventory.SortByAlphabetical();
-    //            break;
-    //        case 1:
-    //            inventory.SortByReceived();
-    //            break;
-    //        case 2:
-    //            inventory.SortByRarity();
-    //            break;
-    //        case 3:
-    //            inventory.ReverseSort();
-    //            break;
-    //        default:
-    //            Debug.Log("How??");
-    //            break;
-    //    }
-    //    GetPageOne();
-    //}
 
     GameObject currentSelected;
     public void ToggleFocused(int index)
@@ -79,7 +56,6 @@ public class InventoryComunicator : MonoBehaviour
         GameObject toSpawn = inventory.GetReward(index);
         if (toSpawn == null)
         {
-            Debug.Log("Error, to spawn {" + index + "} == null");
             return;
         }
 

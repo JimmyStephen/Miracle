@@ -14,7 +14,6 @@ public static class GameplayDebug
         player.Hand.ForEach(card => { pStr += card.name + ", "; });
         string oStr = $"Opponent Hand: ({opponent.Hand.Count})";
         opponent.Hand.ForEach(card => { oStr += card.name + ", "; });
-        Debug.Log($"{pStr}\n{oStr}");
     }
 
     /// <summary>
@@ -26,7 +25,6 @@ public static class GameplayDebug
         player.Deck.CurrentDeck.ForEach(card => { pStr += card.name + ", "; });
         string oStr = $"Opponent Remaining Deck:";
         opponent.Deck.CurrentDeck.ForEach(card => { oStr += card.name + ", "; });
-        Debug.Log($"{pStr}\n{oStr}");
     }
 
     /// <summary>
@@ -38,7 +36,6 @@ public static class GameplayDebug
         player.Deck.UsedCards.ForEach(card => { pStr += card.name + ", "; });
         string oStr = $"Opponent Dead Deck:";
         opponent.Deck.UsedCards.ForEach(card => { oStr += card.name + ", "; });
-        Debug.Log($"{pStr}\n{oStr}");
     }
 
     /// <summary>
@@ -47,8 +44,6 @@ public static class GameplayDebug
     /// <param name="events"></param>
     public static void OutputEvents(List<EventDictionary> events)
     {
-        Debug.Log("Events: ");
-        events.ForEach(e => { Debug.Log($"Event: {Enums.GetEnumAsString(e.EventType.ToString())}, Target: {Enums.GetEnumAsString(e.EventTarget.ToString())}, Duration: {e.EventDuration}"); });
     }
 
     public static void GiveCardsID(GameObject[] AllCards)

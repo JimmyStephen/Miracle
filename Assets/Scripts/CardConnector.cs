@@ -16,7 +16,7 @@ public static class CardConnector
         {
             GameplayCards[i].CardID = i+1;
             try { GetGatchaCard(GameplayCards[i].GetCardName(), true).CardID = i+1; }
-            catch { Debug.Log($"No Gatcha Card \"{GameplayCards[i].GetCardName()}\" Found | ID: {i}"); }
+            catch {  }
         }
         //Quickly sort the cards via id
         GameManager.Instance.SortCardsByID();

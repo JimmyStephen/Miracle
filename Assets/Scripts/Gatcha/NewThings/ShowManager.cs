@@ -24,7 +24,6 @@ public class ShowManager : MonoBehaviour {
 
   private void ShowCards() {
     if (!GachaManager.instance.onePull) {
-      Debug.Log("Character Count: " + characters.Count);
       for (int i = 0; i < characters.Count; i++) {
         cards[i].SetActive(true);
         posters[i].SetActive(true);

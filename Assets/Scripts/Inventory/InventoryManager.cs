@@ -38,7 +38,6 @@ public class InventoryManager : MonoBehaviour
                 Toggle(InventoryMode.DECK_SELECTOR);
                 break;
             default:
-                Debug.Log("Default");
                 break;
         }
     }
@@ -64,7 +63,6 @@ public class InventoryManager : MonoBehaviour
                 deckbuilder.FromBaseDeck(deckselector.GetSelectedDeck());
                 break;
             case InventoryMode.DECK_SELECTOR:
-                Debug.Log("Deck Selector Enabled!");
                 DeckSelectorDisplay.SetActive(true);
                 DeckBuilderDisplay.SetActive(false);
                 break;

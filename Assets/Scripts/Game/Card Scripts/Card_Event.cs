@@ -38,11 +38,9 @@ public class Card_Event
     public string TriggerEffect(Player player, EnemyAI AI, GameplayManager GM, bool PlayedByPlayer)
     {
         EventDictionary EvntDict = new(_event, GetEventTarget(PlayedByPlayer), eventDuration);
-        //Debug.Log(Enums.GetEnumAsString(EvntDict.EventType.ToString()) + " Adding");
         int contains = CheckContains(GM.OngoingEvents, EvntDict);
         if (contains != -100)
         {
-            //Debug.Log(Enums.GetEnumAsString(EvntDict.EventType.ToString()) + " is already in the list");
             if(contains < eventDuration)
             {
                 GM.OngoingEvents.Remove(GetEvent(GM.OngoingEvents, EvntDict));
@@ -51,7 +49,6 @@ public class Card_Event
         }
         else
             GM.OngoingEvents.Add(EvntDict);
-        //Debug.Log(Enums.GetEnumAsString(EvntDict.EventType.ToString()) + " Added");
         return OnPlayText;
     }
 

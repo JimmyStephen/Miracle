@@ -16,7 +16,6 @@ public class DeckSelector : MonoBehaviour
         var decks = Inventory.Instance.GetCustomDecks();
         foreach (var deck in decks)
         {
-            //Debug.Log("Deck: " + deck.DeckName);
             var temp = Instantiate(Display, DisplayParent.transform);
             DisplayedDecks.Add(temp);
             temp.GetComponent<DeckDisplay>().Init(deck, this);
@@ -25,7 +24,6 @@ public class DeckSelector : MonoBehaviour
 
     public void SaveSelectedDeck()
     {
-        Debug.Log("Deck Saved: " + CurrentSelectedName);
         Inventory.Instance.SetSelectedDeck(CurrentSelectedName);
     }
     

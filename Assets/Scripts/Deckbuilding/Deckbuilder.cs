@@ -78,10 +78,7 @@ public class Deckbuilder : MonoBehaviour
 
     public void RemoveFromList(int toRemove)
     {
-        if (CardID.Remove(toRemove))
-            Debug.Log("Card Removed");
-        else
-            Debug.Log("Error");
+        CardID.Remove(toRemove);
     }
 
     /// <summary>
@@ -101,7 +98,6 @@ public class Deckbuilder : MonoBehaviour
         CustomDeck customDeck = new CustomDeck();
         if (NameInput.text.Trim() == "")
         {
-            Debug.Log("Unnamed");
             return;
         }
         customDeck.DeckName = NameInput.text;

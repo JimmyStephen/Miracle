@@ -34,9 +34,7 @@ public static class GameplayEventManager
         List<EventDictionary> temp = new();
         gm.OngoingEvents.ForEach(evnt => {
             if (evnt.EventDuration - 1 >= 0)
-                temp.Add(new(evnt.EventType, evnt.EventTarget, evnt.EventDuration - 1));
-            else
-                Debug.Log($"{evnt.EventType} Removed");
+                temp.Add(new(evnt.EventType, evnt.EventTarget, evnt.EventDuration - 1));;
         });
         gm.OngoingEvents = temp;
     }

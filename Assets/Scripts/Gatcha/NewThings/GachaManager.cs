@@ -253,10 +253,8 @@ public class GachaManager : MonoBehaviour {
       }
     }
 
-    Debug.Log("Pulled Character: " + ran);
     charactersPulled.Add(gachaCharacters[ran]);
 
-    Debug.Log("Name: " + gachaCharacters[ran].name);
   }
 
   private int RandomNum(int min, int max) {

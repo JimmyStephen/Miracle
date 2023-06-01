@@ -22,10 +22,8 @@ public class DeckSelectDisplay : MonoBehaviour
 
     public void Select()
     {
-        Debug.Log("Select");
         if(!Inventory.Instance.GetCustomDeck(DeckNameDisplay.text).IsValid)
         {
-            Debug.Log("Invalid Deck");
             return;
         }
         Inventory.Instance.SetSelectedDeck(DeckNameDisplay.text);

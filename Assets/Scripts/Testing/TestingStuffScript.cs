@@ -45,11 +45,6 @@ public class TestingStuffScript : MonoBehaviour
     {
         CustomDeck[] CDs = Inventory.Instance.GetCustomDecks();
         string testName = CDs[0].DeckName;
-        foreach(var cd in CDs)
-        {
-            Debug.Log($"{cd.DeckName} : {cd.Cards}");
-        }
         CustomDeck SingleCD = Inventory.Instance.GetCustomDeck(testName);
-        Debug.Log($"Single: {SingleCD.DeckName} : {SingleCD.Cards}");
     }
 }

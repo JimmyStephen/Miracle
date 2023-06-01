@@ -43,7 +43,6 @@ public class GameplayUI : MonoBehaviour
         string eventText = "Events\n";
         foreach(var events in gameplayManager.OngoingEvents)
             eventText += $"{events.EventType} | {events.EventDuration}\n";
-        //Debug.Log(eventText);
         if (EventsText != null) EventsText.text = eventText;
         UpdateBothHandDisplays(player, opponent);
     }
