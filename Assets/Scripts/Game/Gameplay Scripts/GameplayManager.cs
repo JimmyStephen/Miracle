@@ -31,7 +31,7 @@ public class GameplayManager : MonoBehaviour
 
     private List<int>[] AIDecksInt = new List<int>[]
     {
-        new() { 2, 2, 3, 3, 11, 11, 12, 12, 16, 16, 28 },    //Draw
+        new() { 2, 2, 3, 3, 11, 11, 12, 12, 16, 16, 21, 21, 24, 24, 28 },    //Draw
         new() { 1, 1, 7, 7, 13, 10, 10, 14, 24, 24 },        //Aggro
         new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, //Default
         new() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 }, //Default
