@@ -172,7 +172,7 @@ MonoBehaviour:
   NameTextbox: {fileID: 8771099465681525171}
   ImageBox: {fileID: 2572285129107146579}
   CardName: Bernheim
-  Image: {fileID: 21300000, guid: 7a5f4592c2d4dae4e832215b9f71307d, type: 3}
+  Image: {fileID: 21300000, guid: f32a7d621fe30104d9327dd8d2a12352, type: 3}
   Type: 0
   CardRarity: 2
   CardID: 28
