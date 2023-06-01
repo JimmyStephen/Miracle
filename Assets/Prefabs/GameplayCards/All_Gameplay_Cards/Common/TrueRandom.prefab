@@ -111,10 +111,10 @@ MonoBehaviour:
         max: 10
       HealValue:
         min: 0
-        max: 10
+        max: 7
       ShieldValue:
         min: 0
-        max: 10
+        max: 7
   Events: []
   CardEffects: []
   SwapEffects: []
