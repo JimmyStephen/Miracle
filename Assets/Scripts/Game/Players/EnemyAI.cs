@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyAI : Player
 {
+    //Use Dependency Injection so that I only ever need 1 AI
+    
     RuleMachine ruleMachine = new RuleMachine();
     public EnemyAI(Deck deck, int maxHealth, GameplayManager gM, Player player) : base(deck, maxHealth, gM) { Init(player); }
 
@@ -67,14 +69,14 @@ public class EnemyAI : Player
     //    //return the selection
     //    return retCard;
     //}
-    private bool CheckShouldHeal()
-    {
-        int missingHealth = (MaxHealth - CurrentHealth);
-        float rand = Random.Range(0, 10.0f);
-        return missingHealth >= rand;
-    }
-    private int FindHealCard()
-    {
+    //private bool CheckShouldHeal()
+    //{
+    //    int missingHealth = (MaxHealth - CurrentHealth);
+    //    float rand = Random.Range(0, 10.0f);
+    //    return missingHealth >= rand;
+    //}
+    //private int FindHealCard()
+    //{
         // int retVal = -1;
         // List<int> healingCards = new();
         //
@@ -99,10 +101,10 @@ public class EnemyAI : Player
         // }
         //
         // return retVal;
-        return 0;
-    }
-    private int FindNonHealCard()
-    {
+    //    return 0;
+    //}
+    //private int FindNonHealCard()
+    //{
         // int retVal = -1;
         // List<int> retCards = new();
         //
@@ -121,10 +123,10 @@ public class EnemyAI : Player
         // }
         //
         // return retVal;
-        return 0;
-    }
-    private int FindShieldCard()
-    {
+    //    return 0;
+    //}
+    //private int FindShieldCard()
+    //{
         //int retVal = -1;
         //List<int> healingCards = new();
         //
@@ -147,6 +149,6 @@ public class EnemyAI : Player
         //}
 
         //return retVal;
-        return 0;
-    }
+    //    return 0;
+    //}
 }
